@@ -1,0 +1,26 @@
+
+A - Phisic Attack
+
+B - Instant Attack
+
+C - Ki Blast
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Super Ki Liberation
+
+D,DB,B,a - Super Explosive Wave
+
+D,DF,F,b - Ultimate Masenko
+
+D,DB,B,b - Full Power
+
+D,DF,F,c - Super Kamehameha
+
+D,DB,B,c - Gekiretsu Madan
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Bakuretsu Rasshu

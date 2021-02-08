@@ -1,0 +1,20 @@
+[Info]
+name = "Dukemon"
+displayname = "Gallantmon"
+versiondate = 23/12/09
+mugenversion = 06,14,2003
+author = "Love Renamon (Davi)"
+pal.defaults = 1
+
+[Files]
+sprite = Dukemon.sff
+anim = Dukemon.air
+sound = Dukemon.snd
+cmd = Dukemon.cmd
+cns = Dukemon.cns
+stcommon = Common1.cns
+st = Dukemon.cns
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=..\data\final.def

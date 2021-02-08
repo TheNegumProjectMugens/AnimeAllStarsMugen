@@ -1,0 +1,18 @@
+[Info]
+name="New_Goku_SSGSS_Jus"
+displayname="Goku SSJ Blue"
+versiondate=26/02/2016
+mugenversion=1.0
+author="This Boy"
+pal.defaults=1
+[Files]
+sprite=Goku_SSGSS_Jus.sff
+sound=Goku_SSGSS_Jus.snd
+anim=Goku_SSGSS_Jus.air
+cmd=Goku_SSGSS_Jus.cmd
+cns=Goku_SSGSS_Jus.cns
+st=Goku_SSGSS_Jus.cns
+stcommon=common1.cns
+[Arcade]
+intro.storyboard=
+ending.storyboard=

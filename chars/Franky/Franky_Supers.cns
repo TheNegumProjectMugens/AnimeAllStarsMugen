@@ -1,0 +1,4952 @@
+;===============================================================================
+; Coup de Vent
+;===============================================================================
+;Coup de Vent - start
+[Statedef 3000]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3000
+poweradd = -1000
+
+[State 3250: portrait: Coup de Vent]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Coup de Vent"
+id		= 3070
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [30, 45]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 3, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 10,-45
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 0, PlaySnd - Coup de Vent]
+type = PlaySnd
+trigger1 = time = 30
+value = S4,16
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 30
+value = S3,19
+
+[State 60, Absorción de aire 1]
+type = Explod
+triggerall = time > 30
+trigger1 = time%2 = 0
+anim = 8100
+ID =  8100
+pos = 40+(random%50),-35-(random%35)
+vel = -1,1
+accel = 0,-0.03
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2, 0.1
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+[State 60, Absorción de aire 2]
+type = Explod
+triggerall = time > 30
+trigger1 = time%2 = 0
+anim = 8100
+ID =  8100
+pos = 40+(random%50),-35+(random%35)
+vel = -1,-1
+accel = 0,0.03
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2, 0.1
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 3001, End]
+type = ChangeState
+trigger1 = time = 100
+value	= 3001
+ctrl = 0
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 58
+trigger1 = command != "hold_c"
+value	= 3010
+ctrl = 0
+
+
+;-----------------------------------------------
+;Coup de Vent - Chargue lvl 2
+[Statedef 3001]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3001
+poweradd = -1000
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S3,8
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = time = 0
+time = 5
+freq = 60
+ampl = -4
+phase = 110
+
+
+[State 60, Absorción de aire 1]
+type = Explod
+trigger1 = time%2 = 0
+anim = 8100
+ID =  8100
+pos = 40+(random%50),-35-(random%35)
+vel = -1,1
+accel = 0,-0.03
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2, 0.1
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+[State 60, Absorción de aire 2]
+type = Explod
+trigger1 = time%2 = 0
+anim = 8100
+ID =  8100
+pos = 40+(random%50),-35+(random%35)
+vel = -1,-1
+accel = 0,0.03
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2, 0.1
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 20
+trigger1 = command != "hold_c"
+value	= 3011
+ctrl = 0
+
+[State 3001, End]
+type = ChangeState
+trigger1 = time = 100
+value	= 3002
+ctrl = 0
+
+;----------------------------------------
+;Coup de Vent - Chargue lvl 3
+[Statedef 3002]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3002
+poweradd = -1000
+
+[State 3250: portrait: Coup de Vent - Max lvl]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Coup de Vent - Max lvl"
+id		= 3080
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3080
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.65
+size.yscale     = 0.65
+
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 70
+movetime = 70
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 60 && Var(12) < 0
+v = 12
+value = 6
+
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [60, 75]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 3, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 42,-42
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S3,1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S3,8
+
+
+
+[State 60, Absorción de aire 1]
+type = Explod
+trigger1 = time%2 = 0
+anim = 8100
+ID =  8100
+pos = 40+(random%50),-35-(random%35)
+vel = -1,1
+accel = 0,-0.03
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2, 0.1
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+[State 60, Absorción de aire 2]
+type = Explod
+trigger1 = time%2 = 0
+anim = 8100
+ID =  8100
+pos = 40+(random%50),-35+(random%35)
+vel = -1,-1
+accel = 0,0.03
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2, 0.1
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 85
+trigger1 = command != "hold_c"
+trigger2 = time = 120
+value	= 3012
+ctrl = 0
+
+
+;-----------------------------------------------------------------
+;Coup de Vent - descarga 1
+[Statedef 3010]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3010
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+value = S3,17
+volume = 50
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = -10,15
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 3250: Impacto]
+type		= Helper
+trigger1 = animelem = 1
+helpertype	= Normal
+name		= "Fx Impacto"
+id		= 3050
+pos		= 10,-35
+postype		= p1
+facing		= 1
+stateno		= 3050
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 0.3
+size.yscale     = 0.3
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = AnimElem = 2
+attr = S, NA
+animtype  = light
+damage    = 250,50
+guardflag = MA
+pausetime = 10,12
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -20,-30
+hitsound   = 0,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -6,-6
+air.velocity = -6,-6
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+
+
+[State 1000, Spark]
+type = Explod
+trigger1 = time = 0
+anim = 7020
+ID = 7020
+pos = 25,-35
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = -1
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -7
+y = 0
+
+[State 3250: Spadas]
+type		= Helper
+triggerall = Numhelper(3090) < 3
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3090
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = time = 60
+value = 3020
+ctrl = 1
+
+
+;-----------------------------------------------------------------
+;Coup de Vent - descarga 2
+[Statedef 3011]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3010
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+value = S1,16
+volume = 50
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = -10,15
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.75, 0.75
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = AnimElem = 2
+attr = S, NA
+animtype  = light
+damage    = 375,50
+guardflag = MA
+pausetime = 12,14
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -20,-30
+hitsound   = 3,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -8,-8
+air.velocity = -8,-8
+envshake.time 	= 10
+envshake.freq  	= 110
+envshake.ampl  	= -5
+envshake.phase 	= 1
+fall = 1
+
+
+[State 1000, Spark]
+type = Explod
+trigger1 = time = 0
+anim = 7065
+ID = 7065
+pos = 15,-40
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = 1
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -10
+y = 0
+
+[State 3250: Spadas]
+type		= Helper
+triggerall = Numhelper(3090) < 3
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3090
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = time = 60
+value = 3020
+ctrl = 1
+
+;-----------------------------------------------------------------
+;Coup de Vent - descarga 3
+[Statedef 3012]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3012
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+value = S3,20
+volume = 50
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = 10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 1, 1
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = -10,15
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 1, 1
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, aire adelante]
+type = Explod
+triggerall = time < 30
+trigger1 = time%1 = 0
+anim = 8100
+ID =  8100
+pos = -60+(random%50),0-(random%90)
+vel = 3+(random%3),0
+accel = 0,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2, 0.1
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= time = 0
+time			= 20
+freq			= 180
+ampl			= -8
+phase			= 50
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = !movecontact
+attr = S, NA
+animtype  = Medium
+damage    = 500,50
+guardflag = MA
+pausetime = 12,14
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -20,-30
+hitsound   = 3,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -15,-5
+air.velocity = -15,-5
+fall = 1
+p2stateno = 3030
+
+
+[State 1000, Spark]
+type = Explod
+trigger1 = time = 0
+anim = 7066
+ID = 7066
+pos = 25,-35
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = 1
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -10
+y = 0
+
+[State 3250: Spadas]
+type		= Helper
+triggerall = Numhelper(3090) < 3
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3090
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = time = 60
+value = 3020
+ctrl = 1
+
+;-------------------------------------------------------------------------
+;Coup de Vent - Terminación
+[Statedef 3020]
+type    = S
+physics = S
+velset = 0,0
+anim = 3020
+ctrl = 0
+sprpriority = 3
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,18
+
+
+[State 3290, changestate]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;------------------------------------------------------------------------
+;------------------
+; Hit by Punt Kick - shaking from the hit
+[Statedef 3030]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 1290, Anim]
+type = ChangeAnim2
+trigger1 = 1
+value = 3030
+
+[State 1290, State]
+type = ChangeState
+trigger1 = HitShakeOver = 1
+value = 3031
+
+;------------------
+; Hit by Punt Kick - flying through the air
+[Statedef 3031]
+type    = A
+movetype= H
+physics = N
+
+[State 1291, Velocity]
+type = HitVelSet
+trigger1 = Time = 0
+x = 1
+y = 1
+
+[State 1291, Gravity]
+type = VelAdd
+trigger1 = 1
+y = .45
+
+
+[State 1291, Hit wall]
+type = ChangeState
+triggerall = Pos y < -15
+trigger1 = BackEdgeBodyDist <= 10
+trigger2 = FrontEdgeBodyDist <= 10
+value = 3032
+
+[State 1291, Hit ground]
+type = SelfState
+trigger1 = (Vel y > 0) && (Pos y >= 0)
+value = 5100
+
+;------------------
+; Hit by Punt Kick - hit wall
+[Statedef 3032]
+type    = A
+movetype= H
+physics = N
+
+[State 1292, Turn]
+type = Turn
+trigger1 = (Time = 0) && (FrontEdgeBodyDist <= 30)
+
+[State 1292, Pos]
+type = PosAdd
+trigger1 = Time = 0
+x = 15 - BackEdgeBodyDist
+
+[State 1292, Stop moving]
+type = PosFreeze
+trigger1 = 1
+x = 1
+y = 1
+
+[State 1292, No scroll]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 0,1
+
+[State 1292, Spark]
+type = Explod
+trigger1 = Time = 0
+anim = F72
+pos = 0, floor (screenpos y) - 50
+postype = back
+sprpriority = 3
+
+[State 1292, Anim]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5050
+
+[State 1292, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = F7,0
+
+[State 1292, State]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 3033
+
+;------------------
+; Hit by Punt Kick - bounce off wall
+[Statedef 3033]
+type    = A
+movetype= H
+physics = N
+
+[State 1293, Vel Y]
+type = VelSet
+trigger1 = Time = 0
+y = -7
+
+[State 1293, Vel X]
+type = VelSet
+trigger1 = Time = 0
+x = 3
+
+[State 1293, VelMul]
+type = VelMul
+trigger1 = 1
+x = .98
+
+[State 1293, Turn]
+type = Turn
+trigger1 = (Time = 0) && (BackEdgeDist < 30)
+
+[State 1293, Gravity]
+type = VelAdd
+trigger1 = 1
+y = .35
+
+[State 1293, Anim 5050]
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = !SelfAnimExist(5052)
+value = 5050
+
+[State 1293, Anim 5052]
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = SelfAnimExist(5052)
+value = 5052
+
+[State 1293, Anim 5060]
+type = ChangeAnim
+trigger1 = Vel Y > -2
+trigger1 = Anim = 5050
+trigger1 = SelfAnimExist(5060)
+persistent = 0
+value = 5060
+
+[State 1293, Anim 5062]
+type = ChangeAnim
+trigger1 = Vel Y > -2
+trigger1 = Anim = 5052
+trigger1 = SelfAnimExist(5062)
+persistent = 0
+value = 5062
+
+[State 1293, Hit ground]
+type = SelfState
+trigger1 = (Vel y > 0) && (Pos y >= 0)
+value = 5100
+
+
+
+
+;-------------------------------------------------------------------------
+;Impact Dial Dischargue - FX Impacto
+[Statedef 3050]
+type    = A
+physics = N
+velset = 0,0
+anim = 8200
+ctrl = 0
+sprpriority = 3
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = -90
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;-------------------------------------------------------------------------
+;Coup de Vent - Portrait
+[Statedef 3070]
+type    = A
+physics = N
+velset = 0,0
+anim = 3070
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Coup de Vent  -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 8
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+;-------------------------------------------------------------------------
+;Coup de Vent  - Max lvl portrait
+[Statedef 3080]
+type    = A
+physics = N
+velset = 0,0
+anim = 3080
+ctrl = 0
+sprpriority = -1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 8
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 60
+x = -20
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 80
+
+
+
+;-------------------------------------------------------------------------
+;Auxiliar de cámara lenta
+[Statedef 3090]
+type    = A
+physics = N
+velset = 0,0
+anim = 3090
+ctrl = 0
+sprpriority = 3
+
+[State 3290, Cámara lenta]
+type = Pause
+trigger1 = time = [0, 15]
+time = 1
+movetime = 0
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 16
+
+
+;===============================================================================
+; Franky Kentauros
+;===============================================================================
+; Franky Kentauros - Start
+[Statedef 3100]
+type    = S
+physics = S
+juggle  = 4
+ctrl = 0
+velset = 0,0
+anim = 3100
+poweradd = -1000
+
+
+[State 3250: portrait: Franky Kentauros]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Franky Kentauros"
+id		= 3170
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3170
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [30, 45]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 3, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 5,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 0, PlaySnd - Kentauros armado]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,20
+volume = 50
+
+
+[State 0, PlaySnd - Franky Kentauros]
+type = PlaySnd
+trigger1 = time = 0
+value = S4,17
+volume = 50
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 32
+anim = 7102
+ID = 7102
+postype = P1
+pos = -5,5
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.7,0.7
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 32
+anim = 7102
+ID = 7102
+postype = P1
+pos = 10,5
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.7,0.7
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3001, End]
+type = ChangeState
+trigger1 = animtime = 0
+value	= 3101
+ctrl = 0
+
+
+;----------------------------------------------------------------------
+; Franky Kentauros - salto 1
+[Statedef 3101]
+type    = A
+Movetype = A
+physics = N
+ctrl = 0
+anim = 3101
+sprpriority = 1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [0,9]
+x = 0
+y = 0
+
+
+[State 0, PlaySnd - Franky Kentauros - salto]
+type = PlaySnd
+trigger1 = time = 10
+value = S1,4
+volume = 50
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 10
+anim = 7102
+ID = 7102
+postype = P1
+pos = -5,5
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 10
+x = 1
+y = -7
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 10
+y = 0.3
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 2
+trigger2 = animelem = 3
+trigger3 = animelem = 4
+attr = S, NA
+animtype  = Medium
+damage    = 0,0
+guardflag = MA
+pausetime = 8,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,9
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 120
+ground.hittime  = 120
+ground.velocity = 0,0
+air.velocity = 0,0
+p2stateno = 3130
+fall = 1
+
+
+
+[State 3250: Auxiliar de Contacto]
+type		= Helper
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de Contacto"
+id		= 3140
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3140
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7030) = 0
+trigger1 = Movehit = 1
+anim = 7030
+ID = 7030
+postype = P2
+pos = 0,-40
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = numhelper(3140) > 0
+time = -1
+id = -1
+pos = 25,0
+
+
+[State 3001, End]
+type = ChangeState
+triggerall = numhelper(3140) > 0
+trigger1 = pos y > -1
+value	= 3110
+ctrl = 0
+
+[State 3001, End]
+type = ChangeState
+triggerall = Time > 15
+trigger1 = pos y > -1
+value	= 3102
+ctrl = 0
+;----------------------------------------------------------------------
+; Franky Kentauros - salto 2
+[Statedef 3102]
+type    = A
+Movetype = A
+physics = N
+ctrl = 0
+anim = 3101
+sprpriority = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [0,9]
+x = 0
+y = 0
+
+
+[State 0, PlaySnd - Franky Kentauros - salto]
+type = PlaySnd
+trigger1 = time = 10
+value = S1,4
+volume = 50
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 10
+anim = 7102
+ID = 7102
+postype = P1
+pos = -5,5
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 10
+x = 4
+y = -6
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 10
+y = 0.3
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 2
+trigger2 = animelem = 3
+trigger3 = animelem = 4
+attr = S, NA
+animtype  = Medium
+damage    = 0,0
+guardflag = MA
+pausetime = 8,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,9
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 120
+ground.hittime  = 120
+ground.velocity = 0,0
+air.velocity = 0,0
+p2stateno = 3130
+fall = 0
+
+
+
+[State 3250: Auxiliar de Contacto]
+type		= Helper
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de Contacto"
+id		= 3140
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3140
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7030) = 0
+trigger1 = Movehit = 1
+anim = 7030
+ID = 7030
+postype = P2
+pos = 0,-40
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = numhelper(3140) > 0
+time = -1
+id = -1
+pos = 25,0
+
+
+[State 3001, End]
+type = ChangeState
+triggerall = numhelper(3140) > 0
+trigger1 = pos y > -1
+value	= 3110
+ctrl = 0
+
+[State 3001, End]
+type = ChangeState
+triggerall = Time > 15
+trigger1 = pos y > -1
+value	= 3120
+ctrl = 0
+
+
+;----------------------------------------------------------------------
+; Franky Kentauros - Ultimate Hammer
+[Statedef 3110]
+type    = S
+Movetype = A
+physics = S
+ctrl = 0
+anim = 3110
+sprpriority = 1
+velset = 0,0
+
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = animelem = 6
+trigger2 = animelem = 8
+trigger3 = animelem = 10
+trigger4 = animelem = 12
+trigger5 = animelem = 14
+trigger6 = animelem = 16
+trigger7 = animelem = 18
+trigger8 = animelem = 20
+value = 0, 2
+volume = 10
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 21
+attr = S, NA
+animtype  = Medium
+damage    = 250
+guardflag = MA
+pausetime = 14,16
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,-8
+air.velocity = -2,-8
+fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7020) < 2
+trigger1 = Movehit = 1
+anim = 7020
+ID = 7020
+postype = P1
+pos = 5,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Humo arriba]
+type = Explod
+trigger1 = animelem = 21
+anim = 8200
+ID = 8200
+postype = P1
+pos = 25,20
+facing = -1
+sprpriority = -3
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = animelem = 21
+value = 3, 13
+volume = 100
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = animelem = 3
+value = 4, 18
+volume = 100
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = animelem = 21
+time = 10
+freq = 160
+ampl = -8
+phase = 90
+
+[State 3250: Spadas]
+type		= Helper
+triggerall = Numhelper(3090) < 3
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3090
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = animelem = 24
+value = 1, 20
+volume = 10
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;----------------------------------------------------------------------
+; Franky Kentauros - Terminación
+[Statedef 3120]
+type    = S
+Movetype = A
+physics = S
+ctrl = 0
+anim = 3120
+sprpriority = 1
+velset = 0,0
+
+[State 0, PlaySnd - Kentauros armado]
+type = PlaySnd
+trigger1 = animelem = 2
+value = S1,20
+volume = 50
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;----------------------------------------------------------------------
+; Franky Kentauros - P2
+[Statedef 3130]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 0, ChangeAnim]
+type = ChangeAnim2
+trigger1 = time = 0
+value = 3130
+elem = 1
+
+[State 0, ChangeAnim]
+type = ChangeAnim2
+trigger1 = P2stateno = 3110
+value = 3131
+elem = 1
+
+[State 1291, Hit ground]
+type = SelfState
+trigger1 = time = 200
+value = 5030
+;----------------------------------------------------------------------
+; Franky Kentauros - Auxiliar de contacto
+[Statedef 3140]
+type    = S
+physics = S
+ctrl = 0
+anim = 3090
+sprpriority = 1
+velset = 0,0
+
+
+[State 210, End]
+type = destroyself
+trigger1 = Time = 100
+
+
+;-------------------------------------------------------------------------
+;Franky Kentauros - Portrait
+[Statedef 3170]
+type    = A
+physics = N
+velset = 0,0
+anim = 3170
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Veau Shot  -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 8
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+;===============================================================================
+; Heavy Nunchaku
+;===============================================================================
+;Heavy Nunchaku - Start
+[Statedef 3200]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3200
+poweradd = -2000
+
+[State 3250: portrait: Heavy Nunchaku]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Heavy Nunchaku"
+id		= 3270
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3270
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [30, 45]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 3, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -10,-55
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 0, PlaySnd - Coup de Vent]
+type = PlaySnd
+trigger1 = time = 40
+value = S4,20
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 36
+value = S1,19
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 7
+trigger2 = animelem = 8
+attr = S, NA
+animtype  = High
+damage    = 100
+guardflag = MA
+pausetime = 10,12
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,7
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = ifelse(p2bodydist x > 80,2,ifelse(p2bodydist x < 30,-1,0)),-9.5
+air.velocity = ifelse(p2bodydist x > 80,2,ifelse(p2bodydist x < 30,-1,0)),-9.5
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) < 1
+trigger1 = Movehit = 1
+anim = 7004
+ID = 7004
+postype = P2
+pos = 0,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3001, End]
+type = ChangeState
+trigger1 = Animtime = 0
+value	= 3210
+ctrl = 0
+
+
+;---------------------------------------------------------
+;Heavy Nunchaku - Salto
+[Statedef 3210]
+type = A
+movetype = A
+physics = N
+ctrl = 0
+anim = 3210
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 1.5
+y = -6.5
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time > 0
+y = 0.2
+
+
+[State 0, PlaySnd - Coup de Vent]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,4
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+trigger2 = animelem = 3
+value = S0,3
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+trigger2 = animelem = 3
+attr = S, NA
+animtype  = High
+damage    = 20
+guardflag = MA
+pausetime = 10,12
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,10
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1.5,-1
+air.velocity = -1.5,-1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7003) < 1
+trigger1 = Movehit = 1
+anim = 7003
+ID = 7003
+postype = P2
+pos = 0,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = Movehit = 1
+time = 1
+id = -1
+pos = 50,-50
+
+[State 3001, End]
+type = ChangeState
+trigger1 = time = 40
+value	= 3220
+ctrl = 0
+
+;---------------------------------------------------------
+;Heavy Nunchaku - Golpe Aire
+[Statedef 3220]
+type = A
+movetype = A
+physics = N
+ctrl = 0
+anim = 3220
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 2
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time > 0
+y = 0.5
+
+
+[State 0, PlaySnd - Coup de Vent]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,4
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 3
+value = S0,3
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 3
+trigger2 = animelem = 4
+trigger3 = animelem = 5
+attr = S, NA
+animtype  = High
+damage    = 20
+guardflag = MA
+pausetime = 10,12
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,7
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -4,6
+air.velocity = -4,6
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7003) < 1
+trigger1 = Movehit = 1
+anim = 7002
+ID = 7002
+postype = P2
+pos = 0,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3001, End]
+type = ChangeState
+trigger1 = pos y > -1
+value	= 3240
+ctrl = 0
+
+
+;---------------------------------------------------------
+;Heavy Nunchaku - Suelo
+[Statedef 3240]
+type = S
+movetype = A
+physics = S
+ctrl = 0
+anim = 3240
+VELSET = 0,0
+
+
+[State 0, PlaySnd - Coup de Vent]
+type = PlaySnd
+trigger1 = time = 0
+value = S3,13
+volume = 50
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = High
+damage    = 200
+guardflag = MA
+pausetime = 10,12
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,7
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,-7
+air.velocity = -5,-7
+fall = 1
+
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) < 1
+trigger1 = Movehit = 1
+anim = 7001
+ID = 7001
+postype = P2
+pos = 0,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, fx arriba]
+type = Explod
+trigger1 = time = 0
+anim = 7070
+ID = 7070
+postype = P1
+pos = 90,50
+facing = -1
+sprpriority = -3
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = time = 0
+time = 10
+freq = 160
+ampl = -8
+phase = 90
+
+[State 3250: Spadas]
+type		= Helper
+triggerall = Numhelper(3090) < 3
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3090
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 200, Pedazo de columna]
+type = Explod
+trigger1 = time = 31
+anim = 3250
+ID = 3250
+postype = P1
+pos = 100,-25
+vel = 0.5,-4
+accel = 0,0.2
+facing = -1
+sprpriority = -3
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Pedazo de columna]
+type = Explod
+trigger1 = time = 31
+anim = 3251
+ID = 3251
+postype = P1
+pos = 100,-5
+vel = 1,-3
+accel = 0,0.2
+facing = -1
+sprpriority = -3
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Pedazo de columna]
+type = Explod
+trigger1 = time = 31
+anim = 3252
+ID = 3252
+postype = P1
+pos = 110,-15
+vel = 2,-2
+accel = 0,0.2
+facing = -1
+sprpriority = -3
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Pedazo de columna]
+type = Explod
+trigger1 = time = 31
+anim = 3253
+ID = 3253
+postype = P1
+pos = 115,-25
+vel = 3,-2
+accel = 0,0.2
+facing = -1
+sprpriority = -3
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Pedazo de columna]
+type = Explod
+trigger1 = time = 31
+anim = 3255
+ID = 3255
+postype = P1
+pos = 65,-5
+vel = 1,-4
+accel = 0,0.2
+facing = -1
+sprpriority = -3
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Pedazo de columna]
+type = Explod
+trigger1 = time = 41
+anim = 3254
+ID = 3254
+postype = P1
+pos = 10,-40
+vel = -2,-6
+accel = 0,0.2
+facing = -1
+sprpriority = -3
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 3001, End]
+type = ChangeState
+trigger1 = animtime = 0
+value	= 0
+ctrl = 1
+
+;-------------------------------------------------------------------------
+;Heavy Nunchaku - Portrait
+[Statedef 3270]
+type    = A
+physics = N
+velset = 0,0
+anim = 3270
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Veau Shot  -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 8
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+;===============================================================================
+; Destroyer Hou
+;===============================================================================
+;Destroyer Hou  - start
+[Statedef 3300]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3300
+poweradd = -2000
+
+[State 3250: portrait: Destroyer Hou]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Destroyer Hou"
+id		= 3370
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3370
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [30, 45]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 3, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -5,-45
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 0, PlaySnd - Coup de Vent]
+type = PlaySnd
+trigger1 = time = 30
+value = S4,19
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 30
+value = S1,20
+
+
+[State 3001, End]
+type = ChangeState
+trigger1 = time = 40
+value	= 3301
+ctrl = 0
+
+;-----------------------------------------------------------
+;Destroyer Hou  - Lanzamiento
+[Statedef 3301]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3301
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+trigger2 = animelem = 4
+trigger3 = animelem = 7
+trigger4 = animelem = 10
+value = S3,3
+volume = 50
+
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = animelem = 1
+trigger2 = animelem = 4
+trigger3 = animelem = 7
+trigger4 = animelem = 10
+time = 1
+freq = 60
+ampl = -4
+phase = 90
+
+
+[State 200, fueguito]
+type = Explod
+trigger1 = animelem = 1
+trigger2 = animelem = 7
+anim = 249
+ID = 249
+postype = P1
+pos = -7,-40
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, fueguito]
+type = Explod
+trigger1 = animelem = 4
+trigger2 = animelem = 10
+anim = 249
+ID = 249
+postype = P1
+pos = 4,-40
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = animelem = 1
+trigger2 = animelem = 4
+trigger3 = animelem = 7
+trigger4 = animelem = 10
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+
+[State 1000: Destroyer Hou]
+type		= Helper
+trigger1 = animelem = 1
+helpertype	= Normal
+name		= "Destroyer Hou - Misile 1"
+id		= 3351
+pos		= 0,-40
+postype		= p1
+facing		= 1
+stateno		= 3351
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 1000: Destroyer Hou]
+type		= Helper
+trigger1 = animelem = 1
+helpertype	= Normal
+name		= "Destroyer Hou - Misile 2"
+id		= 3352
+pos		= -10,-35
+postype		= p1
+facing		= 1
+stateno		= 3352
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 1000: Destroyer Hou]
+type		= Helper
+trigger1 = animelem = 7
+helpertype	= Normal
+name		= "Destroyer Hou - Misile 3"
+id		= 3353
+pos		= 0,-40
+postype		= p1
+facing		= 1
+stateno		= 3353
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 1000: Destroyer Hou]
+type		= Helper
+trigger1 = animelem = 10
+helpertype	= Normal
+name		= "Destroyer Hou - Misile 4"
+id		= 3354
+pos		= -10,-35
+postype		= p1
+facing		= 1
+stateno		= 3354
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 80
+value = 3310
+ctrl = 0
+
+
+;-----------------------------------------------------------
+;Destroyer Hou  - Lanzamiento corriendo 1
+[Statedef 3310]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3310
+
+[State 100, 1]
+type = VelSet
+trigger1 = 1
+x = const(velocity.run.fwd.x)
+
+[State 100, 2] ;Prevent run from canceling into walk
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+
+[State 100, 3] ;Prevent from turning
+type = AssertSpecial
+trigger1 = 1
+flag = NoAutoTurn
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = Animelem = 2 || Animelem = 5
+anim = 7102
+ID =  7102
+pos = 0,5
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Animelem = 2 || Animelem = 5
+value = S1,1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+value = S3,3
+volume = 50
+
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+time = 1
+freq = 60
+ampl = -4
+phase = 90
+
+
+[State 200, fueguito]
+type = Explod
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+anim = 249
+ID = 249
+postype = P1
+pos = 0,-40
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+
+[State 1000: Destroyer Hou]
+type		= Helper
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+helpertype	= Normal
+name		= "Destroyer Hou - Misile random"
+id		= 3351
+pos		= 0,-40
+postype		= p1
+facing		= 1
+stateno		= 3361+(random%4)
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 25
+value = 3320
+ctrl = 0
+
+;-----------------------------------------------------------
+;Destroyer Hou  - Lanzamiento corriendo 2
+[Statedef 3320]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3320
+
+[State 100, 1]
+type = VelSet
+trigger1 = 1
+x = -4.5
+
+[State 100, 2] ;Prevent run from canceling into walk
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+
+[State 100, 3] ;Prevent from turning
+type = AssertSpecial
+trigger1 = 1
+flag = NoAutoTurn
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = -1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = Animelem = 2 || Animelem = 5
+anim = 7103
+ID =  7103
+pos = 0,5
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Animelem = 2 || Animelem = 5
+value = S1,1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+value = S3,3
+volume = 50
+
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+time = 1
+freq = 60
+ampl = -4
+phase = 90
+
+
+[State 200, fueguito]
+type = Explod
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+anim = 249
+ID = 249
+postype = P1
+pos = 0,-40
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+
+[State 1000: Destroyer Hou]
+type		= Helper
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+helpertype	= Normal
+name		= "Destroyer Hou - Misile random"
+id		= 3355
+pos		= 0,-40
+postype		= p1
+facing		= 1
+stateno		= 3355+(random%4)
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 25
+value = 3330
+ctrl = 0
+
+;-----------------------------------------------------------
+;Destroyer Hou  - Lanzamiento corriendo 3
+[Statedef 3330]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3310
+
+[State 100, 1]
+type = VelSet
+trigger1 = 1
+x = const(velocity.run.fwd.x)
+
+[State 100, 2] ;Prevent run from canceling into walk
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+
+[State 100, 3] ;Prevent from turning
+type = AssertSpecial
+trigger1 = 1
+flag = NoAutoTurn
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = Animelem = 2 || Animelem = 5
+anim = 7102
+ID =  7102
+pos = 0,5
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Animelem = 2 || Animelem = 5
+value = S1,1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+value = S3,3
+volume = 50
+
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+time = 1
+freq = 60
+ampl = -4
+phase = 90
+
+
+[State 200, fueguito]
+type = Explod
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+anim = 249
+ID = 249
+postype = P1
+pos = 0,-40
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+
+[State 1000: Destroyer Hou]
+type		= Helper
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+helpertype	= Normal
+name		= "Destroyer Hou - Misile random"
+id		= 3351
+pos		= 0,-40
+postype		= p1
+facing		= 1
+stateno		= 3361+(random%4)
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 25
+value = 3340
+ctrl = 0
+
+
+;-----------------------------------------------------------
+;Destroyer Hou  - terminación
+[Statedef 3340]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3340
+
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 1
+[Statedef 3351]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 180
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = -10
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = 0.2
+y = -0.3
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,75]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 76
+x = 0.4
+y = 0.1
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 150
+value = 3359
+ctrl = 0
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 2
+[Statedef 3352]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 180
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = 10
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = 0.2
+y = 0.1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,70]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 71
+x = 0.4
+y = -0.05
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 150
+value = 3359
+ctrl = 0
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 3
+[Statedef 3353]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 180
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = -9
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = 0.2
+y = -0.15
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,65]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 66
+x = 0.4
+y = 0.05
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 150
+value = 3359
+ctrl = 0
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 4
+[Statedef 3354]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 180
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = 9
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = 0.2
+y = 0.025
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,60]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 61
+x = 0.4
+y = -0.05
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 150
+value = 3359
+ctrl = 0
+
+
+
+
+
+
+
+
+
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 5
+[Statedef 3355]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 0
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = 10
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = -0.2
+y = -0.3
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,40]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 76
+x = -0.4
+y = 0.1
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 120
+value = 3359
+ctrl = 0
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 6
+[Statedef 3356]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 0
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = -10
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = -0.2
+y = 0.1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,40]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 71
+x = -0.4
+y = -0.05
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 120
+value = 3359
+ctrl = 0
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 7
+[Statedef 3357]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 0
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = 9
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = -0.2
+y = -0.15
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,40]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 66
+x = -0.4
+y = 0.05
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 120
+value = 3359
+ctrl = 0
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 8
+[Statedef 3358]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 0
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = -9
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = -0.2
+y = 0.025
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,40]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 61
+x = -0.4
+y = -0.05
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 120
+value = 3359
+ctrl = 0
+
+
+
+
+
+
+
+
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 11
+[Statedef 3361]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 180
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = -10
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = 0.2
+y = -0.3
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,40]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 76
+x = 0.4
+y = 0.1
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 120
+value = 3359
+ctrl = 0
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 12
+[Statedef 3362]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 180
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = 10
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = 0.2
+y = 0.1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,40]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 71
+x = 0.4
+y = -0.05
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 120
+value = 3359
+ctrl = 0
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 13
+[Statedef 3363]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 180
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = -9
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = 0.2
+y = -0.15
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,40]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 66
+x = 0.4
+y = 0.05
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 120
+value = 3359
+ctrl = 0
+
+;---------------------------------------------------------------
+; Destroyer Hou - Misile 14
+[Statedef 3364]
+movetype = A
+ctrl = 0
+anim = 3350
+sprpriority = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 180
+
+[State 0, VarAdd]
+type = VarAdd
+trigger1 = time = [10,30]
+fv = 10
+value = 9
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 0
+value = fvar(10)
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = [10,30]
+x = 0.2
+y = 0.025
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [31,40]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 61
+x = 0.4
+y = -0.05
+
+[State 60, Humito]
+type = Explod
+trigger1 = time%2 = 0
+anim = 7064
+ID =  7064
+pos = -10,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = 1
+attr = S, NA
+animtype  = High
+damage    = 70,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 11
+ground.velocity = -1,-6
+air.velocity  	= -1,-6
+slidetime = 8, 15
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+envshake.time 	= 5
+envshake.freq  	= 100
+envshake.ampl  	= -4
+envshake.phase 	= 1
+fall = 1
+
+[State 60, EXPLOSIÓN]
+type = Explod
+trigger1 = movecontact = 1
+anim = 7059
+ID =  7059
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = movecontact = 1
+
+[State 1100, 3]
+type = Changestate
+trigger1 = pos y > -1
+trigger2 = time = 120
+value = 3359
+ctrl = 0
+
+
+
+
+
+
+
+
+
+;------------------------------------
+; Destroyer Hou - Misile - explosión
+[Statedef 3359]
+movetype = A
+ctrl = 0
+anim = 7059
+sprpriority = 1
+velset = 0,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,16
+volume = 50
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+scale =  0.3,0.3
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = time = 0
+y = -10
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;-------------------------------------------------------------------------
+;Destroyer Hou - Portrait
+[Statedef 3370]
+type    = A
+physics = N
+velset = 0,0
+anim = 3370
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Destroyer Hou   -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 8
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+
+
+

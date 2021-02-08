@@ -1,0 +1,28 @@
+
+A - Low Hit
+
+B - Medium Hit
+
+C - Tetsuryukon
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Tetsuryukon
+
+D,DB,B,a - Tetsuryu no Goken
+
+D,DF,F,b - Tetsuryuso Kishin
+
+D,DB,B,b - Tetsuryuken
+
+D,DF,F,c - Tetsuryu no Hoko
+
+D,DB,B,c - Tetsu Rasen
+
+F,DF,D,DB,B,c - Iron Scales Mode
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Tetsu Jin Ken

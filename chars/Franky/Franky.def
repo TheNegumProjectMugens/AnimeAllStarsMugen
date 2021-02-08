@@ -1,0 +1,42 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name="Franky"
+displayname="Franky"
+versiondate=04,14,2002
+mugenversion=04,14,2002
+author=""
+pal.defaults=6,3,4,2
+
+; Files for the player
+[Files]
+cmd=Franky.cmd
+sprite=Franky.sff
+anim=Franky.air
+sound=Franky.snd
+stcommon =common1.cns
+st=Franky.cns
+cns=Franky.cns
+pal1=Franky01.act
+pal2=Franky02.act
+pal3=Franky03.act
+pal4=Franky04.act
+pal5=Franky05.act
+pal6=Franky06.act
+st1=Franky_Specials.cns
+st2=Franky_Supers.cns
+st3=Franky_IA.cns
+
+; Arcade mode
+;[Arcade]
+;intro.storyboard=intro.def
+;ending.storyboard=ending.def
+
+
+
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=

@@ -1,0 +1,26 @@
+
+A - Low Hit
+
+B - Strong Hit
+
+C - Ice Make Lance
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Ice Make Hammer
+
+D,DB,B,a - Ice Make Shield
+
+D,DF,F,b - Super Freeze Arrow
+
+D,DB,B,b - Ice Make Prisson
+
+D,DF,F,c - Ice Cannon
+
+D,DB,B,c - Ice Geiser
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Hyojin Nanarenbu + Gungnir

@@ -1,0 +1,26 @@
+
+A - Light Hit
+
+B - Strong Hit
+
+C - Jajanken Pa
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Jajanken Pa
+
+D,DB,B,a - Push
+
+D,DF,F,b - Jajanken Chi
+
+D,DB,B,b - Cane Catch
+
+D,DF,F,c - Jajanken Gu
+
+D,DB,B,c - Ren
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Ultimate Jajanken Gu

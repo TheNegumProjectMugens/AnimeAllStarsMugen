@@ -1,0 +1,18 @@
+[Info]
+name="Goku_GOD_V2"
+displayname="Goku SSJG"
+versiondate=01/04/2016
+mugenversion=1.0
+author="This Boy"
+pal.defaults=1
+[Files]
+sprite=Goku_GOD_V2.sff
+sound=Goku_GOD_V2.snd
+anim=Goku_GOD_V2.air
+cmd=Goku_GOD_V2.cmd
+cns=Goku_GOD_V2.cns
+st=Goku_GOD_V2.cns
+stcommon=common1.cns
+[Arcade]
+intro.storyboard=
+ending.storyboard=

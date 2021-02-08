@@ -1,0 +1,32 @@
+
+A - Low Hit
+
+B - Strong Hit
+
+C - Ki Blast
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Death Beam  
+
+D,DB,B,a - Prision Ball
+
+F,DF,D,DB,B,a - Death Storm
+
+D,DF,F,b - Kienzan
+
+D,DB,B,b - Nova Hit
+
+B,DB,D,DF,D,b - ¡You Can`t Run Away!
+
+D,DF,F,c - ¡I Will Kill You!
+
+D,DB,B,c - Chonoryoku 
+
+F,DF,D,DB,B,c - 100% Power
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Death Ball

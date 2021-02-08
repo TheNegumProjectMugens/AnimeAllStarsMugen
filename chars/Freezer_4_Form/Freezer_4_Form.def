@@ -1,0 +1,34 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name ="Freezer"
+displayname ="Freezer"
+versiondate =8/12/2015
+mugenversion =1.0
+author ="Mikel8888"
+pal.defaults =1,2,3,4,5,6
+
+[Files]
+sprite =Freezer_4_Form.sff
+anim =Freezer_4_Form.air
+sound =Freezer_4_Form.snd
+cmd =Freezer_4_Form.cmd
+cns =Freezer_4_Form.cns
+stcommon =common1.cns
+st =Freezer_4_Form.cns
+pal1=1.act
+pal2=2.act
+pal3=3.act
+pal4=4.act
+pal5=5.act
+pal6=6.act
+st1=IA.cns
+st2=Especiales.cns
+st3=Supers.cns
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

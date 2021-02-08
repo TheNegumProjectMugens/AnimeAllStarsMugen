@@ -1,0 +1,38 @@
+
+A - Weak Weapon
+
+Down + A - Sword Uppercut
+
+B - Medium Weapon
+
+C - Strong Weapon
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Entei no Yoroi
+
+D,DB,B,a - Raitei no Yoroi
+
+B,DB,D,DF,F,a - Photon Slicer
+
+F,DF,D,DF,B,a - Haza no Yari
+
+D,DF,F,b - Hisho no Yoroi
+
+D,DB,B,b - Kureha no Yoroi
+
+B,DB,D,DF,F,b - Kaio no Yoroi
+
+D,DF,F,c - Tenrin Blummenblatt
+
+D,DB,B,c - Pentagram Sword
+
+B,DB,D,DF,F,c - Circle Sword
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Yoto Benizakura
+
+D,DF,F,D,DF,F,b+c - Armadura Fairy
