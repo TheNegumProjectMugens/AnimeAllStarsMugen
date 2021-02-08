@@ -1,0 +1,3783 @@
+;===============================================================================
+; Nigorizake
+;===============================================================================
+;Nigorizake
+[Statedef 3000]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3000
+poweradd = -1000
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2bodydist x < -18
+
+[State 3250: portrait: Nigorizake]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Nigorizake"
+id		= 3070
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [30, 45]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 1, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, FX gorila]
+type = Explod
+trigger1 = Time = 0
+anim = 3050
+ID = 3050
+pos = 0,0
+sprpriority = -2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 3000, PlaySnd - gorira]
+type = PlaySnd
+trigger1 = Time = 20
+value = S4,25
+volume = 50
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = Time = 5
+trigger2 = Time = 10
+x = -5
+
+[State 3001, End]
+type = ChangeState
+trigger1 = time = 40
+value	= 3010
+ctrl = 0
+
+;--------------------------------------
+;Nigorizake - HIT START
+[Statedef 3010]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3010
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = Time = 0
+trigger2 = Time = 5
+trigger3 = Time = 11
+x = 10
+
+[State 3000, PlaySnd - gorira]
+type = PlaySnd
+trigger1 = Time = 10
+value = S4,16
+volume = 50
+channel = 1
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 5
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 3000, Brazo - FX]
+type = Explod
+trigger1 = time = 5
+anim = 7081
+ID = 7081
+pos = 40,-35
+facing = -1
+vfacing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, Brazo - FX]
+type = Explod
+trigger1 = time = 5
+anim = 7081
+ID = 7081
+pos = 40,-25
+facing = -1
+vfacing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 2
+attr = S, NA
+animtype  = Light
+damage    = 100,5
+guardflag = MA
+pausetime = 10,12
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S3,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,-9.5
+air.velocity  	= -1,-9.5
+slidetime = 8, 15
+fall = 1
+envshake.time 	= 3
+envshake.freq  	= 100
+envshake.ampl  	= -2
+envshake.phase 	= 1
+
+
+
+[State 1100, Spark]
+type = Explod
+trigger1 = movehit = 1
+anim = 7041
+ID = 7041
+postype = p2
+pos = 10,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+trigger1 = movehit = 1
+anim = 7041
+ID = 7041
+postype = p2
+pos = -10,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = TIME = 5
+value = S1,0
+volume = 50
+
+
+
+[State 3250: Spadas]
+type		= Helper
+triggerall = Numhelper(3090) < 3
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3090
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+v = 12
+value = 0
+[State 0, VarSet]
+type = Varadd
+trigger1 = Movehit = 1
+v = 12
+value = 1
+
+[State 105, 3]
+type = ChangeState
+triggerall = time >= 5
+triggerall = var(12) = 1
+trigger1 = animtime = 0
+value = 3020
+Ctrl = 0
+
+
+[State 105, 3]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+Ctrl = 1
+;--------------------------------------
+;Nigorizake - HIT AIRE
+[Statedef 3020]
+type = A
+movetype = A
+physics = N
+ctrl = 0
+anim = 3020
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [0,5]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 6
+x = ifelse(p2bodydist x > 40, 2.5, 1)
+y = -9
+
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time >= 10
+y = 0.3
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = TIME = 5
+value = S1,4
+volume = 50
+
+
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 5
+anim = 7100
+ID =  7100
+pos = -5,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.7, 0.7
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 60, Corte 2]
+type = Explod
+trigger1 = time = 17
+anim = 7081
+ID =  7081
+pos = 20,-25
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Corte Doble]
+type = Explod
+trigger1 = time = 23
+anim = 7087
+ID =  7087
+pos = 20,-15
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 1, 1
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 4
+attr = S, NA
+animtype  = Light
+damage    = 70,5
+guardflag = MA
+pausetime = 15,15
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,7
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,-1
+air.velocity  	= -1,-1
+slidetime = 8, 15
+fall = 1
+envshake.time 	= 3
+envshake.freq  	= 100
+envshake.ampl  	= -2
+envshake.phase 	= 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 6
+attr = S, NA
+animtype  = Light
+damage    = 70,5
+guardflag = MA
+pausetime = 20,35
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S3,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -10,-2
+air.velocity  	= -10,-2
+slidetime = 8, 15
+fall = 1
+envshake.time 	= 3
+envshake.freq  	= 100
+envshake.ampl  	= -2
+envshake.phase 	= 1
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 3
+trigger2 = animelem = 6
+value = S0,3
+volume = 50
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7020) = 0
+trigger1 = movehit = 1
+anim = 7020
+ID = 7020
+postype = p2
+pos = 0,-35
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.6,0.6
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7040) = 0
+trigger1 = movehit = 1
+anim = 7040
+ID = 7040
+postype = p2
+pos = 0,-35
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.6,0.6
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = animtime = 0
+value = 50
+ctrl = 1
+
+
+
+;-------------------------------------------------------------------------
+;Nigorizake - Portrait
+[Statedef 3070]
+type    = A
+physics = N
+velset = 0,0
+anim = 3070
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Hyou Kin Dama -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 5
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 25
+x = -20
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+;-------------------------------------------------------------------------
+;Auxiliar de cámara lenta
+[Statedef 3090]
+type    = A
+physics = N
+velset = 0,0
+anim = 3090
+ctrl = 0
+sprpriority = 3
+
+[State 3290, Cámara lenta]
+type = Pause
+trigger1 = time = [0, 15]
+time = 1
+movetime = 0
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 16
+
+;===============================================================================
+; Hiryuu Kaen  (Llamarada de Dragón Volador)
+;===============================================================================
+;Hiryuu Kaen - Start
+[Statedef 3100]
+type    = A
+movetype= A
+physics = N
+juggle  = 4
+poweradd = 30
+ctrl = 0
+velset = 0,0
+anim = 3100
+poweradd = -2000
+
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2bodydist x < -18
+
+[State 3250: portrait: San Zen Se Kai]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Hiryuu Kaen"
+id		= 3170
+pos             = -100,-200
+postype         = front ;p2,front,back,left,right
+facing		= 1
+stateno		= 3170
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 50
+movetime = 50
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -100
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 70 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [70, 85]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 1)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 15,-15
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 30
+anim = 3140
+ID = 3140
+pos = 15,-15
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 0, PlaySnd - Hiryuu Kaen]
+type = PlaySnd
+trigger1 = time = 47
+value = S4,12
+volume = 50
+
+[State 3001, End]
+type = ChangeState
+trigger1 = time = 50
+value	= 3101
+ctrl = 0
+
+;------------------------------------------------------------------------
+;Hiryuu Kaen - Bajada
+[Statedef 3101]
+type    = A
+movetype= A
+physics = N
+juggle  = 4
+poweradd = 30
+ctrl = 0
+anim = 3101
+sprpriority = -1
+
+[State 0, PlaySnd ]
+type = PlaySnd
+trigger1 = time = 0
+value = S2,8
+volume = 50
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 10
+y = 7
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value =  65
+
+[State 3150: Cabeza Dragon]
+type		= Helper
+trigger1        = time = 0
+helpertype	= Normal
+name		= "Cabeza Dragon"
+id		= 3150
+pos		= 20,-30
+postype		= p1
+facing		= 1
+stateno		= 3150
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3150: Cabeza Dragon]
+type		= Helper
+trigger1        = time = 0
+helpertype	= Normal
+name		= "Explosión Dragon"
+id		= 3145
+pos		= 20,-30
+postype		= p1
+facing		= 1
+stateno		= 3145
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = AnimElem = 1
+attr = S, NA
+animtype  = high
+damage    = 400,10
+guardflag = MA
+pausetime = 8,10
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -30,10
+hitsound   = S0,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -3,-6
+air.velocity = -3,-6
+fall = 1
+
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7003) = 0
+trigger1 = movehit = 1
+anim = 7003
+ID = 7003
+postype = p1
+pos = 60,-30
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = -1
+bindtime = 1
+ownpal = 1
+scale = 0.7,0.7
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 3250: Spadas]
+type		= Helper
+triggerall = Numhelper(3090) < 3
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3090
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 3001, End]
+type = ChangeState
+trigger1 = Pos y >= 0
+value	= 3102
+ctrl = 0
+
+
+;---------------------------------------------------------
+;Hiryuu Kaen - terminación suelo
+[Statedef 3102]
+type = S
+physics = S
+ctrl = 0
+anim = 3102
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [0, 10]
+x = 6
+y = 0
+
+
+[State 60, Explod atras]
+type = Explod
+triggerall = time < 15
+trigger1 = Time%3 = 0
+anim = 3155
+ID =  3155
+pos = 30-(random%40),-30-(random%20)
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = Time%5 = 0
+anim = 7102
+ID =  7102
+pos = 0,5
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+
+[State 3001, End]
+type = ChangeState
+trigger1 = Animtime = 0
+value	= 0
+ctrl = 1
+
+;-----------------------------------------------------
+;Hiryuu Kaen - Explosión
+[Statedef 3145]
+type = S
+physics = S
+ctrl = 0
+anim = 3145
+sprpriority = 2
+
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value =  -35
+
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;-----------------------------------------------------
+;Hiryuu Kaen - Dragon
+[Statedef 3150]
+type = S
+physics = S
+ctrl = 0
+anim = 3150
+sprpriority = 2
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value =  -25
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+time = -1
+pos = 0,-30
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+
+[State 0, Explod - Llamitas Dragon]
+type = Explod
+trigger1 = time%1 = 0
+anim = 3155
+ID = 3155
+pos = 50-(random%40),30-(random%20)
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+vel = -0.2,-0.1
+accel = 0,0
+random = 0,0
+removetime = -2
+supermove
+pausemove
+scale = 1,1
+sprpriority = 0
+ontop = 0
+shadow = 0,0,0
+ownpal = 0
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, Explod - Llamitas Dragon]
+type = Explod
+trigger1 = time%1 = 0
+anim = 3155
+ID = 3155
+pos = 30-(random%40),15-(random%20)
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+vel = -0.2,-0.1
+accel = 0,0
+random = 0,0
+removetime = -2
+supermove
+pausemove
+scale = 1,1
+sprpriority = 0
+ontop = 0
+shadow = 0,0,0
+ownpal = 0
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 3001, End]
+type = ChangeState
+trigger1 = parent, stateno = 3102
+value	= 3151
+ctrl = 0
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = parent, stateno != 3101
+
+;-----------------------------------------------------
+;Hiryuu Kaen - Dragon terminación
+[Statedef 3151]
+type = S
+physics = S
+ctrl = 0
+anim = 3151
+sprpriority = 2
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+time = -1
+pos = 0,-40
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+
+
+;-------------------------------------------------------------------------
+;San Tou Ryuu - Hiryuu Kaen
+[Statedef 3170]
+type    = A
+physics = N
+velset = 0,0
+anim = 3170
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 3250: portrait Banda negra]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Banda negra"
+id		= 3171
+pos             = -20,200
+postype         = P1 ;p2,front,back,left,right
+facing		= 1
+stateno		= 3171
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 1
+size.yscale     = 0.5
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+Y = 20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 6
+Y = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 25
+Y = 20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+;-------------------------------------------------------------------------
+;San Tou Ryuu - Hiryuu Kaen
+[Statedef 3171]
+type    = A
+physics = N
+velset = 0,0
+anim = 9005
+ctrl = 0
+sprpriority = 3
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = 90
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+
+
+
+
+
+;===============================================================================
+; San Zen Se Kai
+;===============================================================================
+;San Zen Se Kai - San Tou Ryuu
+[Statedef 3200]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3200
+poweradd = -2000
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2bodydist x < -18
+
+
+[State 3250: portrait: San Zen Se Kai]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: San Zen Se Kai"
+id		= 3270
+pos             = -100,-200
+postype         = front ;p2,front,back,left,right
+facing		= 1
+stateno		= 3270
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 50
+movetime = 50
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -100
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 50 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [50, 65]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 1)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-40
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 15
+value = S4,10
+
+
+[State 60, Explod atras]
+type = Explod
+triggerall = time > 30
+trigger1 = time%30 = 0
+anim = 7100
+ID =  7100
+pos = -5,5
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = time > 30
+trigger1 = time%6 = 0
+value = S0,1
+
+[State 3250: Helper, "Atracción adelante"]
+type		= Helper
+triggerall	= time > 30
+trigger1        = time %40 = 0
+helpertype	= Normal
+name		= "Atracción adelante"
+id		= 3260
+pos		= 200,50
+postype		= p1
+facing		= 1
+stateno		= 3260
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 100
+value = 3201
+ctrl = 0
+
+
+;-------------------------------------
+;San Zen Se Kai - attack
+[Statedef 3201]
+type = S
+movetype = A
+physics = S
+ctrl = 0
+anim = 3201
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S4,11
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 4
+value = S1,5
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [4,20]
+x = 10
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = movehit = 1
+x = -2
+
+
+[State 3000, San Tou Ryuu - Rush - FX]
+type = Explod
+trigger1 = time = 0
+anim = 1750
+ID = 1750
+pos = 15,-30
+sprpriority = -1
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 0.5,2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 0
+anim = 8400
+ID =  8400
+pos = 20,25
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.45, 0.45
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time%5 = 0
+anim = 8400
+ID =  8400
+pos = 20,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2, 0.2
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = AnimElem = 4
+trigger2 = AnimElem = 6
+attr = S, NA
+animtype  = high
+damage    = 10,5
+guardflag = MA
+pausetime = 5,5
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,-40
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -2,-1
+fall = 0
+
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7009) = 0
+trigger1 = movehit = 1 || movehit = 5 || movehit = 9 || movehit = 13
+anim = 7009
+ID = 7009
+pos = 70,-40
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = 1
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7010) = 0
+trigger1 = movehit = 2 || movehit = 6 || movehit = 10 || movehit = 14
+anim = 7010
+ID = 7010
+pos = 70,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = 1
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7011) = 0
+trigger1 = movehit = 3 || movehit = 7 || movehit = 11 || movehit = 15
+anim = 7011
+ID = 7011
+pos = 50,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = 1
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7012) = 0
+trigger1 = movehit = 4 || movehit = 8 || movehit = 12 || movehit = 16
+anim = 7012
+ID = 7012
+pos = 50,-40
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = 1
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+v = 14
+value = 0
+[State 0, VarSet]
+type = Varadd
+trigger1 = Movehit = 1
+v = 14
+value = 1
+
+[State 105, 3]
+type = ChangeState
+trigger1 = time = 30
+value = ifelse(var(14) >= 1,3202,3209)
+Ctrl = 0
+
+
+
+
+;---------------------------------------------------------------------------
+;San Zen Se Kai - attack
+[Statedef 3202]
+type = S
+movetype = A
+physics = S
+ctrl = 0
+anim = 3202
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 70
+movetime = 70
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -100
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 70 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [70, 85]
+time = 1
+movetime = 0
+
+
+
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = time < 15
+value = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 20
+
+
+[State 60, Corte Diagonal adelante]
+type = Explod
+trigger1 = time = 5
+anim = 3440
+ID =  3440
+pos = 0,-25
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3,0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 60, Corte Vertical adelante]
+type = Explod
+trigger1 = time = 10
+anim = 3450
+ID =  3450
+pos = 45,-30
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5,0.5
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 60, Corte horizontal adelante]
+type = Explod
+trigger1 = time = 15
+anim = 3460
+ID =  3460
+pos = 15,-35
+postype = p1  ;p2,front,back,left,right
+facing = -1
+vfacing = -1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3,0.6
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 3250: Spadas]
+type		= Helper
+trigger1 = time = 30
+helpertype	= Normal
+name		= "Hit 1"
+id		= 3210
+pos		= 0,0
+postype		= p2
+facing		= 1
+stateno		= 3210
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 3250: Spadas]
+type		= Helper
+trigger1 = time = 40
+helpertype	= Normal
+name		= "Hit 2"
+id		= 3211
+pos		= 0,0
+postype		= p2
+facing		= 1
+stateno		= 3211
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 3250: Spadas]
+type		= Helper
+trigger1 = time = 50
+helpertype	= Normal
+name		= "Hit 3"
+id		= 3212
+pos		= 0,0
+postype		= p2
+facing		= 1
+stateno		= 3212
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+
+[State 60, Corte Diagonal adelante]
+type = Explod
+trigger1 = time = 30
+anim = 3440
+ID =  3440
+pos = 0,-25
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.25,0.25
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 60, Corte Vertical adelante]
+type = Explod
+trigger1 = time = 40
+anim = 3450
+ID =  3450
+pos = 40,-10
+postype = p1  ;p2,front,back,left,right
+facing = -1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5,0.5
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 60, Corte horizontal adelante]
+type = Explod
+trigger1 = time = 50
+anim = 3460
+ID =  3460
+pos = -20,-30
+postype = p1  ;p2,front,back,left,right
+facing = -1
+vfacing = -1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2,0.35
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 20
+helpertype = normal
+name = "Kanji1"
+ID = 3220
+stateno = 3220
+pos = 60,floor(-screenpos y + 40)
+postype = left
+facing = 1
+ownpal = 1
+size.ground.back=3220
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 30
+helpertype = normal
+name = "Kanji2"
+ID = 3230
+stateno = 3220
+pos = 260,floor(-screenpos y + 40)
+postype = left   ;p2,front,back,left,right
+facing = 1
+ownpal = 1
+size.ground.back=3230
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 40
+helpertype = normal
+name = "Kanji3"
+ID = 3240
+stateno = 3220
+pos = 60,floor(-screenpos y + 180)
+postype = left
+facing = 1
+ownpal = 1
+size.ground.back=3240
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 50
+helpertype = normal
+name = "Kanji4"
+ID = 3250
+stateno = 3220
+pos = 260,floor(-screenpos y + 180)
+postype = left
+facing = 1
+ownpal = 1
+size.ground.back=3250
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = time = 80
+value = 3203
+ctrl = 0
+
+;------------------------------------------------------------------------
+;San Zen Se Kai - terminación
+[Statedef 3203]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3203
+
+[State 3001, End]
+type = ChangeState
+trigger1 = animtime = 0
+value	= 0
+ctrl = 1
+
+
+;------------------------------------------------------------------------
+;San Zen Se Kai - terminación Missing
+[Statedef 3209]
+type = S
+physics = S
+ctrl = 0
+anim = 3209
+
+[State 1900, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 7
+y = 0
+
+[State 0, VelAdd]
+type = velmul
+trigger1 = time > 0
+x = 0.9
+
+
+[State 60, Corte Diagonal adelante]
+type = Explod
+trigger1 = time = 0
+anim = 3440
+ID =  3440
+pos = 0,-25
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3,0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 60, Corte Vertical adelante]
+type = Explod
+trigger1 = time = 5
+anim = 3450
+ID =  3450
+pos = 45,-30
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5,0.5
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 60, Corte horizontal adelante]
+type = Explod
+trigger1 = time = 10
+anim = 3460
+ID =  3460
+pos = 15,-35
+postype = p1  ;p2,front,back,left,right
+facing = -1
+vfacing = -1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3,0.6
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 3001, End]
+type = ChangeState
+trigger1 = animtime = 0
+value	= 0
+ctrl = 1
+
+
+
+
+
+;---------------------------------------------------------------------------
+;San Zen Se Kai - Hit 1
+[Statedef 3210]
+movetype = A
+ctrl = 0
+anim = 3210
+velset = 0,0
+juggle = 0
+
+[State 3250: Spadas]
+type		= Helper
+trigger1 = time = 0
+helpertype	= Normal
+name		= "FX1"
+id		= 3215
+pos		= 50,0
+postype		= p1
+facing		= 1
+stateno		= 3215
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 210, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = high
+damage    = 120,10
+guardflag = MA
+pausetime = 2,2
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,-40
+hitsound   = S0,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -3,-4
+air.velocity = -3,-4
+fall = 1
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7040) = 0
+trigger1 = movehit = 1
+anim = 7040
+ID = 7040
+pos = 0,-40
+postype = P2
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = -1
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+;San Zen Se Kai - Hit 2
+[Statedef 3211]
+movetype = A
+ctrl = 0
+anim = 3210
+velset = 0,0
+juggle = 0
+
+[State 3250: Spadas]
+type		= Helper
+trigger1 = time = 0
+helpertype	= Normal
+name		= "FX1"
+id		= 3216
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3216
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 210, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = high
+damage    = 120,10
+guardflag = MA
+pausetime = 2,2
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,-40
+hitsound   = S0,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 2,-5
+air.velocity = 2,-5
+fall = 1
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7041) = 0
+trigger1 = movehit = 1
+anim = 7041
+ID = 7041
+pos = 0,-20
+postype = P2
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = -1
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+;San Zen Se Kai - Hit 3
+[Statedef 3212]
+movetype = A
+ctrl = 0
+anim = 3210
+velset = 0,0
+juggle = 0
+
+[State 3250: Spadas]
+type		= Helper
+trigger1 = time = 0
+helpertype	= Normal
+name		= "FX1"
+id		= 3217
+pos		= -30,-40
+postype		= p1
+facing		= 1
+stateno		= 3217
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 210, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = high
+damage    = 280,10
+guardflag = MA
+pausetime = 2,2
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,-40
+hitsound   = S0,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-8
+air.velocity = -4,-8
+fall = 1
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7042) = 0
+trigger1 = movehit = 1
+anim = 7040
+ID = 7042
+pos = 0,-20
+postype = P2
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = 1
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+
+
+;---------------------------------------------------------------------------
+;San Zen Se Kai - Hit 1 FX
+[Statedef 3215]
+type = S
+ctrl = 0
+anim = 7070
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value =  -35
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+;San Zen Se Kai - Hit 2 FX
+[Statedef 3216]
+type = S
+ctrl = 0
+anim = 7071
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value =  10
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+;San Zen Se Kai - Hit 3 FX
+[Statedef 3217]
+type = S
+ctrl = 0
+anim = 7072
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value =  75
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+
+
+
+;-----------------------------------------------------------------------
+;San Zen Se Kai -  Atracción adelante
+[Statedef 3260]
+anim		= 3260
+ctrl		= 0
+poweradd	= 0
+juggle		= 0
+facep2		= 0
+hitdefpersist	= 0
+movehitpersist	= 0
+hitcountpersist	= 0
+sprpriority	= 2
+velset          = -5
+
+[State 3260, playerpush]
+type=PlayerPush
+trigger1=1
+value=1
+ignorehitpause=1
+
+[STate 3260: NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SAC,NP,SP,HP;,SCA
+
+
+[State 3260, DestroySelf]
+type = DestroySelf
+trigger1 = time = 100
+trigger2 = parent, stateno != 3200
+
+
+
+
+
+
+
+;---------------------------------------------------------------------------
+;San Zen Se Kai - Kanji
+[Statedef 3220]
+type = S
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 9999
+sprpriority = 7
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = const(size.ground.back)
+ID = 1
+removetime = -1
+scale = 2,2
+ontop = 1
+ownpal = 1
+sprpriority=5
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = const(size.ground.back)+1
+ID = 2
+removetime = -1
+scale = 2,2
+ontop = 1
+ownpal = 1
+sprpriority=6
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = const(size.ground.back)+2
+ID = 3
+removetime = -1
+scale = 2,2
+ontop = 1
+ownpal = 1
+sprpriority=4
+
+[State 0, ModifyExplod]
+type = ModifyExplod
+trigger1 = time <= 15
+ID = 1
+scale = 2.0-time/10.0,2.0-time/10.0
+trans = addalpha
+alpha = time*16-ifelse(time>8,-(time-8)*32,0), 256
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 20
+id = 1
+
+[State 0, ModifyExplod]
+type = ModifyExplod
+trigger1 = time <= 15
+ID = 2
+scale = 2.0-time/10.0,2.0-time/10.0
+trans = addalpha
+alpha = time*32-128, 256
+
+[State 0, ModifyExplod]
+type = ModifyExplod
+trigger1 = time >= 20
+ID = 2
+trans = addalpha
+alpha = 256-(time-20)*10, 256
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 50
+id = 2
+
+[State 0, ModifyExplod]
+type = ModifyExplod
+trigger1 = time <= 15
+ID = 3
+scale = 2.0-time/10.0,2.0-time/10.0
+trans = addalpha
+alpha = time*16, 256
+
+[State 0, ModifyExplod]
+type = ModifyExplod
+trigger1 = helper(3220),time >= 75
+ID = 3
+trans = addalpha
+alpha = 256-(helper(3220),time-75)*16, 256
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 15
+anim = const(size.ground.back)
+ID = 4
+removetime = -1
+scale = 0.5,0.5
+ontop = 1
+ownpal = 1
+
+[State 0, ModifyExplod]
+type = ModifyExplod
+trigger1 = time > 15
+ID = 4
+scale = 0.5+(time-15)/20.0,0.5+(time-15)/20.0
+trans = addalpha
+alpha = 128-(time-15)*10,256
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 55
+id = 3
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 55
+id = 4
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = time = 15
+time = 10
+freq = 60
+ampl = -4
+phase = 90
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 15
+value = S0,4
+
+[State 30010, DestroySelf]
+type = DestroySelf
+trigger1 = time >= 55
+trigger1 = (root,numhelper(3230)=0 && root,numhelper(3240)=0 && root,numhelper(3250)=0) || ishelper(3220)=0
+
+
+;-------------------------------------------------------------------------
+;San Tou Ryuu - Portrait
+[Statedef 3270]
+type    = A
+physics = N
+velset = 0,0
+anim = 3270
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 3250: portrait Banda negra]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Banda negra"
+id		= 3171
+pos             = -20,200
+postype         = P1 ;p2,front,back,left,right
+facing		= 1
+stateno		= 3171
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 1
+size.yscale     = 0.5
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+Y = 20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 7
+Y = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 40
+Y = 20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+
+;-------------------------------------------------------------------------
+;Auxiliar de cámara lenta
+[Statedef 3590]
+type    = A
+physics = N
+velset = 0,0
+anim = 3090
+ctrl = 0
+sprpriority = 3
+
+[State 3290, Cámara lenta]
+type = Pause
+trigger1 = time = [0, 30]
+time = 1
+movetime = 0
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 31
+
+;===============================================================================
+; Hyou Kin Dama
+;===============================================================================
+;Hyou Kin Dama - Start
+[Statedef 3300]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3300
+poweradd = -1000
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2bodydist x < -18
+
+
+[State 3250: portrait: Hyou Kin Dama]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Hyou Kin Dama"
+id		= 3370
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3370
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [30, 45]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 1, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, FX pantera]
+type = Explod
+trigger1 = Time = 0
+anim = 3350
+ID = 3350
+pos = -10,20
+sprpriority = -2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .3,.3
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 3000, PlaySnd - aparicion]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,6
+volume = 50
+channel = 1
+
+[State 0, PlaySnd - Rashomon]
+type = PlaySnd
+trigger1 = time = 30
+value = S4,24
+volume = 50
+
+[State 3001, End]
+type = ChangeState
+trigger1 = time = 45
+value	= 3310
+ctrl = 0
+
+;--------------------------------------
+;Hyou Kin Dama - giros
+[Statedef 3310]
+type = A
+movetype = A
+physics = N
+velset = 7,0
+ctrl = 0
+anim = 3310
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = time = 0
+y = -15
+
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time%8 = 0
+anim = 8400
+ID =  8400
+pos = 50,40
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 3000, Brazo - FX]
+type = Explod
+trigger1 = time%7 = 0
+anim = 7084
+ID = 7084
+pos = 10,-20
+facing = 1
+vfacing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.65
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, Brazo - FX]
+type = Explod
+trigger1 = time%7 = 5
+anim = 7084
+ID = 7084
+pos = 10,-15
+facing = -1
+vfacing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.65
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 4
+trigger3 = AnimElem = 6
+attr = S, NA
+animtype  = high
+damage    = 25,5
+guardflag = MA
+pausetime = 6,6
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -20,-30
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -3,-6
+air.velocity = -3,-4
+fall = 1
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = movehit = 1
+time = 1
+pos = 5,0
+
+
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7009) = 0
+triggerall = hitcount = 1 || hitcount = 5
+trigger1 = movehit = 1
+anim = 7009
+ID = 7009
+postype = p2
+pos = 0,-35
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7010) = 0
+triggerall = hitcount = 2 || hitcount = 6
+trigger1 = movehit = 1
+anim = 7010
+ID = 7010
+postype = p2
+pos = 0,-47
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7011) = 0
+triggerall = hitcount = 3 || hitcount = 7
+trigger1 = movehit = 1
+anim = 7011
+ID = 7011
+postype = p2
+pos = 0,-40
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7012) = 0
+triggerall = hitcount = 4 || hitcount = 8
+trigger1 = movehit = 1
+anim = 7012
+ID = 7012
+postype = p2
+pos = 0,-55
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 4
+trigger3 = AnimElem = 6
+value = S0,1
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = TIME = 0
+value = S1,4
+volume = 50
+
+
+
+[State 3250: Spadas]
+type		= Helper
+triggerall = Numhelper(3090) < 3
+trigger1 = TIME = 0
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3090
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = time = 36
+value = 3320
+ctrl = 0
+
+;--------------------------------------
+;Hyou Kin Dama - finish
+[Statedef 3320]
+type = A
+movetype = A
+physics = N
+ctrl = 0
+anim = 3320
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 1
+y = -3
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time = [0,20]
+y = 0.3
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time > 20
+x = 0
+y = 0
+
+[State 0, PosSET]
+type = PosSET
+trigger1 = time = 21
+y = 0
+
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 21
+anim = 7087
+ID =  7087
+pos = 20,-15
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 21
+anim = 7100
+ID =  7100
+pos = -5,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.7, 0.7
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 1000: Espada arena]
+type		= Helper
+trigger1 = time = 21
+helpertype	= Normal
+name		= "Pondo Hou 108 Lb"
+id		= 1070
+pos		= 40,-30
+postype		= p1
+facing		= 1
+stateno		= 1070
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 0.9
+size.yscale     = 0.9
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 21
+value = S0,11
+volume = 50
+
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+
+
+;-------------------------------------------------------------------------
+;Hyou Kin Dama - Portrait
+[Statedef 3370]
+type    = A
+physics = N
+velset = 0,0
+anim = 3370
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Hyou Kin Dama -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 5
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 25
+x = -20
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+
+
+;===============================================================================
+; Ashura Ichibugin
+;===============================================================================
+;Ashura Ichibugin  - Start
+[Statedef 3400]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3400
+poweradd = -3000
+
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2bodydist x < -18
+
+
+[State 3250: portrait: Ashura Ichibugin]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Ashura Ichibugin"
+id		= 3470
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3470
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 50
+movetime = 50
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -100
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 40 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [50, 65]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 1)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-40
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+
+[State 3000, Ashura FX - figura]
+type = Explod
+trigger1 = Time = 30
+anim = 3481
+ID = 3481
+pos = 0,0
+sprpriority = -2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, Ashura FX - resplandor]
+type = Explod
+trigger1 = Time = 30
+anim = 3480
+ID = 3480
+pos = 0,0
+sprpriority = -3
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 30
+value = S3,5
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 50
+value = S4,15
+
+
+
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 90
+value = 3410
+ctrl = 0
+
+
+;=========================================================================
+;Ashura Ichibugin - Salto
+[Statedef 3410]
+type = A
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 3410
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = Time >= 13
+value = 1
+
+[State 300, 1]
+type = VelSet
+trigger1 = Time = 13
+x = 5
+y = -3
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time > 13
+y = 0.3
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 13
+value = S1,0
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = Time = 13
+anim = 8400
+ID =  8400
+pos = 50,30
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = time > 18
+trigger1 = pos y >= 0
+value = 3420
+ctrl = 0
+
+
+;===========================================================================
+;Ashura Ichibugin  - Nueve Destellos del Demonio
+[Statedef 3420]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3420
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,15
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = S4,13
+
+[State 210, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 4
+trigger3 = AnimElem = 5
+attr = S, NA
+animtype  = high
+damage    = 500,50
+guardflag = MA
+pausetime = 15,80
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,-40
+hitsound   = S0,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -3,-6
+air.velocity = -2,-6
+fall = 1
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= time = 13
+time			= 23
+freq			= 180
+ampl			= -6
+phase			= 50
+
+
+
+[State 60, Explod Ground]
+type = Explod
+trigger1 = time = 13
+anim = 7200
+ID =  7200
+pos = 0,20
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 1, 1
+sprpriority = -1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+v = 14
+value = 0
+[State 0, VarSet]
+type = Varadd
+trigger1 = Movehit = 1
+v = 14
+value = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 5
+v = 12
+value = -250
+ignorehitpause = 1
+
+[State 3000, VarAdd]
+type = VarAdd
+triggerall = var(14) >= 1
+trigger1 = time >= 75 && Var(12) < 0
+v = 12
+value = 6
+ignorehitpause = 1
+
+[State 3000, VarAdd]
+type = VarAdd
+triggerall = var(14) = 0
+trigger1 = time >= 25 && Var(12) < 0
+v = 12
+value = 6
+ignorehitpause = 1
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = 1
+time = -1
+add = Var(12),Var(12),Var(12)
+ignorehitpause = 1
+
+
+[State 60, Fondo cortes multiples]
+type = Explod
+trigger1 = time = 13
+anim = 7095
+ID = 7095
+pos = 320,0
+postype = back
+facing = -1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+scale = 1,1
+sprpriority = -2
+ontop = 0
+ownpal = 1
+ignorehitpause = 1
+
+[State 60, Fondo cortes multiples]
+type = Explod
+trigger1 = time = 18
+anim = 7095
+ID = 7095
+pos = 320,320
+postype = back
+facing = -1
+vfacing = -1
+bindtime = -1
+removetime = -2
+supermove = 1
+scale = 1,1
+sprpriority = -2
+ontop = 0
+ownpal = 1
+ignorehitpause = 1
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = time = [13,33]
+trigger1 = time%3 = 0
+value = S0,1
+ignorehitpause = 1
+
+[State 60, Fondo cortes brutales]
+type = Explod
+triggerall = var(14) >= 1
+trigger1 = time = 30
+anim = 7090
+ID = 7090
+pos = 320,0
+postype = back
+facing = -1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 999
+scale = 1,1
+sprpriority = -2
+ontop = 0
+ownpal = 1
+ignorehitpause = 1
+
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(14) >= 1
+trigger1 = time = 30
+value = S3,13
+ignorehitpause = 1
+
+[State 60, Corte Diagonal adelante]
+type = Explod
+trigger1 = time = 18
+anim = 3440
+ID =  3440
+pos = 0,-25
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.25,0.55
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Corte Diagonal atras]
+type = Explod
+trigger1 = time = 18
+anim = 3440
+ID =  3441
+pos = 0,-25
+postype = p1  ;p2,front,back,left,right
+facing = -1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.25,0.55
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 60, Corte Vertical adelante]
+type = Explod
+trigger1 = time = 18
+anim = 3450
+ID =  3450
+pos = 50,-30
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5,0.5
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Corte Vertical atras]
+type = Explod
+trigger1 = time = 18
+anim = 3450
+ID =  3450
+pos = -50,-30
+postype = p1  ;p2,front,back,left,right
+facing = -1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5,0.5
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 60, Corte horizontal adelante]
+type = Explod
+trigger1 = time = 18
+anim = 3460
+ID =  3460
+pos = 30,-30
+postype = p1  ;p2,front,back,left,right
+facing = -1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3,0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Corte horizontal atras]
+type = Explod
+trigger1 = time = 18
+anim = 3460
+ID =  3460
+pos = -30,-30
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3,0.3
+sprpriority = 2
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 3250: Spadas]
+type		= Helper
+triggerall = Numhelper(3090) < 1
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3090
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+ignorehitpause = 1
+
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7020) = 0
+trigger1 = movehit = 1
+anim = 7020
+ID = 7020
+pos = 0,-60
+postype = P2
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = -1
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7040) = 0
+trigger1 = movehit = 1
+anim = 7040
+ID = 7040
+pos = 0,-60
+postype = P2
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = -1
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 105, 3]
+type = ChangeState
+triggerall = var(14) >= 1
+trigger1 = time = 115
+value = 3430
+Ctrl = 0
+
+[State 105, 3]
+type = ChangeState
+triggerall = var(14) = 0
+trigger1 = animtime = 0
+value = 3430
+Ctrl = 0
+
+;------------------------------------------------------------------------
+;Ashura Ichibugin - terminación
+[Statedef 3430]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3430
+
+[State 3001, End]
+type = ChangeState
+trigger1 = animtime = 0
+value	= 0
+ctrl = 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+;-------------------------------------------------------------------------
+;Ashura Ichibugin - Portrait
+[Statedef 3470]
+type    = A
+physics = N
+velset = 0,0
+anim = 3470
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Ashura Ichibugin  -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 5
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+

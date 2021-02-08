@@ -1,0 +1,28 @@
+
+A - Punch
+
+B - Kick
+
+C - Ki Blast
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Ki Palm
+
+D,DB,B,a - Bombardero Fotonico
+
+D,DF,F,b - Kienzan
+
+D,DB,B,b - Taiyoken
+
+F,DF,D,DB,B,b - Potencial Desbolqueado
+
+D,DF,F,c - Kamehameha
+
+D,DB,B,c - Kakusadan
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Multiple Kienzan

@@ -1,0 +1,32 @@
+
+A - Weak Hit
+
+B - Strong Hit
+
+C - Meteor
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Dark Ray
+
+D,DB,B,a - Dark Force
+
+B,DB,D,DF,F,a - Dark Fading
+
+D,DF,F,b - Tenku no Hari
+
+D,DB,B,b - Bind Snake
+
+F,DF,D,DB,B,b - Jiritsu Hokai Mahojin
+
+D,DF,F,c - Grand Chariot
+
+D,DB,B,c - Altairis
+
+B,DB,D,DF,F,c - Abyss Break
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Shin Tentai Maho: Sema

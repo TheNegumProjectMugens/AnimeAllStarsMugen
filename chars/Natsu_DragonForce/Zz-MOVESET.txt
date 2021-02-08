@@ -1,0 +1,28 @@
+
+A - Weak Hit
+
+Down + A - Uppercut
+
+B - Strong Hit
+
+C - Fire Attack
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Karyu no Tekken 
+
+D,DB,B,a - Ryu Ken
+
+D,DF,F,b - Guren Bakuenjin
+
+D,DB,B,b - Dragon Storm
+
+D,DF,F,c - Karyu no Hoko
+
+D,DB,B,c - Karyu no Koen
+
+SUPER:
+
+D,DF,F,D,DF,F,a+b - Shiranui Gata: Guren Hoo Ken

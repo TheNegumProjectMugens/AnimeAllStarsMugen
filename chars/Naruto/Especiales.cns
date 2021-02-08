@@ -1,0 +1,2126 @@
+;===============================================================================
+;----------------------Especiales-----------------------------------------------
+;===============================================================================
+;===============================================================================
+; Kage Bushin Clon:
+;-------------------------------------------------------------------------------
+; Kage Bushin Clon - Naruto
+[Statedef 1000]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1000
+poweradd = 100
+sprpriority = 2
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 20
+anim = 1050
+ID = 1050
+pos = 50,-20
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5,.5
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 0, Kage Bushin]
+type = Helper
+trigger1 = time = 20
+helpertype = Player
+name = "Kage Bushin"
+ID = 1050
+stateno = 1050
+pos = 50,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,30
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,52
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 10
+value = S0,41
+volume = 9999
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kage Bushin Clon - Desactivar
+[Statedef 1001]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1001
+poweradd = 0
+sprpriority = 2
+
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Clones Eliminados por States alterados
+[Statedef 1002]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+anim = 9999
+
+[State 200, End]
+type = Destroyself
+trigger1 = stateno = 1051
+;===============================================================================
+; Kawarimi no Jutsu:
+;-------------------------------------------------------------------------------
+[Statedef 1100]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1000
+poweradd = -500
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,52
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,4
+volume = 999
+
+[State 0, Kawarimi]
+type = Helper
+trigger1 = time = 10
+helpertype = normal
+name = "Kawarimi"
+ID = 1150
+stateno = 1150
+pos = 500,500
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Reemplazo - Activado
+[Statedef 1150]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+anim = 9999
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 1
+;-------------------------------------------------------------------------------
+; Reemplazo - Desactivado
+[Statedef 1151]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+anim = 9999
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 1
+;-------------------------------------------------------------------------------
+; Kawarimi - Señuelo
+[Statedef 1160]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+anim = 1160
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,41
+volume = 9999
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = 1050
+ID = 1050
+pos = 5,-20
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5,.5
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 200, End]
+type = Changestate
+triggerall = pos y < 0
+trigger1 = time = 10
+value = 1161
+
+[State 200, End]
+type = Changestate
+trigger1 = time = 30
+value = 1051
+;-------------------------------------------------------------------------------
+; Kawarimi - Señuelo Aire
+[Statedef 1161]
+type    = S
+movetype= I
+physics = S
+juggle  = 2
+anim = 1160
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 =  1
+value = 1+time*4
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+y = 7
+
+[State 200, End]
+type = Changestate
+trigger1 = pos y > -10
+value = 1162
+;-------------------------------------------------------------------------------
+; Kawarimi - Señuelo Aire Suelo
+[Statedef 1162]
+type    = S
+movetype= I
+physics = S
+velset = 0,0
+juggle  = 1
+anim = 1160
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 =  1
+value = 30
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 200, End]
+type = Changestate
+trigger1 = time = 20
+value = 1051
+;-------------------------------------------------------------------------------
+; Kawarimi - P1 Teletr
+[Statedef 1165]
+type    = S
+movetype= I
+physics = S
+velset = 0,0
+juggle  = 1
+anim = 44
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, Turn]
+type = Turn
+trigger1 = time = 1
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = time = 1
+x = p2bodydist x -50
+y = p2bodydist y -50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1
+value = S0,41
+volume = 9999
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 1
+anim = 1050
+ID = 1050
+pos = 5,-20
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5,.5
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 0, Kawarimi Cancelar]
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+name = "Kawarimi Cancelar"
+ID = 1151
+stateno = 1151
+pos = 500,500
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kawarimi Señuelo]
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+name = "Kawarimi Cancelar"
+ID = 1160
+stateno = 1160
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = Changestate
+trigger1 = time = 2
+value = 50
+;-------------------------------------------------------------------------------
+; Kawarimi Aire
+[Statedef 1180]
+type    = A
+movetype= I
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 620
+poweradd = -500
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,52
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,4
+volume = 999
+
+[State 0, Kawarimi]
+type = Helper
+trigger1 = time = 10
+helpertype = normal
+name = "Kawarimi"
+ID = 1150
+stateno = 1150
+pos = 500,500
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+;===============================================================================
+; Lanzamiento de Kunai:
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Start
+[Statedef 1200]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1200
+poweradd = 20
+sprpriority = 2
+
+[State 0, Kunai Charge]
+type = Explod
+trigger1 = time = 30||time = 60
+anim = 1260
+ID = 1260
+pos = 2,-16
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .2,.2
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 30||time = 60
+value = S5,19
+volume = 50
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 10
+trigger1 = command != "hold_b"
+trigger2 = time = 100
+value = ifelse(time > 60,1203,ifelse(time > 30,1202,1201))
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Lanzamiento 1
+[Statedef 1201]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1201
+poweradd = 20
+sprpriority = 2
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 0
+id = 1260
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 5
+value = S5,8
+volume = 20
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,36
+volume = 999
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 5
+helpertype = Normal
+name = "Kunai"
+ID = 1250
+stateno = 1250
+pos = 38,-25
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Lanzamiento 2
+[Statedef 1202]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1201
+poweradd = 30
+sprpriority = 2
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 0
+id = 1260
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 5
+value = S5,8
+volume = 20
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,36
+volume = 999
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 3
+helpertype = Normal
+name = "Kunai"
+ID = 1250
+stateno = 1250
+pos = 38,-30
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 5
+helpertype = Normal
+name = "Kunai"
+ID = 1250
+stateno = 1251
+pos = 25,-15
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Lanzamiento 3
+[Statedef 1203]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1201
+poweradd = 40
+sprpriority = 2
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 0
+id = 1260
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 5
+value = S5,8
+volume = 20
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,36
+volume = 999
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 3
+helpertype = Normal
+name = "Kunai"
+ID = 1250
+stateno = 1250
+pos = 35,-24
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 5
+helpertype = Normal
+name = "Kunai"
+ID = 1250
+stateno = 1251
+pos = 25,-12
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 7
+helpertype = Normal
+name = "Kunai"
+ID = 1250
+stateno = 1252
+pos = 15,-36
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Kunai
+[Statedef 1250]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1250
+sprpriority = 2
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1253
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0;(!Time)
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,0
+hitsound   = S5,15
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7005) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7005
+ID = 7005
+postype = P1
+pos = 15,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 10
+
+[State 200, End]
+type = Destroyself
+trigger1 = movecontact
+trigger2 = time = 40
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Kunai
+[Statedef 1251]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1250
+sprpriority = 2
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1253
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0;(!Time)
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,0
+hitsound   = S5,15
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7006) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7006
+ID = 7006
+postype = P1
+pos = 15,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 10
+
+[State 200, End]
+type = Destroyself
+trigger1 = movecontact
+trigger2 = time = 40
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Kunai
+[Statedef 1252]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1250
+sprpriority = 2
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1253
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0;(!Time)
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,0
+hitsound   = S5,15
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7007) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7007
+ID = 7007
+postype = P1
+pos = 15,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 10
+
+[State 200, End]
+type = Destroyself
+trigger1 = movecontact
+trigger2 = time = 40
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Kunai si es golpeado
+[Statedef 1253]
+type    = A
+movetype= I
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1250
+sprpriority = 2
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -3+random%6
+y = -5-random%5
+
+[State 0, Trans]
+type = Trans
+triggerall = time >= 10
+trigger1 = 1
+trans = addalpha
+alpha = 256-time*20,256
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = 1+time*30
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 20
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Aire
+[Statedef 1280]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1280
+poweradd = 60
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 6
+x = -1
+y = -4
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,8
+volume = 20
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,36
+volume = 999
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 7
+helpertype = Normal
+name = "Kunai"
+ID = 1290
+stateno = 1290
+pos = 0,-30
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 11
+helpertype = Normal
+name = "Kunai"
+ID = 1291
+stateno = 1291
+pos = 20,-25
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Kunai Aereo
+[Statedef 1290]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1250
+sprpriority = 2
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1253
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0;(!Time)
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,5
+hitsound   = S5,15
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7007) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7007
+ID = 7007
+postype = P1
+pos = 15,5
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 8
+y = 6
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = -35
+
+[State 200, End]
+type = Changestate
+trigger1 = pos y > -1
+value = 1292
+
+[State 200, End]
+type = Destroyself
+trigger1 = movecontact
+trigger2 = time = 100
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Kunai Aereo
+[Statedef 1291]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1250
+sprpriority = 2
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1253
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0;(!Time)
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,5
+hitsound   = S5,15
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7008) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7008
+ID = 7008
+postype = P1
+pos = 15,5
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 8
+y = 6
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = -35
+
+[State 200, End]
+type = Changestate
+trigger1 = pos y > -1
+value = 1292
+
+[State 200, End]
+type = Destroyself
+trigger1 = movecontact
+trigger2 = time = 100
+;-------------------------------------------------------------------------------
+; Lanzamiento de Kunai - Kunai si toca suelo
+[Statedef 1292]
+type    = A
+movetype= I
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1250
+sprpriority = 2
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 1
+y = -5
+
+[State 0, Trans]
+type = Trans
+triggerall = time >= 10
+trigger1 = 1
+trans = addalpha
+alpha = 256-time*20,256
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = -1-time*30
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 20
+;-------------------------------------------------------------------------------
+; Kunais Eliminados por States alterados
+[Statedef 1293]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+anim = 9999
+
+[State 200, End]
+type = Destroyself
+trigger1 = stateno = 1292||stateno = 1253
+;===============================================================================
+; Corte Ascendente:
+;-------------------------------------------------------------------------------
+; Corte Ascendente - Start
+[Statedef 1300]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1300
+poweradd = 70
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,18
+volume = 9999
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = animtime = 0
+anim = 7102
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1301
+;-------------------------------------------------------------------------------
+; Corte Ascendente - Subiendo
+[Statedef 1301]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1301
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,8
+volume = 20
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 1
+y = -7
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 50,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S5,16
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1.9,-6
+air.velocity = -2,-4
+Fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) = 0
+trigger1 = Movehit = 1
+anim = 7004
+ID = 7004
+postype = P2
+pos = 0,-40
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, Cortet Azul FX]
+type = Explod
+trigger1 = time = 0
+anim = 1350
+ID = 1350
+pos = 8,-35
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .4,.4
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 5
+trigger1 = command = "c"
+value = 620
+
+[State 200, End]
+type = ChangeState
+trigger1 = time = 10
+value = 1302
+;-------------------------------------------------------------------------------
+; Corte Ascendente - Fin
+[Statedef 1302]
+type    = A
+movetype= I
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1302
+poweradd = 0
+sprpriority = 2
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+;===============================================================================
+; Sorpresa Kage Bushin:
+;-------------------------------------------------------------------------------
+; Sorpresa Kage Bushin - Start
+[Statedef 1400]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1400
+poweradd = 70
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,17
+volume = 999
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = animtime = 0
+anim = 7102
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1401
+;-------------------------------------------------------------------------------
+; Sorpresa Kage Bushin - Salto
+[Statedef 1401]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1401
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 1
+y = -5
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S40,1
+volume = 50
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 10
+trigger1 = pos y > -5
+value = 1402
+;-------------------------------------------------------------------------------
+; Sorpresa Kage Bushin - Golpe al Suelo
+[Statedef 1402]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1402
+poweradd = 0
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S3,1
+volume = 50
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = time = 0
+time = 15
+freq = 60
+ampl = -4
+phase = 90
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = time = 0
+anim = 7102
+ID =  7100
+pos = 17,5
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Explod adelante]
+type = Explod
+trigger1 = time = 0
+anim = 7103
+ID =  7101
+pos = 17,5
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, Kage Bushin Sorpresa]
+type = Helper
+trigger1 = time = 0
+helpertype = Player
+name = "Kage Bushin Sorpresa"
+ID = 1450
+stateno = 1450
+pos = ifelse(p2bodydist x < 60,p2bodydist x +10,60),0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kage Bushin Sorpresa - Helper de Golpe Start
+[Statedef 1450]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1450
+sprpriority = 2
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = time = 6
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Explod adelante]
+type = Explod
+trigger1 = time = 6
+anim = 7101
+ID =  7101
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 =1
+value = 0
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 =1
+value = 0
+
+[State 1000, Eliminador de Clones por Golpeo]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1051
+time = 1
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = animtime = 0
+value = 1451
+;-------------------------------------------------------------------------------
+; Kage Bushin Sorpresa - Helper de Golpe Golpe
+[Statedef 1451]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1451
+poweradd = 0
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,18
+volume = 999
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 65
+guardflag = MA
+pausetime = 8,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S2,3
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1,-8
+air.velocity = -2,-5
+Fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) < 1
+trigger1 = Movehit = 1
+anim = 7004
+ID = 7004
+postype = P2
+pos = 0,-55+ifelse(p2statetype = A,20,0)
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 =1
+value = 0
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 =1
+value = 0
+
+[State 1000, Eliminador de Clones por Golpeo]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1051
+time = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 0
+y = -8
+
+[State 200, End]
+type = ChangeState
+trigger1 = time = 20
+value = 1452
+;-------------------------------------------------------------------------------
+; Kage Bushin Sorpresa - Helper de Golpe Fin
+[Statedef 1452]
+type    = A
+movetype= I
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1452
+sprpriority = 2
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 =1
+value = 0
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 =1
+value = 0
+
+[State 1000, Eliminador de Clones por Golpeo]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1051
+time = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1051
+;===============================================================================
+; Mini Rendan:
+;-------------------------------------------------------------------------------
+; Mini Rendan - Start
+[Statedef 1600]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1600
+poweradd = 80
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 2
+x = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,18
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,4
+volume = 50
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S2,3
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -.5,-6.5
+air.velocity = -.5,-6.5
+Fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) = 0
+trigger1 = Movehit = 1
+anim = 7004
+ID = 7004
+postype = P2
+pos = 0,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, End]
+type = ChangeState
+Triggerall = movehit
+triggerall = time >= 10
+trigger1 = command = "c"
+value = 1601
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Mini Rendan - Continuacion 1
+[Statedef 1601]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1601
+poweradd = 20
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,52
+volume = 50
+
+[State 0, Kage Bushin]
+type = Helper
+Triggerall = numhelper(1605) = 0
+trigger1 = time = 11
+helpertype = Player
+name = "Kage Bushin"
+ID = 1605
+stateno = 1605
+pos = -30,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 18 && time < 21
+trigger1 = command = "c"
+value = 1602
+
+[State 200, End]
+type = ChangeState
+trigger1 = time = 25
+value = 1603
+;-------------------------------------------------------------------------------
+; Mini Rendan - Continuacion 2
+[Statedef 1602]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1602
+poweradd = 20
+sprpriority = 2
+
+[State 0, Kage Bushin]
+type = Helper
+Triggerall = numhelper(1610) = 0
+trigger1 = time = 0
+helpertype = Player
+name = "Kage Bushin"
+ID = 1610
+stateno = 1610
+pos = 5,-30
+postype = p2
+facing = -1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1603
+;-------------------------------------------------------------------------------
+; Mini Rendan - Fin
+[Statedef 1603]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1603
+sprpriority = 2
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Mini Rendan - Clon 1
+[Statedef 1605]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+velset = 3,-8
+ctrl = 0
+anim = 1605
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,3
+volume = 50
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,41
+volume = 9999
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = 1050
+ID = 1050
+pos = 0,-10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5,.5
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,17
+volume = 999
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S2,3
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1.5,0;-4
+air.velocity = -1.5,-4
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7003) = 0
+trigger1 = Movehit = 1
+anim = 7003
+ID = 7003
+postype = P2
+pos = 0,-25
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1051
+;-------------------------------------------------------------------------------
+; Mini Rendan - Clon 2
+[Statedef 1610]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1610
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,4
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,41
+volume = 9999
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = 1050
+ID = 1050
+pos = 0,-10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5,.5
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = heavy
+damage    = 50,5
+guardflag = MA
+pausetime = 8,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S2,3
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1,5
+air.velocity = -1,11
+Fall = 1
+Fall.recover = 0
+Fall.yvelocity = -8
+Fall.damage = 5
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) < 2
+trigger1 = Movehit = 1
+anim = 7004
+ID = 7004
+postype = P2
+pos = 0,-15
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,16
+volume = 999
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1051

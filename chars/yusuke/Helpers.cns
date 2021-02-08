@@ -1,0 +1,1344 @@
+;-------------------------------------------------------------------------------
+;Fire Ball
+[Statedef 10000]
+movetype = A
+anim = 1066
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 3
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 =  AnimElem = 1
+value = -50
+;ignorehitpause =
+;persistent =
+
+
+[State 0]
+type = Helper
+triggerall = P2stateno = [5000,5999]
+trigger1 = MoveHit
+helpertype = Normal
+ID = 8016
+stateno = 8016
+ownpal = 1
+sprpriority = 5
+postype = p1
+pos = 44, -4
+ignorehitpause = 1
+persistent = 0
+size.xscale = .3
+size.yscale = .3
+supermove = 1
+supermovetime = 16
+pausemovetime = 16
+ownpal = 1
+scale = 0.2,0.2
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 0, X]
+Type = VarSet
+Trigger1 = 1
+fvar(13) = (EnemyNear(0), Pos X - Pos X) * Facing
+
+[State 0, Y]
+Type = VarSet
+trigger1 = 1
+fvar(14) = (EnemyNear(0), pos Y-8 - Pos Y-8)
+
+
+[State 0, Vector Length]
+Type = VarSet
+trigger1 = 1
+fvar(15) = Exp(0.5*ln((fvar(13) * fvar(13))+(fvar(14) * fvar(14))))
+
+
+[State 0, VelSet]
+type =VelSet
+trigger1 =!Time
+x = (Fvar(13)/fvar(15)) * 8.0
+y = (FVar(14)/fvar(15)) * 8.0
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+[State 200,HitDef]
+type=HitDef
+trigger1=!time
+attr=S,NA
+animtype=Heavy
+damage=250,100
+guardflag=MA
+hitflag=MAF
+priority=1,Hit
+pausetime=8,8
+sparkno	= s1005
+guard.sparkno = S1005
+sparkxy = 0,0
+hitsound = S770,0
+guardsound = S2,4
+guardsound=s6,0
+ground.type=High
+ground.slidetime=0
+ground.hittime=0
+ground.velocity=-2
+air.velocity=-2,-3
+
+
+[State 10000, DestroySelf]
+type = DestroySelf
+trigger1 = (MoveContact) || (FrontEdgeBodyDist < -10)
+trigger2 =(Pos Y >= 0)
+trigger3 =(ScreenPos x > 400)
+trigger4 =(ScreenPos x < -1)
+trigger5 =(ScreenPos Y <= 0)
+;------------------------
+;-------------------------------------------------------------------------------
+;Fire Ball
+[Statedef 10025]
+movetype = A
+anim = 1066
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 3
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 =  AnimElem = 1
+value = -50
+;ignorehitpause =
+;persistent =
+
+
+[State 0]
+type = Helper
+triggerall = P2stateno = [5000,5999]
+trigger1 = MoveHit
+helpertype = Normal
+ID = 8016
+stateno = 8016
+ownpal = 1
+sprpriority = 5
+postype = p1
+pos = 44, -4
+ignorehitpause = 1
+persistent = 0
+size.xscale = .3
+size.yscale = .3
+supermove = 1
+supermovetime = 16
+pausemovetime = 16
+ownpal = 1
+scale = 0.2,0.2
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 0, X]
+Type = VarSet
+Trigger1 = 1
+fvar(13) = (EnemyNear(0), Pos X - Pos X) * Facing
+
+[State 0, Y]
+Type = VarSet
+trigger1 = 1
+fvar(14) = (EnemyNear(0), pos Y-8 - Pos Y-8)
+
+
+[State 0, Vector Length]
+Type = VarSet
+trigger1 = 1
+fvar(15) = Exp(0.5*ln((fvar(13) * fvar(13))+(fvar(14) * fvar(14))))
+
+
+[State 0, VelSet]
+type =VelSet
+trigger1 =!Time
+x = (Fvar(13)/fvar(15)) * 8.0
+y = (FVar(14)/fvar(15)) * 8.0
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+[State 200,HitDef]
+type=HitDef
+trigger1=!time
+attr=S,NA
+animtype=Heavy
+damage=50,25
+guardflag=MA
+hitflag=MAF
+priority=1,Hit
+pausetime=8,8
+sparkno	= s1005
+guard.sparkno = S1005
+sparkxy = 0,0
+hitsound = S770,0
+guardsound = S2,4
+guardsound=s6,0
+ground.type=High
+ground.slidetime=0
+ground.hittime=0
+ground.velocity=-2
+air.velocity=-2,-3
+
+
+[State 10025, DestroySelf]
+type = DestroySelf
+trigger1 = (MoveContact) || (FrontEdgeBodyDist < -10)
+trigger2 =(Pos Y >= 0)
+trigger3 =(ScreenPos x > 400)
+trigger4 =(ScreenPos x < -1)
+trigger5 =(ScreenPos Y <= 0)
+;------------------------
+
+;----------------------------
+;Fire Ball
+[Statedef 809]
+movetype = A
+anim = 809
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 3
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 =  AnimElem = 1
+value = -50
+;ignorehitpause =
+;persistent =
+
+
+[State 0]
+type = Helper
+triggerall = P2stateno = [5000,5999]
+trigger1 = MoveHit
+helpertype = Normal
+ID = 8016
+stateno = 8016
+ownpal = 1
+sprpriority = 5
+postype = p1
+pos = 44, -4
+ignorehitpause = 1
+persistent = 0
+size.xscale = .3
+size.yscale = .3
+supermove = 1
+supermovetime = 16
+pausemovetime = 16
+ownpal = 1
+scale = 0.2,0.2
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 0, X]
+Type = VarSet
+Trigger1 = 1
+fvar(13) = (EnemyNear(0), Pos X - Pos X) * Facing
+
+[State 0, Y]
+Type = VarSet
+trigger1 = 1
+fvar(14) = (EnemyNear(0), pos Y-8 - Pos Y-8)
+
+
+[State 0, Vector Length]
+Type = VarSet
+trigger1 = 1
+fvar(15) = Exp(0.5*ln((fvar(13) * fvar(13))+(fvar(14) * fvar(14))))
+
+
+[State 0, VelSet]
+type =VelSet
+trigger1 =!Time
+x = (Fvar(13)/fvar(15)) * 8.0
+y = (FVar(14)/fvar(15)) * 8.0
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 809, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+[State 200,HitDef]
+type=HitDef
+trigger1=!time
+attr=S,NA
+animtype=Heavy
+damage=12,6
+guardflag=MA
+hitflag=MAF
+priority=1,Hit
+pausetime=8,8
+sparkno	= s1005
+guard.sparkno = S1005
+sparkxy = 0,0
+hitsound = S770,0
+guardsound = S2,4
+guardsound=s6,0
+ground.type=High
+ground.slidetime=0
+ground.hittime=0
+ground.velocity=-2
+air.velocity=-2,-3
+
+
+[State 809, DestroySelf]
+type = DestroySelf
+trigger1 = (MoveContact) || (FrontEdgeBodyDist < -10)
+trigger2 =(Pos Y >= 0)
+trigger3 =(ScreenPos x > 400)
+trigger4 =(ScreenPos x < -1)
+trigger5 =(ScreenPos Y <= 0)
+;------------------------
+;------------------------
+;Fire Ball
+[Statedef 807]
+movetype = A
+anim = 807
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 3
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 =  AnimElem = 1
+value = -50
+;ignorehitpause =
+;persistent =
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElem = 1
+x = 4
+y = 0
+;ignorehitpause =
+;persistent =
+
+
+[State 0]
+type = Helper
+triggerall = P2stateno = [5000,5999]
+trigger1 = MoveHit
+helpertype = Normal
+ID = 8016
+stateno = 8016
+ownpal = 1
+sprpriority = 5
+postype = p1
+pos = 44, -4
+ignorehitpause = 1
+persistent = 0
+size.xscale = .3
+size.yscale = .3
+supermove = 1
+supermovetime = 16
+pausemovetime = 16
+ownpal = 1
+scale = 0.2,0.2
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 0, X]
+Type = VarSet
+Trigger1 = 1
+fvar(13) = (EnemyNear(0), Pos X - Pos X) * Facing
+
+[State 0, Y]
+Type = VarSet
+trigger1 = 1
+fvar(14) = (EnemyNear(0), pos Y-8 - Pos Y-8)
+
+
+[State 0, Vector Length]
+Type = VarSet
+trigger1 = 1
+fvar(15) = Exp(0.5*ln((fvar(13) * fvar(13))+(fvar(14) * fvar(14))))
+
+
+[State 0, VelSet]
+type =VelSet
+trigger1 =!Time
+x = (Fvar(13)/fvar(15)) * 8.0
+y = (FVar(14)/fvar(15)) * 8.0
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 809, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+[State 200,HitDef]
+type=HitDef
+trigger1=!time
+attr=S,NA
+animtype=Heavy
+damage=12,6
+guardflag=MA
+hitflag=MAF
+priority=1,Hit
+pausetime=8,8
+sparkno	= s1005
+guard.sparkno = S1005
+sparkxy = 0,0
+hitsound = S2,4
+guardsound = S2,4
+hitsound = S770,0
+ground.type=High
+ground.slidetime=0
+ground.hittime=0
+ground.velocity=-2
+air.velocity=-2,-3
+
+
+[State 807, DestroySelf]
+type = DestroySelf
+trigger1 = (MoveContact) || (FrontEdgeBodyDist < -10)
+trigger2 =(Pos Y >= 0)
+trigger3 =(ScreenPos x > 400)
+trigger4 =(ScreenPos x < -1)
+trigger5 =(ScreenPos Y <= 0)
+;------------------------
+;-------------------------------------------------------------------------------
+;Fire Ball
+[Statedef 233]
+movetype = A
+anim = 233
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 3
+velset= 9
+
+[State 0]
+type = Helper
+triggerall = P2stateno = [5000,5999]
+trigger1 = MoveHit
+helpertype = Normal
+ID = 8016
+stateno = 8016
+ownpal = 1
+sprpriority = 5
+postype = p1
+pos = 10, -4
+ignorehitpause = 1
+persistent = 0
+size.xscale = .3
+size.yscale = .3
+supermove = 1
+supermovetime = 16
+pausemovetime = 16
+ownpal = 1
+scale = 0.1,0.1
+
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 0, X]
+Type = VarSet
+Trigger1 = 1
+fvar(13) = (EnemyNear(0), Pos X - Pos X) * Facing
+
+[State 0, Y]
+Type = VarSet
+trigger1 = 1
+fvar(14) = (EnemyNear(0), pos Y-8 - Pos Y-8)
+
+
+[State 0, Vector Length]
+Type = VarSet
+trigger1 = 1
+fvar(15) = Exp(0.5*ln((fvar(13) * fvar(13))+(fvar(14) * fvar(14))))
+
+
+[State 0, VelSet]
+type =VelSet
+trigger1 =!Time
+x = (Fvar(13)/fvar(15)) * 20.0
+y = (FVar(14)/fvar(15)) * 8.0
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+[State 200,HitDef]
+type=HitDef
+trigger1=!time
+attr=S,NA
+animtype=Light
+damage=12,6
+guardflag=MA
+hitflag=MAF
+priority=1,Hit
+pausetime=8,8
+sparkno	= s1005
+guard.sparkno = S1005
+sparkxy = 0,0
+hitsound = S2,4
+guardsound = S2,4
+hitsound = S770,0
+ground.type=High
+ground.slidetime=0
+ground.hittime=0
+ground.velocity=-2
+air.velocity=-2,-3
+
+[State 233, DestroySelf]
+type = DestroySelf
+trigger1 = (MoveContact) || (FrontEdgeBodyDist < -10)
+trigger2 =(Pos Y >= 0)
+trigger3 =(ScreenPos x > 400)
+trigger4 =(ScreenPos x < -1)
+trigger5 =(ScreenPos Y <= 0)
+;------------------------
+
+;Fire Ball
+[Statedef 2222]
+movetype = A
+anim = 701
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 1
+
+;Generated by Fighter Factory PalFX Editor
+[State 0, PalFXWiz]
+type = PalFX
+triggerall = Var(0) = 78
+trigger1 = AnimElem = 1
+trigger2 = AnimElem = 2
+trigger3 = AnimElem = 3
+trigger4 = AnimElem = 4
+trigger5 = AnimElem = 5
+trigger6 = AnimElem = 6
+trigger7 = AnimElem = 7
+trigger8 = AnimElem = 8
+trigger9 = AnimElem = 9
+trigger10 = AnimElem = 10
+trigger11= AnimElem = 11
+trigger12= AnimElem = 12
+trigger13= AnimElem = 13
+trigger14= AnimElem = 14
+trigger15= AnimElem = 15
+trigger16= AnimElem = 16
+trigger17= AnimElem = 17
+time = 100
+add = 240,50,0
+mul = 250,224,120
+sinadd = 110,55,85,10
+invertall = 0
+color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 0, X]
+Type = VarSet
+Trigger1 = 1
+fvar(13) = (EnemyNear(0), Pos X - Pos X) * Facing
+
+[State 0, Y]
+Type = VarSet
+trigger1 = 1
+fvar(14) = (EnemyNear(0), pos Y-8 - Pos Y-8)
+
+
+[State 0, Vector Length]
+Type = VarSet
+trigger1 = 1
+fvar(15) = Exp(0.5*ln((fvar(13) * fvar(13))+(fvar(14) * fvar(14))))
+
+
+[State 0, VelSet]
+type =VelSet
+trigger1 =!Time
+x = (Fvar(13)/fvar(15)) * 8.0
+y = (FVar(14)/fvar(15)) * 8.0
+
+[State 0,AngleSet]
+type = AngleSet
+trigger1 = !Time
+value = (atan((p2bodydist y-20)/(ifelse(facing = 1, enemy, pos X - Pos X , Pos X - enemy, Pos X)))*(-180/Pi))
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+[State 200,HitDef]
+type=HitDef
+triggerall = Var(0) = 78
+trigger1=!time
+attr=S,NA
+animtype= hard
+damage= 1000,500
+guardflag=MA
+hitflag=MAF
+priority=1,Hit
+pausetime=8,8
+sparkno	= s1011
+guard.sparkno = S1011
+sparkxy = 0,0
+hitsound = S0,1000
+guardsound = S2,4
+guardsound=s6,0
+ground.type=High
+ground.slidetime=9
+ground.hittime=19
+ground.velocity=-15
+air.velocity=-2,-3
+
+;Generated by Fighter Factory PalFX Editor
+[State 0, PalFXWiz]
+type = PalFX
+triggerall = var(0) = 78
+trigger1 = AnimElem =1
+trigger2 = AnimElem =2
+trigger3 = AnimElem =3
+trigger4 = AnimElem =4
+time = 120
+add = 7,-200,-200
+mul = 256,256,256
+sinadd = 30,30,0,10
+invertall = 0
+color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+
+[State 200,HitDef]
+type=HitDef
+triggerall = Var(0) = 0
+trigger1=!time
+attr=S,NA
+animtype=Light
+damage= 750,250
+guardflag=MA
+hitflag=MAF
+priority=1,Hit
+pausetime=8,8
+sparkno	= s1011
+guard.sparkno = S1011
+sparkxy = 0,0
+hitsound = S0,1000
+guardsound = S2,4
+guardsound=s6,0
+ground.type=High
+ground.slidetime=10
+ground.hittime=15
+ground.velocity=-4
+air.velocity=-2,-3
+
+[State 2222, DestroySelf]
+type = DestroySelf
+trigger1 = (MoveContact) || (FrontEdgeBodyDist < -10)
+trigger2 =(Pos Y >= 0)
+trigger3 =(ScreenPos x > 400)
+trigger4 =(ScreenPos x < -1)
+trigger5 =(ScreenPos Y <= 0)
+
+;------------------------
+;Fire Ball
+[Statedef 777]
+movetype = A
+anim = 777
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 1
+
+
+;Generated by Fighter Factory PalFX Editor
+[State 0, PalFXWiz]
+type = PalFX
+trigger1 = AnimElem =1
+time =  80
+add = 0,-200,-200
+mul = 256,256,256
+sinadd = 40,80,40,10
+invertall = 0
+color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+
+
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+
+
+[State 200,HitDef]
+type=HitDef
+trigger1=!time
+attr=S,NA
+animtype=Light
+damage=10
+guardflag=MA
+hitflag=MAF
+priority=1,Hit
+pausetime=8,8
+sparkno	= s1011
+guard.sparkno = S1011
+sparkxy = 0,0
+hitsound = S2,4
+guardsound = S2,4
+guardsound=s6,0
+ground.type=High
+ground.slidetime=0
+ground.hittime=0
+ground.velocity=-2
+air.velocity=-2,-3
+
+[State 777, DestroySelf]
+type = DestroySelf
+trigger1 = time = 4
+
+;------------------------
+
+;----------------------------------
+;Fire Ball
+[Statedef 1001]
+movetype = A
+anim = 1001
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 3
+
+;Generated by Fighter Factory PalFX Editor
+;[State 0, PalFXWiz]
+;type = PalFX
+;trigger1 = Animelem = 1
+;time = 80
+;add = 240,50,0
+;mul = 250,224,120
+;sinadd = 110,55,85,10
+;invertall = 0
+;color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+;Generated by Fighter Factory PalFX Editor
+[State 0, PalFXWiz]
+type = PalFX
+trigger1 = time = 0
+time = 120
+add = 7,-200,-200
+mul = 256,256,256
+sinadd = 30,30,0,10
+invertall = 0
+color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+
+
+[State 1001, DestroySelf]
+type = DestroySelf
+trigger1 = animtime= 0
+;-------------------------------------------------------------------------------
+;Fire Ball
+[Statedef 234]
+movetype = A
+anim = 234
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 3
+
+;Generated by Fighter Factory PalFX Editor
+;[State 0, PalFXWiz]
+;type = PalFX
+;trigger1 = Animelem = 1
+;time = 80
+;add = 240,50,0
+;mul = 250,224,120
+;sinadd = 110,55,85,10
+;invertall = 0
+;color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+
+
+[State 234, DestroySelf]
+type = DestroySelf
+trigger1 = animtime= 0
+;-------------------------------------------------------------------------------
+
+;Fire Ball
+[Statedef 1111]
+movetype = A
+anim = 1111
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 3
+
+;Generated by Fighter Factory PalFX Editor
+;[State 0, PalFXWiz]
+;type = PalFX
+;trigger1 = Animelem = 1
+;time = 80
+;add = 240,50,0
+;mul = 250,224,120
+;sinadd = 110,55,85,10
+;invertall = 0
+;color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+;Generated by Fighter Factory PalFX Editor
+;[State 0, PalFXWiz]
+;type = PalFX
+;trigger1 = Animelem = 1
+;time = 120
+;add = 7,-200,-200
+;mul = 256,256,256
+;sinadd = 30,30,0,10
+;invertall = 0
+;color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+
+
+[State 1111, DestroySelf]
+type = DestroySelf
+trigger1 = animtime= 0
+;-------------------------------------------------------------------------------
+
+;charge effect
+[Statedef 1014]
+movetype = A
+anim = 1014
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 3
+
+;Generated by Fighter Factory PalFX Editor
+;[State 0, PalFXWiz]
+;type = PalFX
+;trigger1 = Animelem = 1
+;time = 80
+;add = 240,50,0
+;mul = 250,224,120
+;sinadd = 110,55,85,10
+;invertall = 0
+;color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+;Generated by Fighter Factory PalFX Editor
+[State 0, PalFXWiz]
+type = PalFX
+trigger1 = Animelem = 1
+time = 120
+add = 7,-200,-200
+mul = 256,256,256
+sinadd = 30,30,0,10
+invertall = 0
+color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+
+
+[State 1014, DestroySelf]
+type = DestroySelf
+trigger1 = animtime= 0
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+
+;charge effect
+[Statedef 1015]
+movetype = A
+anim = 1015
+ctrl = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist	= 0
+sprpriority = 0
+
+;Generated by Fighter Factory PalFX Editor
+;[State 0, PalFXWiz]
+;type = PalFX
+;trigger1 = Animelem = 1
+;time = 80
+;add = 240,50,0
+;mul = 250,224,120
+;sinadd = 110,55,85,10
+;invertall = 0
+;color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+;Generated by Fighter Factory PalFX Editor
+[State 0, PalFXWiz]
+type = PalFX
+trigger1 = AnimElem =1
+trigger2 = AnimElem =2
+trigger3 = AnimElem =3
+trigger4 = AnimElem =4
+time = 120
+add = 7,-200,-200
+mul = 256,256,256
+sinadd = 30,30,0,10
+invertall = 0
+color = 0
+;ignorehitpause = 0
+;persistent = 1
+
+
+[State 0,HitOverride]
+type=HitOverride
+trigger1=1
+slot=1
+time=-1
+stateno=20000
+attr=SCA,NA,NP,SA,HA,NT,ST,HT,S, SP
+persistent = 1
+
+;[State 10000, VelSet]
+;type			= VelSet
+;trigger1		= time
+;x			= 11
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y >= 1 && p2statetype = A
+;trigger1 = time
+;y = 1
+
+;[State 10000, VelSet]
+;type = VelSet
+;triggerall = p2dist y <= -1
+;trigger1 = time
+;y = -1
+
+
+
+[State 10000, No Shadow]
+Type             = AssertSpecial
+Trigger1         = 1
+Flag             = NoShadow
+
+
+
+[State 1015, DestroySelf]
+type = DestroySelf
+trigger1 = animtime= 0
+;-------------------------------------------------------------------------------
+
+
+
+;-------------------------------------------------------------------------------
+;hitoverdrive
+[Statedef 20000]
+type=S
+movetype=A
+physics=N
+
+
+
+[State 2003,AssertSpecial]
+type=AssertSpecial
+trigger1=1
+flag=noshadow
+flag2=invisible
+
+[State 2003,Velocity]
+type=VelSet
+trigger1=1
+x=0
+y=0
+
+[State 2003,Destroy]
+type=DestroySelf
+trigger1=1
+ignorehitpause=1

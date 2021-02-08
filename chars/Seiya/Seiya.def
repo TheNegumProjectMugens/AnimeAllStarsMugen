@@ -1,0 +1,22 @@
+[Info]
+name = "Pegasus Seiya"  
+displayname = "Seiya"
+versiondate = 25,09,2015
+mugenversion = 1.1    
+author = "Roken"       
+pal.defaults = 1               
+localcoord = 320,240    
+
+[Files]
+cmd     = Seiya.cmd        
+cns     = Seiya.cns        
+st      = Seiya.cns
+st1     = Seiya Specials.cns
+st2     = Seiya Supers.cns 
+st3     = Sag. Specials.cns
+st4     = Sag. Supers.cns
+st5     = Strikers.cns      
+stcommon = common1.cns      
+sprite  = Seiya.sff      
+anim    = Seiya.air       
+sound   = Seiya.snd           

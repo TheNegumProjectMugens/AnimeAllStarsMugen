@@ -1,0 +1,30 @@
+
+A - Low Hit
+
+B - Heavy Hit
+
+C - Sky Flame
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Zero Chiten Toppa Kai
+
+* Adds absorbeds Power To Default Power
+
+D,DB,B,a - Zero Chiten Toppa Charge
+
+* Absorbs Enemy's Attack's Power
+
+D,DF,F,b - Flame Rush
+
+D,DB,B,b - Flame Catch
+
+D,DF,F,c - Flame Thrower
+
+D,DB,B,c - Zero Chiten Toppa First Edition
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Supreme Zero Chiten Toppa First Edition

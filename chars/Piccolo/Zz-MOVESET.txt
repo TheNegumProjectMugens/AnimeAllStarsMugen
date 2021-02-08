@@ -1,0 +1,28 @@
+
+A - Phisic Attack
+
+B - Extensible Arm
+
+C - Ki Blast
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Soumasen
+
+D,DB,B,a - Chou Makouhou
+
+D,DF,F,b - Kaikosen
+
+D,DB,B,b - Regeneration (1 Time per round)
+
+D,DF,F,c - Bakurikimaha
+
+D,DB,B,c - Makankosappo
+
+B,DB,D,DF,F,c - Cho-bakuretsuma-ha
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Gekiretsu Kodan

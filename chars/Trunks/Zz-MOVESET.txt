@@ -1,0 +1,26 @@
+
+A - Phisic Attack
+
+B - Slash
+
+C - Ki Blast
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Burning Attack
+
+D,DB,B,a - Explosive Wave
+
+D,DF,F,b - Sword Waves
+
+D,DB,B,b - Burning Heart
+
+D,DF,F,c - Masenko
+
+D,DB,B,c - Burning Storm
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Lighting Sword Attack

@@ -1,0 +1,34 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name ="Nara Shikamaru"
+displayname ="Shikamaru"
+versiondate =29/04/2014
+mugenversion = 
+author ="Mikel8888"
+pal.defaults =1,2,3,4,5,6
+
+[Files]
+sprite =Shikamaru_Kid.sff
+anim =Shikamaru_Kid.air
+sound =Shikamaru_Kid.snd
+cmd =Shikamaru_Kid.cmd
+cns =Shikamaru_Kid.cns
+stcommon =common1.cns
+st =Shikamaru_Kid.cns
+pal1=1.act
+pal2=2.act
+pal3=3.act
+pal4=4.act
+pal5=5.act
+pal6=6.act
+st1=IA.cns
+st2=Especiales.cns
+st3=Supers.cns
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

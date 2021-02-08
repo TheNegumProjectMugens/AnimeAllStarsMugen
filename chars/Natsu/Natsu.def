@@ -1,0 +1,36 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name ="Natsu"
+displayname ="Natsu"
+versiondate =21/01/2015
+mugenversion = 
+author ="Mikel8888"
+pal.defaults =1,2,3,4,5,6
+
+[Files]
+sprite =Natsu.sff
+anim =Natsu.air
+sound =Natsu.snd
+cmd =Natsu.cmd
+cns =Natsu.cns
+stcommon =common1.cns
+st =Natsu.cns
+pal1=1.act
+pal2=2.act
+pal3=3.act
+pal4=4.act
+pal5=5.act
+pal6=6.act
+st1=IA.cns
+st2=Especiales.cns
+st3=Supers.cns
+st4=Dragonforce.cns
+st5=Rayenryu.cns
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

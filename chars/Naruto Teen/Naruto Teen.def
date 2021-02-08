@@ -1,0 +1,33 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name ="Naruto"
+displayname ="Naruto Teen"
+versiondate =12,25,2004
+mugenversion =07,24,2009
+author ="Emiliano edited by Jeffrey174"
+pal.defaults =1,2,3,4
+
+[Files]
+sprite =Naruto.sff
+anim =Naruto.air
+sound =Naruto.snd
+cmd =Naruto.cmd
+cns =Naruto.cns
+stcommon =common.cns
+st =Naruto.cns
+pal5=nb.act
+pal1=nb4.act
+pal2=nb2.act
+pal3=nb3.act
+pal4=nb.act
+st1=Ataque_de_clones.cns
+st2=Bunchin.cns
+st3=
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

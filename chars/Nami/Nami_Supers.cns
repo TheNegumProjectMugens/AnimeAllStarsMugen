@@ -1,0 +1,3157 @@
+;===============================================================================
+; Nami Rage
+;===============================================================================
+;Nami Rage - start
+[Statedef 3000]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3000
+poweradd = -1000
+
+[State 3250: portrait: Nami Rage]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Nami Rage"
+id		= 3070
+pos             = -100,-200
+postype         = front ;p2,front,back,left,right
+facing		= 1
+stateno		= 3070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 50
+movetime = 50
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 30 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [50, 65]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 3, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -5,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 0, PlaySnd - Enojada]
+type = PlaySnd
+trigger1 = time = 30
+value = S4,16
+volume = 50
+
+
+[State 1070, 3]
+type = ReversalDef
+trigger1 = 1
+;attr = S, NT
+reversal.attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT; S, NA
+numhits = 0
+pausetime = 1,10
+sparkno = s7000
+hitsound   =s1,10
+
+[State 3000, Enojo]
+type = Explod
+trigger1 = Time = 30
+anim = 7060
+ID = 7060
+pos = 20,-60
+sprpriority = 2
+supermove = 1
+removetime = 30
+bindtime = -1
+ownpal = 1
+scale = 0.75,0.75
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 3001, End]
+type = ChangeState
+trigger1 = time = 70
+value	= 3001
+ctrl = 1
+
+
+
+;--------------------------------------------------
+; Nami Rage - mazazo
+[Statedef 3001]
+type    = S
+movetype= A
+physics = S
+juggle  = 7
+ctrl = 0
+anim = 3001
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 16
+x = 10
+
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 4, 17
+volume = 10
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = animelem = 3
+value = 0, 3
+volume = 10
+
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 4
+trigger2 = animelem = 5
+attr = S, NA
+animtype  = Light
+damage    = 200
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s7020
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -10.9, -8
+air.velocity = -10.9,-7.4
+fall = 1
+p2stateno = 3060
+
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7020) = 0
+trigger1 = movehit = 1
+anim = 7020
+ID = 7020
+postype = P1
+pos = 40,-40
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+[State 105, 3]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;----------------------------------------------------
+;Choque contra la Pared - P2 vuelo
+[Statedef 3060]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 1320, 1]
+type = ChangeAnim2
+Trigger1 = Time = 0
+value = 3060
+
+[State 1320, PosAdd]
+type = PosAdd
+trigger1 = time = 0
+y = -25
+
+
+[State 4420]
+type = VelSet
+trigger1 = time = 0
+x = -12
+
+[State 1880,ChangeState]
+type = ChangeState
+trigger1 = BackEdgeBodydist <=5
+value = 3061
+ctrl = 0
+
+;----------------------------------------------
+;Choque contra la Pared - P2 choque
+[Statedef 3061]
+type    = A
+movetype= H
+physics = N
+velset = 2,-9
+poweradd = 40
+
+[State 1321, 1] ;Gravity
+type = VelAdd
+Trigger1 = 1
+y = .4
+
+[State 1321,EnvShake]
+type = EnvShake
+trigger1 = Time = 0
+time = 15
+ampl = -3
+
+
+[State 1321]
+type = Turn
+trigger1 = Time = 0
+
+
+[State 1321]
+type = StateTypeSet
+trigger1 = Time = 1
+statetype = A
+
+[State 1321, LifeAdd]
+type = LifeAdd
+trigger1 = time = 0
+value = -40
+kill = 1
+absolute = 0
+
+[State 1321, end]
+type = SelfState
+trigger1 = time >= 1 ;Vel Y > 0
+;trigger1 = Pos Y >= 0
+value = 5050
+
+
+
+;-------------------------------------------------------------------------
+;Nami Rage -  Banda negra
+[Statedef 3070]
+type    = A
+physics = N
+velset = 0,0
+anim = 3070
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 3250: portrait Banda negra]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Banda negra"
+id		= 3071
+pos             = 0,200
+postype         = P1 ;p2,front,back,left,right
+facing		= 1
+stateno		= 3071
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 1
+size.yscale     = 0.5
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+Y = 20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 3
+Y = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 25
+Y = 20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+;-------------------------------------------------------------------------
+;Banda negra - vertical
+[Statedef 3071]
+type    = A
+physics = N
+velset = 0,0
+anim = 9005
+ctrl = 0
+sprpriority = 3
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = 90
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;===============================================================================
+; Nami Waver
+;===============================================================================
+; Nami Waver - start
+[Statedef 3100]
+type = S
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 3100
+poweradd = -1000
+
+[State 3250: portrait: Nami Waver]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Nami Waver"
+id		= 3170
+pos             = 300,-150
+postype         = back ;p2,front,back,left,right
+facing		= 1
+stateno		= 3170
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 30 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [30, 45]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 3, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -5,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = time = 45
+helpertype	= Normal
+name		= "Waver Start"
+id		= 3109
+pos		= -100,0
+postype		= back
+facing		= 1
+stateno		= 3109
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 20
+x = -3
+y = -7
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time >= 20
+y = 0.3
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = time = 30
+value = 4, 18
+volume = 10
+
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 32
+trigger1 = Pos Y > -1
+value	= 3110
+ctrl = 1
+
+;--------------------------------------------------
+; Nami Waver - Waver
+[Statedef 3109]
+type    = S
+physics = S
+ctrl = 0
+anim = 3109
+sprpriority = 4
+
+[State 0, PosSet]
+type = Posadd
+trigger1 = time >= 0
+x = (parentdist x/5);*-1
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = numhelper(3111) = 1
+
+
+
+;--------------------------------------------------
+; Nami Waver - Run
+[Statedef 3110]
+type    = S
+movetype= A
+physics = S
+juggle  = 7
+ctrl = 0
+anim = 3110
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+y = 0
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 0, VelSet]
+type = Velset
+trigger1 = time > 5
+x = 15
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = time = 5
+helpertype	= Normal
+name		= "auxiliar para borrar al waver"
+id		= 3111
+pos		= -150,0
+postype		= back
+facing		= 1
+stateno		= 3111
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 6
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Explod atras]
+type = Explod
+triggerall = time >= 6
+trigger1 = time%1 = 0
+anim = 7102
+ID =  7102
+pos = 0,5
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 3
+trigger2 = animelem = 4
+attr = S, NA
+animtype  = Light
+damage    = 250
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s7020
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,10
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2.9, -8
+air.velocity = -2.9,-7.4
+fall = 1
+p1stateno = 3120
+ignorehitpause = 1
+
+
+
+
+[State 105, 3]
+type = ChangeState
+trigger1 = backedgebodydist >= 250
+value = 3130
+ctrl = 1
+
+;--------------------------------------------------
+; Nami Waver - auxiliar para borrar al waver
+[Statedef 3111]
+type    = S
+physics = N
+ctrl = 0
+anim = 3111
+sprpriority = 2
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 1
+
+;--------------------------------------------------
+; Nami Waver - Salto Hit
+[Statedef 3120]
+type    = A
+physics = A
+juggle  = 7
+ctrl = 0
+anim = 3120
+sprpriority = 2
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = -30
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 0
+anim = 7020
+ID = 7020
+postype = P1
+pos = 40,-40
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = time = 0
+helpertype	= Normal
+name		= "Waver Hit"
+id		= 3150
+pos		= 30,0
+postype		= p1
+facing		= 1
+stateno		= 3150
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, VelSet]
+type = Velset
+trigger1 = time = [0,7]
+x = 0
+y = 0
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = 8
+x = -5
+y = -8
+
+
+[State 105, 3]
+type = ChangeState
+triggerall = time > 10
+trigger1 = pos y >= -1
+value = 0
+ctrl = 1
+;--------------------------------------------------
+; Nami Waver - Salto final
+[Statedef 3130]
+type    = A
+physics = A
+juggle  = 7
+ctrl = 0
+anim = 41
+sprpriority = 2
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time = 0
+x = -1
+y = -5
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = time = 30
+helpertype	= Normal
+name		= "Waver Finish"
+id		= 3131
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3131
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 105, 3]
+type = ChangeState
+triggerall = time > 10
+trigger1 = pos y >= -1
+value = 0
+ctrl = 1
+
+;--------------------------------------------------
+; Nami Waver - Waver Finish
+[Statedef 3131]
+type    = A
+physics = A
+ctrl = 0
+anim = 3109
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 15
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 50
+
+
+;--------------------------------------------------
+; Nami Waver - Waver Hit
+[Statedef 3150]
+type    = S
+physics = N
+ctrl = 0
+anim = 3150
+sprpriority = 4
+
+
+[State 0, VelSet]
+type = Velset
+trigger1 = time = [0,7]
+x = 0
+y = 0
+
+[State VarAdd - GIRAR]
+type = Varset
+trigger1 = time = 0
+v = 10
+value = 40
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 8
+v = 10
+value = 20
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 8
+x = -1
+y = -8
+
+[State 0, VelMul]
+type = Veladd
+trigger1 = time >= 10
+x = 0.2
+y = 0.3
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 100
+
+;-------------------------------------------------------------------
+;Thunder Bolt Tempo - Portrait
+[Statedef 3170]
+type    = A
+physics = N
+velset = 0,0
+anim = 3170
+ctrl = 0
+sprpriority = 3
+
+[State 200, Impact Dial Dischargue -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 8
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+;===============================================================================
+; Thunder Bolt Tempo
+;===============================================================================
+;Thunder Bolt Tempo - start
+[Statedef 3200]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3200
+poweradd = -1000
+
+[State 3250: portrait: Thunder Bolt Tempo]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Thunder Bolt Tempo"
+id		= 3270
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3270
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [38, 53]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= AnimElem = 1
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 38
+value = S4,14
+volume = 50
+
+
+[State 3250: Sello]
+type		= Helper
+triggerall = time = [12,71]
+trigger1 = time%8 = 0
+helpertype	= Normal
+name		= "Dark Cloud - Chargue"
+id		= 3249
+pos		= 10,0
+postype		= p1
+facing		= 1
+stateno		= 3249
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 3250: Impacto]
+type		= Helper
+trigger1 = time = 50
+helpertype	= Normal
+name		= "Dark Cloud - grande"
+id		= 3250
+pos		= 80,-120
+postype		= p1
+facing		= 1
+stateno		= 3250
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = time = [12,71]
+trigger1 = time%8 = 0
+value = S1,7
+volume = 50
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 93
+trigger1 = command != "hold_c" && time < 200
+trigger2 = time = 201
+value	= 3201
+ctrl = 0
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 93
+triggerall = var(9) = 1
+trigger1 = p2bodydist x < 40 && time < 200
+trigger2 = time = 201
+value	= 3201
+ctrl = 0
+
+;-----------------------------------------------------------------
+;Thunder Bolt Tempo - impacto
+[Statedef 3201]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3201
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+value = S2,7
+volume = 50
+
+[State 0, PlaySnd - iaaa!!!]
+type = PlaySnd
+trigger1 =  animelem = 2
+value = S4,5
+volume = 50
+
+
+[State 3250: Impacto]
+type		= Helper
+trigger1 = time = 0
+helpertype	= Normal
+name		= "impacto FX"
+id		= 3220
+pos		= 30,-65
+postype		= p1
+facing		= 1
+stateno		= 3220
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 3250: Activador de Rayos]
+type		= Helper
+trigger1 = time = 0
+helpertype	= Normal
+name		= "Activador de Rayos"
+id		= 3230
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3230
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = Animtime = 0
+value = 0
+ctrl = 1
+
+;-------------------------------------------------------------------------
+;Thunder Bolt Tempo - FX Impacto
+[Statedef 3220]
+type    = A
+physics = N
+velset = 0,0
+anim = 7046
+ctrl = 0
+sprpriority = 3
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = -90
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;-------------------------------------------------------------------------
+;Thunder Bolt Tempo - Activador de Rayos
+[Statedef 3230]
+type    = A
+physics = N
+velset = 0,0
+anim = 1650
+ctrl = 0
+sprpriority = 3
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 50
+;-----------------------------------------------------------------------------
+;Thunder Bolt Tempo - Dark Cloud - Chargue
+[Statedef 3249]
+type    = S
+physics = S
+ctrl = 0
+anim = 1650
+sprpriority = 2
+Juggle = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 15+(random%25)
+y = -1
+
+[State 0, VelSet]
+type = Veladd
+trigger1 = time > 0
+y = -0.3
+
+[State 200, Cloud - Solida]
+type = Explod
+trigger1 = time%30 = 0
+anim = 7033
+ID = 7033
+postype = P1
+pos = -5+(random%10),5-(random%10)
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 0
+scale = 0.05,0.05
+removeongethit = -1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PalFX - Dark]
+type = PalFX
+trigger1 = 1
+time = 999
+add = -165,-165,-165
+mul = 256,256,256
+;sinadd = 0,0,0,10
+;invertall = 0
+color = 256
+
+[State 200, Cloud - Transparente]
+type = Explod
+trigger1 = time%20 = 0
+anim = 7034
+ID = 7034
+postype = P1
+pos = -10+(random%20),10-(random%20)
+facing = 1
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 0
+scale = 0.06,0.06
+removeongethit = -1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+
+[State 200, Electricidades]
+type = Explod
+trigger1 = time%5 = 0
+anim = 7040+(random%6)
+ID = 7040
+postype = P1
+pos = -10+(random%20),10-(random%20)
+facing = -1
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 0.12,0.12
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+[State 0, ChangeState]
+type = Destroyself
+trigger1 = time = 25
+
+
+
+;-----------------------------------------------------------------------------
+;Thunder Bolt Tempo - Dark Cloud - grande
+[Statedef 3250]
+type    = S
+physics = S
+ctrl = 0
+anim = 1650
+sprpriority = 2
+Juggle = 0
+velset = 0,0
+
+[State 200, Cloud - Solida]
+type = Explod
+trigger1 = time%4 = 0
+anim = 7033
+ID = 7033
+postype = P1
+pos = -30+(random%60),10-(random%20)
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 0
+scale = 0.4,0.2
+removeongethit = -1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PalFX - Dark]
+type = PalFX
+trigger1 = 1
+time = 999
+add = -165,-165,-165
+mul = 256,256,256
+;sinadd = 0,0,0,10
+;invertall = 0
+color = 256
+
+[State 200, Cloud - Transparente]
+type = Explod
+trigger1 = time%3 = 0
+anim = 7034
+ID = 7034
+postype = P1
+pos = -40+(random%80),15-(random%30)
+facing = 1
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 0
+scale = 0.4,0.2
+removeongethit = -1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Electricidades]
+type = Explod
+trigger1 = time%3 = 0
+anim = 7040+(random%6)
+ID = 7040
+postype = P1
+pos = -40+(random%80),15-(random%30)
+facing = -1
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 0.12,0.12
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State Thunder invocación]
+type		= Helper
+triggerall = numhelper(3230) = 1
+triggerall = numhelper(3260) = 0
+trigger1 = time%10 = 0
+helpertype	= Normal
+name		= "Thunder - Normal"
+id		= 3260
+pos		= 80-(random%50),0
+postype		= p1
+facing		= 1
+stateno		= 3260
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State Thunder invocación]
+type		= Helper
+triggerall = numhelper(3230) = 1
+triggerall = numhelper(3261) = 0
+trigger1 = time%7 = 1
+helpertype	= Normal
+name		= "Thunder - atras"
+id		= 3261
+pos		= -60+(random%80),0
+postype		= p1
+facing		= 1
+stateno		= 3261
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State Thunder invocación]
+type		= Helper
+triggerall = numhelper(3230) = 1
+triggerall = numhelper(3262) = 0
+trigger1 = time%9 = 0
+helpertype	= Normal
+name		= "Thunder - vertical"
+id		= 3262
+pos		= -30+(random%60),0
+postype		= p1
+facing		= 1
+stateno		= 3262
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+[State 0, ChangeState]
+type = Destroyself
+Triggerall = time >= 150
+trigger1 = numhelper(3230) = 0
+trigger2 = time = 300
+
+
+;----------------------------------------------------------------------
+;Thunder Bolt Tempo - Thunder 1
+[Statedef 3260]
+movetype= A
+ctrl = 0
+anim = 7037
+sprpriority = 2
+Juggle = 0
+Velset = 0,0
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time >= 0
+y = 10
+[State 0, AngleSet]
+type = AngleDraw
+trigger1 = time >= 0
+Scale = 0.25,0.6
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 0
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S2,7
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 0
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 75
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,10
+guardsound = S1,10
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = 1.5,-5
+air.velocity = 1.3,-2
+fall = 1
+palFX.time = 36
+palFX.mul = 128, 128, 28
+palFX.sinAdd = 96, 96, 16, 4
+Palfx.invertall = 1
+envShake.time = 10
+envShake.ampl = 2
+envShake.freq = 120
+
+
+[State 200, Thunder Chargue]
+type = Explod
+trigger1 = time%1 = 0
+anim = 7035
+ID = 7035
+postype = P1
+pos = -20+(random%40),0-(random%80)
+vel = 0, -1
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.08,0.08
+removeongethit = -1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State Thunder invocación]
+type		= Helper
+trigger1 = time = 6
+helpertype	= Normal
+name		= "Thunder - Ground"
+id		= 1681
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 1681
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, ChangeState]
+type = Destroyself
+trigger1 = Animtime = 0
+
+;----------------------------------------------------------------------
+;Thunder Bolt Tempo - Thunder 2
+[Statedef 3261]
+movetype= A
+ctrl = 0
+anim = 3261
+sprpriority = 2
+Juggle = 0
+Velset = 0,0
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time >= 0
+y = 10
+[State 0, AngleSet]
+type = AngleDraw
+trigger1 = time >= 0
+Scale = 0.25,0.6
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 0
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S2,7
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 0
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 75
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,10
+guardsound = S1,10
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -1.5,-5
+air.velocity = -1.3,-2
+fall = 1
+palFX.time = 36
+palFX.mul = 128, 128, 28
+palFX.sinAdd = 96, 96, 16, 4
+Palfx.invertall = 1
+envShake.time = 10
+envShake.ampl = 2
+envShake.freq = 120
+
+
+[State 200, Thunder Chargue]
+type = Explod
+trigger1 = time%1 = 0
+anim = 7035
+ID = 7035
+postype = P1
+pos = -20+(random%40),0-(random%80)
+vel = 0, -1
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.08,0.08
+removeongethit = -1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State Thunder invocación]
+type		= Helper
+trigger1 = time = 6
+helpertype	= Normal
+name		= "Thunder - Ground"
+id		= 1681
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 1681
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, ChangeState]
+type = Destroyself
+trigger1 = Animtime = 0
+
+
+;----------------------------------------------------------------------
+;Thunder Bolt Tempo - Thunder 2
+[Statedef 3262]
+movetype= A
+ctrl = 0
+anim = 7039
+sprpriority = 2
+Juggle = 0
+Velset = 1-(random%2),0
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time >= 0
+y = 10
+[State 0, AngleSet]
+type = AngleDraw
+trigger1 = time >= 0
+Scale = 0.6,0.6
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 0
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S2,7
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 0
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 75
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,10
+guardsound = S1,10
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = 0,-5
+air.velocity = 0,-2
+fall = 1
+palFX.time = 36
+palFX.mul = 128, 128, 28
+palFX.sinAdd = 96, 96, 16, 4
+Palfx.invertall = 1
+envShake.time = 10
+envShake.ampl = 2
+envShake.freq = 120
+
+
+
+[State 200, Thunder Chargue]
+type = Explod
+trigger1 = time%1 = 0
+anim = 7035
+ID = 7035
+postype = P1
+pos = -20+(random%40),0-(random%80)
+vel = 0, -1
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.08,0.08
+removeongethit = -1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State Thunder invocación]
+type		= Helper
+trigger1 = time = 6
+helpertype	= Normal
+name		= "Thunder - Ground"
+id		= 1681
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 1681
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+
+[State 0, ChangeState]
+type = Destroyself
+trigger1 = Animtime = 0
+
+;-------------------------------------------------------------------
+;Thunder Bolt Tempo - Portrait
+[Statedef 3270]
+type    = A
+physics = N
+velset = 0,0
+anim = 3270
+ctrl = 0
+sprpriority = 3
+
+[State 200, Impact Dial Dischargue -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 12
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+;-------------------------------------------------------------------------
+;Auxiliar de cámara lenta
+[Statedef 3190]
+type    = A
+physics = N
+velset = 0,0
+anim = 3190
+ctrl = 0
+sprpriority = 3
+
+[State 3290, Cámara lenta]
+type = Pause
+trigger1 = time = [0, 15]
+time = 1
+movetime = 0
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 16
+
+
+;===============================================================================
+;Fata Morgana
+;===============================================================================
+;---------------------------------------------------------------------------
+;Fata Morgana - Start
+[Statedef 3300]
+type    = S
+physics = N
+ctrl = 0
+anim = 3300
+sprpriority = 1
+velset = 0,0
+poweradd = -2000
+
+[State 3250: portrait: Fata Morgana ]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Fata Morgana "
+id		= 3370
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3370
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [38, 53]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= Time = 0
+time			= 30
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -5,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 10
+value = S1,8
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S4,12
+
+[State 1460:		Helper]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Mirage FX"
+id		= 1380
+pos		= 0,-80
+postype		= p1
+facing		= 1
+stateno		= 1380
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+[State 105, 3]
+type = ChangeState
+trigger1 = animtime = 0
+value = 3301
+ctrl = 0
+
+;------------------------------------------------------------------------
+;Fata Morgana - lanzamientos
+[Statedef 3301]
+type    = S
+physics = N
+ctrl = 0
+anim = 3301
+sprpriority = 2
+Juggle = 0
+velset = 0,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = S4,14
+
+[State 220: Thunder wave abajo]
+type		= Helper
+trigger1 = time = 29
+trigger2 = time = 56
+trigger3 = time = 83
+trigger4 = time = 110
+trigger5 = time = 137
+trigger6 = time = 164
+helpertype	= Normal
+name		= "Thunder wave abajo"
+id		= 248
+pos		= 0,-45
+postype		= p1
+facing		= 1
+stateno		= 248
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 200, Thunder Ball FALSAs]
+type		= Helper
+triggerall = time%8 = 0+(random%5)
+trigger1 = time = [29,43]
+trigger2 = time = [56,70]
+trigger3 = time = [83,97]
+trigger4 = time = [110,124]
+helpertype	= Normal
+name		= "Super Thunder Ball"
+id		= 3355
+pos		= 10,-15-(random%80)
+postype		= p1
+facing		= 1
+stateno		= 3355
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 220: Super Thunder Ball]
+type		= Helper
+triggerall = time%8 = 0
+trigger1 = time = [29,43]
+trigger2 = time = [56,70]
+trigger3 = time = [83,97]
+trigger4 = time = [110,124]
+helpertype	= Normal
+name		= "Super Thunder Ball"
+id		= 3350
+pos		= 10,-15-(random%80)
+postype		= p1
+facing		= 1
+stateno		= 3350
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = time = 157
+helpertype	= Normal
+name		= "Shinkiru"
+id		= 1350
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 1350
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 105, 3]
+type = ChangeState
+triggerall = time > 157
+trigger1 = command = "Mirage Tempo"
+trigger2 = Numhelper(1350) = 0
+trigger3 = time = 350
+value = 1370
+ctrl = 0
+
+
+
+;-----------------------------------------------------------
+;--------------------------------------------
+; Super Thunder Chargue - Projetile adelante
+[Statedef 3350]
+movetype= A
+ctrl = 0
+anim = 3350
+sprpriority = 2
+Juggle = 0
+Velset = 3-(random%2),0
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,9
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = vel x > 0
+x = -0.025
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 50+(random%20)
+trigger2 = time = 75
+x = 0
+y = 0
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 50
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,10
+guardsound = S1,10
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+palFX.time = 36
+palFX.mul = 128, 128, 28
+palFX.sinAdd = 96, 96, 16, 4
+Palfx.color     = 0
+Palfx.invertall = 1
+
+
+
+[State 200, Thunder Chargue]
+type = Explod
+trigger1 = time = 0
+anim = 7035
+ID = 7035
+postype = P1
+pos = 3,-7
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -1
+bindtime = -1
+ownpal = 1
+scale = 0.35,0.35
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Electricidades]
+type = Explod
+trigger1 = time%6 = 0
+anim = 7040+(random%6)
+ID = 7040
+postype = P1
+pos = -5+(random%10),-5+(random%10)
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Spark Electrico]
+type = Explod
+triggerall = Numexplod(7036) < 1
+trigger1 = Movehit = 1
+anim = 7036
+ID = 7036
+postype = P2
+pos = 0,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = -1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 3351
+time = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = Time = 100
+trigger2 = Movehit = 1
+id = 7035
+
+[State 0, ChangeState]
+type = Changestate
+trigger1 = Movehit = 1
+value = 3351
+
+[State 0, ChangeState]
+type = changestate
+trigger1 = Time = 100
+value = 3360
+
+;----------------------------------------------------------------------
+; Super Thunder Chargue - Projetile adelante
+[Statedef 3351]
+movetype= A
+ctrl = 0
+anim = 3351
+sprpriority = 2
+Juggle = 0
+Velset = 0,0
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = time = 0
+x = 20
+
+
+[State 200, Spark Electrico]
+type = Explod
+trigger1 = time = 0
+anim = 7047
+ID = 7047
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = 50
+bindtime = -1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = -1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 2
+attr = S, NA
+animtype  = Light
+damage    = 5
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,10
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+palFX.time = 36
+palFX.mul = 128, 128, 28
+palFX.sinAdd = 96, 96, 16, 4
+Palfx.color     = 0
+Palfx.invertall = 1
+
+
+[State 0, ChangeState]
+type = Destroyself  ;changestate
+trigger1 = Time = 50
+
+
+
+;--------------------------------------------
+; Super Thunder Chargue - falsas
+[Statedef 3355]
+movetype= A
+ctrl = 0
+anim = 3350
+sprpriority = 2
+Juggle = 0
+Velset = 3-(random%2),0
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,9
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = vel x > 0
+x = -0.025
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 50+(random%20)
+trigger2 = time = 75
+x = 0
+y = 0
+
+[State 200, Thunder Chargue]
+type = Explod
+trigger1 = time = 0
+anim = 7035
+ID = 7035
+postype = P1
+pos = 3,-7
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -1
+bindtime = -1
+ownpal = 1
+scale = 0.35,0.35
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Electricidades]
+type = Explod
+trigger1 = time%6 = 0
+anim = 7040+(random%6)
+ID = 7040
+postype = P1
+pos = -5+(random%10),-5+(random%10)
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Spark Electrico]
+type = Explod
+triggerall = Numexplod(7036) < 1
+trigger1 = Movehit = 1
+anim = 7036
+ID = 7036
+postype = P2
+pos = 0,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = -1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 0, ChangeState]
+type = Changestate
+triggerall = time >= 5
+trigger1 = time = 100
+value = 3360
+
+;--------------------------------------------
+; Super Thunder Chargue - Spark
+[Statedef 3360]
+type    = S
+physics = S
+ctrl = 0
+anim = 251
+sprpriority = 2
+Juggle = 0
+Velset = 0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 0
+id = 7035
+
+[State 200, Electricidades]
+type = Explod
+trigger1 = time%6 = 0
+anim = 7040+(random%6)
+ID = 7040
+postype = P1
+pos = 0+(random%20),-15+(random%30)
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = Time = 20
+;-------------------------------------------------------------------------
+;Fata Morgana  - Portrait
+[Statedef 3370]
+type    = A
+physics = N
+velset = 0,0
+anim = 3370
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Fata Morgana  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 12
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+
+
+;===============================================================================
+; Thunder Lance Tempo
+;===============================================================================
+;Thunder Lance Tempo - start
+[Statedef 3400]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 1600
+poweradd = -3000
+
+[State 3250: portrait: Thunder Bolt Tempo]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Thunder Bolt Tempo"
+id		= 3470
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3470
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 50
+movetime = 50
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [50, 63]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= AnimElem = 1
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,1
+volume = 50
+channel = 1
+
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = animelem = 3
+helpertype	= Normal
+name		= "Dark Cloud - Chargue"
+id		= 3449
+pos		= 10,-35
+postype		= p1
+facing		= 1
+stateno		= 3449
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = time = [12,71]
+trigger1 = time%8 = 0
+value = S1,7
+volume = 50
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 93
+trigger1 = command != "hold_c" && time < 200
+trigger2 = time = 201
+value	= 3401
+ctrl = 0
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 93
+triggerall = var(9) = 1
+trigger1 = p2bodydist x < 40 && time < 200
+trigger2 = time = 201
+value	= 3401
+ctrl = 0
+
+
+;-------------------------------------------------
+;Thunder Lance Tempo - Lanzamiento Darkcloud
+[Statedef 3401]
+type    = S
+physics = S
+juggle  = 10
+poweradd = 35
+ctrl = 0
+velset = 0,0
+anim = 1611
+sprpriority = 2
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = animelem = 3
+value = 1, 9
+volume = 10
+channel = 5
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = animelem = 3
+helpertype	= Normal
+name		= "Super Dark Cloud"
+id		= 3450
+pos		= 10,-35
+postype		= p1
+facing		= 1
+stateno		= 3450
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 3410
+ctrl = 0
+
+;-------------------------------------------------
+;Thunder Lance Tempo - CORRIDA ATRAS
+[Statedef 3410]
+type    = S
+physics = S
+juggle  = 10
+poweradd = 35
+ctrl = 0
+anim = 105
+sprpriority = 2
+
+[State 100, 1]
+type = VelSet
+trigger1 = 1
+x = const(velocity.run.back.x)
+y = 0
+
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+slot = 0
+stateno = 3411
+time = 1
+forceair = 0
+
+[State 210, End]
+type = ChangeState
+trigger1 = Backedgebodydist < 35
+value = 3411
+ctrl = 0
+
+;-----------------------------------------------------------------
+;Thunder Lance Tempo - LANCE
+[Statedef 3411]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3411
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 1
+x = -5
+
+
+[State 0, PlaySnd - iaaa!!!]
+type = PlaySnd
+trigger1 =  animelem = 1
+value = S4,15
+volume = 50
+
+
+
+[State 3250: Activador de Rayos]
+type		= Helper
+trigger1 = animelem = 5
+helpertype	= Normal
+name		= "Activador de Rayos"
+id		= 3430
+pos		= -42,-35
+postype		= p1
+facing		= 1
+stateno		= 3430
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = time = 75
+value = 3412
+ctrl = 0
+
+;--------------------------------------------
+;Thunder Lance Tempo  - terminación
+[Statedef 3412]
+type    = A
+physics = N
+velset = 0,0
+anim = 3412
+ctrl = 0
+sprpriority = 3
+
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------
+;Thunder Lance Tempo  - Activador de Rayos
+[Statedef 3430]
+type    = A
+physics = N
+velset = 0,0
+anim = 1650
+ctrl = 0
+sprpriority = 3
+
+[State 200, Electoball grande]
+type = Explod
+trigger1 = time = 0
+anim = 7038
+ID = 7038
+postype = P1
+pos = 0,0
+facing = 1
+vfacing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 1
+
+
+;-----------------------------------------------------------
+;Thunder Lance Tempo - Dark Cloud - Chargue
+[Statedef 3449]
+type    = S
+physics = S
+ctrl = 0
+anim = 1650
+sprpriority = 2
+Juggle = 0
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = time >= 0
+time = -1
+facing = 0
+pos = 25,-30
+
+[State 200, Cloud - Solida]
+type = Explod
+trigger1 = time%5 = 0
+anim = 7033
+ID = 7033
+postype = P1
+pos = -10+(random%20),10-(random%20)
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 0
+scale = 0.1,0.1
+removeongethit = -1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PalFX - Dark]
+type = PalFX
+trigger1 = 1
+time = 999
+add = -165,-165,-165
+mul = 256,256,256
+;sinadd = 0,0,0,10
+;invertall = 0
+color = 256
+
+[State 200, Cloud - Transparente]
+type = Explod
+trigger1 = time%6 = 0
+anim = 7034
+ID = 7034
+postype = P1
+pos = -15+(random%30),15-(random%30)
+facing = 1
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 0
+scale = 0.1,0.1
+removeongethit = -1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Electricidades]
+type = Explod
+trigger1 = time%10 = 0
+anim = 7040+(random%6)
+ID = 7040
+postype = P1
+pos = -15+(random%30),15-(random%30)
+facing = -1
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+
+[State 0, ChangeState]
+type = Destroyself
+triggerall = parent, stateno != 3400
+trigger1 = numhelper(3450) = 1
+trigger2 = parent, stateno = [5000,5999]
+;-----------------------------------------------------------------------------
+;Thunder Lance Tempo - Dark Cloud - grande
+[Statedef 3450]
+type    = S
+physics = S
+ctrl = 0
+anim = 1650
+sprpriority = 2
+Juggle = 0
+velset = 0,0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = backedgebodydist < 300
+x = 4
+
+
+[State 200, Cloud - Solida]
+type = Explod
+trigger1 = time%4 = 0
+anim = 7033
+ID = 7033
+postype = P1
+pos = -10+(random%20),10-(random%20)
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 0
+scale = 0.15,0.15
+removeongethit = -1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PalFX - Dark]
+type = PalFX
+trigger1 = 1
+time = 999
+add = -165,-165,-165
+mul = 256,256,256
+;sinadd = 0,0,0,10
+;invertall = 0
+color = 256
+
+[State 200, Cloud - Transparente]
+type = Explod
+trigger1 = time%3 = 0
+anim = 7034
+ID = 7034
+postype = P1
+pos = -15+(random%30),15-(random%30)
+facing = 1
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 0
+scale = 0.15,0.15
+removeongethit = -1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Electricidades]
+type = Explod
+trigger1 = time%4 = 0
+anim = 7040+(random%6)
+ID = 7040
+postype = P1
+pos = -15+(random%30),15-(random%30)
+facing = -1
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 0.25,0.25
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State Thunder invocación]
+type		= Helper
+triggerall = numhelper(3460) = 0
+trigger1 = numhelper(3430) = 1
+helpertype	= Normal
+name		= "Thunder - horizontal"
+id		= 3460
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3460
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+[State 0, ChangeState]
+type = Destroyself
+Triggerall = time >= 150
+trigger1 = numhelper(3230) = 0
+trigger2 = time = 300
+
+
+;----------------------------------------------------------------------
+;Thunder Lance Tempo - Thunder - horizontal
+[Statedef 3460]
+movetype= A
+ctrl = 0
+anim = 3460
+sprpriority = 2
+Juggle = 0
+Velset = 0,0
+
+[State 0, PosSet]
+type = bindtoparent
+trigger1 = time >= 0
+X = 0
+y = -30
+[State 0, AngleSet]
+type = AngleDraw
+trigger1 = time >= 0
+value = 90
+Scale = 1.3,1.6
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 0
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S2,7
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 0
+
+
+[State 210, 1]
+type = HitDef
+;triggerall = hitcount < 1
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+trigger4 = animelem = 8
+attr = S, NA
+animtype  = Light
+damage    = 50
+guardflag = MA
+pausetime = 0,5
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,10
+guardsound = S1,10
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = 2.5,-4
+air.velocity = 3,-4
+fall = 1
+palFX.time = 36
+palFX.mul = 128, 128, 28
+palFX.sinAdd = 96, 96, 16, 4
+Palfx.invertall = 1
+envShake.time = 10
+envShake.ampl = 2
+envShake.freq = 120
+
+
+
+[State 0, ChangeState]
+type = Destroyself
+trigger1 = Animtime = 0
+
+
+;-------------------------------------------------------------------
+;Thunder Lance Tempo - Portrait
+[Statedef 3470]
+type    = A
+physics = N
+velset = 0,0
+anim = 3470
+ctrl = 0
+sprpriority = 3
+
+[State 200, Impact Dial Dischargue -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 12
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+;-------------------------------------------------------------------------
+;Auxiliar de cámara lenta
+[Statedef 3190]
+type    = A
+physics = N
+velset = 0,0
+anim = 3190
+ctrl = 0
+sprpriority = 3
+
+[State 3290, Cámara lenta]
+type = Pause
+trigger1 = time = [0, 15]
+time = 1
+movetime = 0
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 16
+
+
+

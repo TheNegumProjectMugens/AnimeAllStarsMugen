@@ -1,0 +1,27 @@
+; ‚±‚±‚ÉƒLƒƒƒ‰î•ñ‚ğ‘‚¢‚Ä‚­‚¾‚³‚¢
+[Info]
+name ="Zatch&Kiyomaro"
+displayname ="Zatch"
+versiondate =11,22,2000
+mugenversion =11,22,2000
+author ="shimon"
+pal.defaults =6,3,4,2
+
+; Files for the player
+[Files]
+cmd     =zatch.cmd
+cns     =zatch.cns
+st      =zatch.cns
+stcommon =common1.cns 
+sprite  =zatch.sff
+anim    =zatch.air
+sound   =zatch.snd
+pal1=zatch.act
+pal2=zatch2.act
+
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=
+;intro.storyboard = 
+;ending.storyboard = end.def

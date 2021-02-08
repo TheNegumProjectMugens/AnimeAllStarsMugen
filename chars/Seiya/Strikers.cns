@@ -1,0 +1,852 @@
+;---------------------------------------------------------------------------
+; A (Crouch, Part 1)
+[StateDef 850]
+type = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 826
+poweradd = -500
+sprpriority = 2
+
+[State 0, changeanim]
+type = changeanim
+triggerall = Var(10) = 1
+trigger1 = time = 0
+value = 827
+
+[State 0, Helper]
+type = Helper
+triggerall = Var(10) = 0 
+triggerall = numhelper(875) = 0
+trigger1 = time = 0
+helpertype = normal
+name = "Hyoga Special"
+ID = 875
+stateno = 875
+pos = 50,-5
+postype = p1   
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Helper]
+type = Helper
+triggerall = Var(10) = 1
+triggerall = numhelper(879) = 0
+trigger1 = time = 0
+helpertype = normal
+name = "Hyoga Super"
+ID = 879
+stateno = 879
+pos = 50,-5
+postype = p1   
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 255, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 6, 1
+
+[State 850, end]
+type = ChangeState
+trigger1 = Time = 10
+value = 0
+ctrl = 1
+;-----------------------------------------------------------------------------------------------------
+; A (Special, Part 2)
+[StateDef 875]
+type = S
+movetype= H
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 7000
+poweradd = 0
+sprpriority = 3
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State 1500, Turn]
+type = Turn
+Trigger1 = P2Dist X < -15
+
+[State 9991, 4]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 876
+time = -1
+
+[State 0, Support Players Ishleper exist Helper]
+type = Helper
+triggerall = numhelper(6004) = 0
+trigger1 = 1
+helpertype = player
+name = "Support Players Ishelper exist"
+ID = 6004
+stateno = 6004
+pos = 0,0
+postype = p1   
+facing = 1
+keyctrl = 0
+ownpal = 0
+
+[State 1000]
+type = Explod
+trigger1 = var(10) = 0
+anim = 4086
+ID = 4086
+pos = 0,-18
+postype = p1  
+facing = 1
+vfacing = 1
+bindtime = 1
+vel = 0,-1.75
+accel = 0,0
+random = 60,40
+removetime = -2
+supermovetime=99999999
+pausemovetime=99999999
+scale = .3+var(4)/5,.3+var(4)/5
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 0
+removeongethit = 0
+
+[State 255, 1]
+type = PlaySnd
+trigger1 = animelem = 5
+value = 950, 0
+
+[State 6003, end]
+type = ChangeState
+trigger1 = Time = 100
+value = 878
+ctrl = 1
+;--------------------------------------------------------------------------------------------------------------------------
+; A (Special, Part 3)
+[Statedef 876]
+type    = S
+movetype= H
+physics = N
+juggle  = 1
+velset = 0,0                    
+ctrl = 0                         
+anim = 828                 
+poweradd = 0                  
+sprpriority = 0
+
+[State 1500, Turn]
+type = Turn
+Trigger1 = P2Dist X < -15
+
+[State 1000,***]
+type = AssertSpecial
+trigger1 =1
+flag = noautoturn
+
+[State 6003, end]
+type = ChangeState
+trigger1 = Time = 130
+value = 877
+ctrl = 1
+;------------------------------------------------------------------------------------------
+; A (Special, Part 4)
+[StateDef 877]
+type = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 7020
+poweradd = 0
+sprpriority = 2
+
+[State 0, end]
+type = destroyself
+trigger1 = time = 30
+;----------------------------------------------------------------------------------------------
+; A (Special, Part 5)
+[StateDef 878]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 830
+poweradd = 0
+sprpriority = 1
+
+[State 9991, 4]
+type = HitOverride
+trigger1 = Time <= 40
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 876
+time = -1
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = time >=  40
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, Helper]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal 
+name = "gelo"
+ID = 8000
+stateno = 8000
+pos = 0,0
+postype = p1    
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.xscale = .3
+size.yscale = .1
+
+[State 0, Support Players Ishleper exist Helper]
+type = Helper
+triggerall = numhelper(6004) = 0
+trigger1 = 1
+helpertype = player
+name = "Support Players Ishelper exist"
+ID = 6004
+stateno = 6004
+pos = 0,0
+postype = p1   
+facing = 1
+keyctrl = 0
+ownpal = 0
+
+[State 0]
+type = Explod
+trigger1 = animelem = 6
+anim = 4090
+ID = 4090
+pos = 31,-32
+postype = p1
+facing = 1
+bindtime = -1
+scale = .1,.07
+removetime = 20
+sprpriority = 3
+ownpal = 0
+removeongethit = 1
+
+[State 1000]
+type = Explod
+trigger1 = var(10) = 0
+anim = 4086
+ID = 4086
+pos = 0,-18
+postype = p1  
+facing = 1
+vfacing = 1
+bindtime = 1
+vel = 0,-1.75
+accel = 0,0
+random = 60,40
+removetime = -2
+supermovetime=99999999
+pausemovetime=99999999
+scale = .3+var(4)/5,.3+var(4)/5
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 0
+removeongethit = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 6
+anim = 102
+ID = 102
+pos = 23,3
+postype = p1
+removetime = 90
+scale = .3,.2
+sprpriority = 4
+supermovetime = 9999
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = animelem = 7
+id = 102
+
+[State 255, 1]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 13, 0
+
+[State 217, end]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 877
+ctrl = 1
+;-----------------------------------------------------------------------------------------------------
+; A (Super, Part 2)
+[StateDef 879]
+type = S
+movetype= H
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 7010
+poweradd = 0
+sprpriority = 3
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State 1500, Turn]
+type = Turn
+Trigger1 = P2Dist X < -15
+
+[State 9991, 4]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 876
+time = -1
+
+[State 0, Support Players Ishleper exist Helper]
+type = Helper
+triggerall = numhelper(6005) = 0
+trigger1 = 1
+helpertype = player
+name = "Support Players Ishelper exist"
+ID = 6005
+stateno = 6005
+pos = 0,0
+postype = p1    
+facing = 1
+keyctrl = 0
+ownpal = 0
+
+[State 1000]
+type = Explod
+trigger1 = var(10) = 0
+anim = 4086
+ID = 4086
+pos = 0,-18
+postype = p1 
+facing = 1
+vfacing = 1
+bindtime = 1
+vel = 0,-1.75
+accel = 0,0
+random = 60,40
+removetime = -2
+supermovetime=99999999
+pausemovetime=99999999
+scale = .3+var(4)/5,.3+var(4)/5
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 0
+removeongethit = 0
+
+[State 255, 1]
+type = PlaySnd
+trigger1 = animelem = 6
+value = 950, 0
+
+[State 6003, end]
+type = ChangeState
+trigger1 = Time = 82
+value = 882
+ctrl = 1
+;--------------------------------------------------------------------------------------------------------------------------
+; A (Super, Part 3)
+[Statedef 880]
+type    = S
+movetype= H
+physics = N
+juggle  = 1
+velset = 0,0                     
+ctrl = 0                        
+anim = 837                 
+poweradd = 0                  
+sprpriority = 0
+
+[State 1500, Turn]
+type = Turn
+Trigger1 = P2Dist X < -15
+
+[State 1000,***]
+type = AssertSpecial
+trigger1 =1
+flag = noautoturn
+
+[State 6003, end]
+type = ChangeState
+trigger1 = Time = 130
+value = 881
+ctrl = 1
+;------------------------------------------------------------------------------------------
+; A (Super, Part 4)
+[StateDef 881]
+type = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 7020
+poweradd = 0
+sprpriority = 2
+
+[State 0, end]
+type = destroyself
+trigger1 = time = 30
+;----------------------------------------------------------------------------------------------
+; A (Super, Part 5)
+[StateDef 882]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 839
+poweradd = 0
+sprpriority = 1
+
+[State 9991, 4]
+type = HitOverride
+trigger1 = Time <= 40
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 880
+time = -1
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = time >=  40
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, Helper]
+type = Helper
+trigger1 = animelem = 3
+helpertype = normal 
+name = "gelo"
+ID = 8005
+stateno = 8005
+pos = 0,0
+postype = p1    
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.xscale = .4
+size.yscale = .15
+
+[State 0, Support Players Ishleper exist Helper]
+type = Helper
+triggerall = numhelper(6005) = 0
+trigger1 = 1
+helpertype = player
+name = "Support Players Ishelper exist"
+ID = 6005
+stateno = 6005
+pos = 0,0
+postype = p1   
+facing = 1
+keyctrl = 0
+ownpal = 0
+
+[State 0]
+type = Explod
+trigger1 = animelem = 3
+anim = 4090
+ID = 4090
+pos = 18,-23
+postype = p1
+facing = 1
+bindtime = -1
+scale = .1,.1
+removetime = 40
+sprpriority = 3
+ownpal = 0
+removeongethit = 1
+
+[State 1000]
+type = Explod
+trigger1 = var(10) = 0
+anim = 4086
+ID = 4086
+pos = 0,-18
+postype = p1  
+facing = 1
+vfacing = 1
+bindtime = 1
+vel = 0,-1.75
+accel = 0,0
+random = 60,40
+removetime = -2
+supermovetime=99999999
+pausemovetime=99999999
+scale = .3+var(4)/5,.3+var(4)/5
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 0
+removeongethit = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 3
+anim = 102
+ID = 102
+pos = 23,3
+postype = p1
+removetime = 90
+scale = .3,.2
+sprpriority = 4
+supermovetime = 9999
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = animelem = 4
+id = 102
+
+[State 255, 1]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 13, 1
+
+[State 217, end]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 881
+ctrl = 1
+;---------------------------------------------------------------------------
+; A (Special, Helper Part 3)
+[StateDef 8000]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 4091
+poweradd = 0
+sprpriority = 3
+
+[State 8000,1 BindToParent]
+type = BindToParent
+trigger1 = animelem = 1
+time = 1
+facing = 1
+pos = 25,-32
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 1100, HitDef]
+type = Hitdef
+triggerall = p2stateno != [4003,4004]
+trigger1 = AnimElem = 1
+trigger2 = AnimElem = 2
+trigger3 = AnimElem = 3
+trigger4 = AnimElem = 4
+triggerall = p2stateno != 6169
+damage = 40,40
+getpower = 0,0
+givepower = 0,0
+pausetime = 0,10
+attr = SCA, AT, NT, ST, HT
+hitflag = MAF
+animtype = heavy
+air.animtype = back
+priority = 5, hit
+sparkno = -1 + 0 * (var(33) := 0)
+guard.sparkno = -1 + 0 * (var(34) := 0)
+sparkxy = -1
+hitsound = S5,0
+ground.type = high
+air.type = high
+ground.slidetime = 0
+ground.hittime = 15
+ground.velocity = 0, 0
+air.velocity = 0, 0
+guard.velocity = -7
+air.cornerpush.veloff = 0
+ground.cornerpush.veloff = 0
+yaccel = .5
+air.fall = 1
+fall = 0
+fall.recover = 0
+fall.xvelocity = 0
+fall.yvelocity = 0
+numhits = 0
+p2stateno = 4004
+
+[State 1100, Helper]
+type = Helper
+trigger1 = MoveHit = 1
+helpertype = Normal
+ID = 10133
+name = "Freezed P2"
+postype = p1
+stateno = 10133
+ownpal = 1
+
+[State 1100, Explod]
+type = Explod
+trigger1 = Movecontact = 1
+anim = 4088
+ID = 4088
+pos = 0,-30
+postype = p2
+removetime = -2
+scale = .2,.2
+ownpal = 1
+sprpriority = 3
+
+[State 823, end]
+type = destroyself
+trigger1 = animelem = 7
+trigger2 = Time = 20
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = parent, stateno = [5000,5200]
+value = 8010
+ctrl = 1
+;---------------------------------------------------------------------------
+; A (Super, Helper Part 3)
+[StateDef 8005]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 4091
+poweradd = 0
+sprpriority = 3
+
+[State 8000,2 BindToParent]
+type = BindToParent
+trigger1 = animelem = 1
+time = 1
+facing = 1
+pos = 5,-23
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 1100, HitDef]
+type = Hitdef
+triggerall = p2stateno != [4003,4004]
+trigger1 = AnimElem = 1
+trigger2 = AnimElem = 2
+trigger3 = AnimElem = 3
+trigger4 = AnimElem = 4
+triggerall = p2stateno != 6169
+damage = 60,60
+getpower = 0,0
+givepower = 0,0
+pausetime = 0,10
+attr = SCA, AT, NT, ST, HT
+hitflag = MAF
+animtype = heavy
+air.animtype = back
+priority = 5, hit
+sparkno = -1 + 0 * (var(33) := 0)
+guard.sparkno = -1 + 0 * (var(34) := 0)
+sparkxy = -1
+hitsound = S5,0
+ground.type = high
+air.type = high
+ground.slidetime = 0
+ground.hittime = 15
+ground.velocity = 0, 0
+air.velocity = 0, 0
+guard.velocity = -7
+air.cornerpush.veloff = 0
+ground.cornerpush.veloff = 0
+yaccel = .5
+air.fall = 1
+fall = 0
+fall.recover = 0
+fall.xvelocity = 0
+fall.yvelocity = 0
+numhits = 0
+p2stateno = 4004
+
+[State 1100, Helper]
+type = Helper
+trigger1 = MoveHit = 1
+helpertype = Normal
+ID = 10133
+name = "Freezed P2"
+postype = p1
+stateno = 10133
+ownpal = 1
+
+[State 1100, Explod]
+type = Explod
+trigger1 = Movecontact = 1
+anim = 4088
+ID = 4088
+pos = 0,-30
+postype = p2
+removetime = -2
+scale = .2,.2
+ownpal = 1
+sprpriority = 3
+
+[State 824, end]
+type = destroyself
+trigger1 = Time = 40
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = parent, stateno = [5000,5200]
+value = 8010
+ctrl = 1
+;---------------------------------------------------------------------------
+; A (Helper end Part 4)
+[StateDef 8010]
+type = S
+physics = S
+ctrl = 0
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = time = 0
+channel = 1
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = time = 0
+channel = 2
+
+[State 824, end]
+type = destroyself
+trigger1 = Time = 3
+;-------------------------------------------------------------------------------------------------------------------
+; Freezed P2 - Thaw
+[Statedef 10133]
+type    = A
+movetype= A
+physics = N
+poweradd= 0
+anim = 441
+velset = 0,0
+ctrl = 0
+sprpriority = 999
+
+[State 10133, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 10133, Explod]
+type = Explod
+trigger1 = time = 190 && p2stateno = [4003,4004]
+trigger2 = p2stateno = [4999,6500]
+trigger3 = p2stateno = 33557
+trigger4 = p2stateno = 1338
+triggerall = p2statetype != A
+anim = 4089
+id = 4089
+Postype = p2
+pos = 0,-60
+scale = .5,.5
+random = 0,0
+sprpriority = 2
+velocity = 0,0
+ownpal = 1
+
+[State 10133, Explod]
+type = Explod
+trigger1 = time = 190 && p2stateno = [4003,4004]
+trigger2 = p2stateno = [4999,6500]
+trigger3 = p2stateno = 33557
+trigger4 = p2stateno = 1338
+triggerall = p2statetype != A
+anim = 4089
+id = 4089
+Postype = p2
+pos = 0,-40
+scale = .5,.5
+random = 0,0
+sprpriority = 2
+velocity = 0,2
+ownpal = 1
+
+[State 10133, Explod]
+type = Explod
+trigger1 = time = 190 && p2stateno = [4003,4004]
+trigger2 = p2stateno = [4999,6500]
+trigger3 = p2stateno = 33557
+trigger4 = p2stateno = 1338
+triggerall = p2statetype != S
+anim = 4089
+id = 4089
+Postype = p2
+pos = 0,-30
+scale = .5,.5
+random = 0,0
+sprpriority = 2
+velocity = 0,2
+ownpal = 1
+
+[State 10133, Explod]
+type = Explod
+trigger1 = time = 190 && p2stateno = [4003,4004]
+trigger2 = p2stateno = [4999,6500]
+trigger3 = p2stateno = 33557
+trigger4 = p2stateno = 1338
+triggerall = p2statetype !=S
+anim = 4089
+id = 4089
+Postype = p2
+scale = .5,.5
+random = 0,0
+sprpriority = 2
+velocity = 0,2
+ownpal = 1
+
+[State 10133, PlaySnd]
+type = PlaySnd
+trigger1 = time = 190 && p2stateno = [4003,4004]
+trigger2 = p2stateno = [4999,6500]
+trigger3 = p2stateno = 33557
+trigger4 = p2stateno = 13387
+value = S5,1
+
+[State 10133, 1]
+type = DestroySelf
+trigger1 = time = 190 && p2stateno = [4003,4004]
+trigger2 = p2stateno = [4999,6500]
+trigger3 = p2stateno = 33557
+trigger4 = p2stateno = 1338

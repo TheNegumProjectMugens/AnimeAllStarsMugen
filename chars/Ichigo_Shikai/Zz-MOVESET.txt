@@ -1,0 +1,26 @@
+
+A - Low Slash
+
+B - Strong Slash
+
+C - Zangetsu
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Reiatsu Liberation 
+
+D,DB,B,a - Counter
+
+D,DF,F,b - Crescend Getsuga Tenshou
+
+D,DB,B,b - Giratory Sword
+
+D,DF,F,c - Getsuga Tenshou
+
+D,DB,B,c - Reiatsu Explosion 
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Saigo no Getsuga Tenshou

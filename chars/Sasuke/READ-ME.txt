@@ -1,0 +1,25 @@
+------------------------------------- Créditos - Credits ----------------------------------
+
+Programmer: gotagz
+
+Intro & Ending: gotagz
+
+Sprites ripped by: Neimad
+
+Addons: CS1 tranform - Twilight_Sasuke
+        Taunt/air housenka - BuraiBerserker
+ Crouch light punch/crouch kunai throw - MB Bueno
+
+Sounds: Griever80
+
+-------------------------------------------------------------------------------------------
+
+Para remover a intro/end basta abrir a pasta do char, abrir o arquivo "gzsasuke.def" e 
+apagar a última parte escrita [Arcade] ou apenas apagar o arquivo designado em intro.def 
+e deixar em branco.
+
+-------------------------------------------------------------------------------------------
+
+Visit:
+
+www.animemugen.com.br

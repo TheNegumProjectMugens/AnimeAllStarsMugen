@@ -1,0 +1,53 @@
+Kuchiki Rukia Beta by GaarasLostBrother
+Progress - 85%
+`````````````````````````````````````````````````````````````````````````````````````
+Status - 
+~Ten basic moves done
+~Three special moves done
+~Sound file made
+~All basic sprites done
+~AI not programed at all
+`````````````````````````````````````````````````````````````````````````````````````
+Creator Comments -
+Okay everyone, so this is my update for my first ever character
+Rukia Kuchiki. I wouldnt say shes quite done yet due to some people
+wanting her Shinigami form. Granted I am looking for a sheet that contains
+better sprites for her shinigami form but im having no luck. Her AI is also still
+not programmed at all, and im also trying to figure out how to add helpers into
+this coding so you can summon Byakuya, Renji, or Ichigo to help you.
+Other then those three things shes pretty much done. Enjoy her and have fun :) !!!!!
+`````````````````````````````````````````````````````````````````````````````````````
+MoveList - 
+************************************
+
+Basics
+************
+Punch - A
+Shinigami Glove Punch - B
+Low Kick - X
+Medium Kick - Y
+High Kick - Z
+Spirits & Hollows Explaination - Down + C
+
+Combos
+************
+Kick Combo 1 - X, Y
+Kick Combo 2 - X, Y, Z
+Punch Combo 1 - A, B
+Punch and Kick Combo - A, Z
+
+Specials
+************
+Energy Palm (500 Energy) - C
+Byakurai Forward (1000 Energy) - Down + A
+Byakurai Diagonal (1000 Energy) - Down + B
+
+`````````````````````````````````````````````````````````````````````````````````````
+Credits -
+~Thanks to Cyanide and Keriku/Fire Blazer for there awesome
+   tutorials.
+~Thanks to Nightmare for ripping the sprites and making the sheet.
+~Thanks to Elecbyte for making Mugen.
+~Thanks to gaisle for postinging the Bleach sounds from Blade Battlers on narutomugen.tk =)
+and...
+~Thanks to Demon_Hunter0 and iFreaker for helping me get the Selection Screen pictures to work.

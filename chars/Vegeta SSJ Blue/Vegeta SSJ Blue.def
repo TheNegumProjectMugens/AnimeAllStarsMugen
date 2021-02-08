@@ -1,0 +1,18 @@
+[Info]
+name="Vegeta_SSGSS_JUS"
+displayname="Vegeta SSJ Blue"
+versiondate=06/04/2016
+mugenversion=1.0
+author="This Boy"
+pal.defaults=1
+[Files]
+sprite=Vegeta_SSGSS_JUS.sff
+sound=Vegeta_SSGSS_JUS.snd
+anim=Vegeta_SSGSS_JUS.air
+cmd=Vegeta_SSGSS_JUS.cmd
+cns=Vegeta_SSGSS_JUS.cns
+st=Vegeta_SSGSS_JUS.cns
+stcommon=common1.cns
+[Arcade]
+intro.storyboard=
+ending.storyboard=

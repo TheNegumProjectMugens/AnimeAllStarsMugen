@@ -1,0 +1,26 @@
+
+A - Punch
+
+B - Kick
+
+C - Ki Blast
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Dark Impact
+
+D,DB,B,a - Final Impact
+
+D,DF,F,b - Ki Rings
+
+D,DB,B,b - Monsters Awakening
+
+D,DF,F,c - Final Flash
+
+D,DB,B,c - Big Bang Attack 
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Final Explosion

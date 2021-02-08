@@ -1,0 +1,42 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name="Nico Robin"
+displayname="Nico Robin"
+versiondate=04,14,2002
+mugenversion=04,14,2002
+author=""
+pal.defaults=6,3,4,2
+
+; Files for the player
+[Files]
+cmd=NicoRobin.cmd
+sprite=NicoRobin.sff
+anim=NicoRobin.air
+sound=NicoRobin.snd
+stcommon =common1.cns
+st=NicoRobin.cns
+cns=NicoRobin.cns
+pal1=NicoRobin01.act
+pal2=NicoRobin02.act
+pal3=NicoRobin03.act
+pal4=NicoRobin04.act
+pal5=NicoRobin05.act
+pal6=NicoRobin06.act
+st1=NicoRobin_specials.cns
+st2=NicoRobin_Supers.cns
+st3=NicoRobin_IA.cns
+
+; Arcade mode
+;[Arcade]
+;intro.storyboard=intro.def
+;ending.storyboard=ending.def
+
+
+
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=

@@ -1,0 +1,143 @@
+[Statedef 370]
+type    = S
+movetype= I
+physics = S
+juggle  = 4
+poweradd= 0
+ctrl = 0
+velset = 0,0
+anim = 270
+
+[State 210, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 371
+ctrl = 1
+;-----------------------------------------------------
+[Statedef 371]
+type    = S
+movetype= I
+physics = S
+juggle  = 4
+poweradd= 0
+ctrl = 0
+velset = 0,0
+anim = 371
+
+[State 0, Explod]
+type = Explod
+triggerall = facing = 1
+trigger1 = 1
+anim = 9011
+ID = 9011
+pos = -70,-100
+postype = p1  ;p2,front,back,left,right
+facing = 1
+bindtime = -1
+removetime = 1
+scale = 1,1
+ontop = 1
+ownpal = 1
+removeongethit = 1
+
+[State 0, Explod]
+type = Explod
+triggerall = facing = 1
+trigger1 = 1
+anim = 9012
+ID = 9012
+pos = -51,-63
+postype = p1  ;p2,front,back,left,right
+facing = 1
+bindtime = -1
+removetime = 1
+scale = fvar(12),1
+ontop = 1
+ownpal = 1
+removeongethit = 1
+
+[State 0, Explod]
+type = Explod
+triggerall = facing = -1
+trigger1 = 1
+anim = 9011
+ID = 9011
+pos = 70,-100
+postype = p1  ;p2,front,back,left,right
+facing = -1
+bindtime = -1
+removetime = 1
+scale = 1,1
+ontop = 0
+ownpal = 1
+removeongethit = 1
+
+[State 0, Explod]
+type = Explod
+triggerall = facing = -1
+trigger1 = 1
+anim = 9012
+ID = 9012
+pos = 51,-63
+postype = p1  ;p2,front,back,left,right
+facing = -1
+bindtime = -1
+removetime = 1
+scale = fvar(12),1
+ontop = 1
+ownpal = 1
+removeongethit = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+v = 11
+value = 800
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time = 0
+fv = 12
+value = 0
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = fvar(12) > 2
+fv = 12
+value = 2
+
+[State -0, VarAdd]
+type = VarAdd
+triggerall = var(11) > 1
+trigger1 = time%2
+fv = 12
+value = 0.01
+
+[state -0]
+type = attackmulset
+trigger1 = fvar(12) > 0
+value = fvar(12)
+time = -1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 10,6
+volume = 800
+channel = 28
+loop = 1
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = time = 0
+time = 99999999999
+freq = 55
+ampl = -5
+phase = 65
+
+[State 210, 5]
+type = ChangeState
+trigger1 = command != "hold_b" | command != "hold_y"
+trigger2 = fvar(12) > 2 && time > 500
+value = 272
+ctrl = 1

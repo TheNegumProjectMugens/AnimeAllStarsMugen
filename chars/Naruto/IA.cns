@@ -1,0 +1,3871 @@
+; Inteligencia Artificial - Inicio
+[Statedef 9999]
+anim = 9999
+ctrl = 0
+
+[State 9999, 0]
+type = Turn
+trigger1 = facing != parent, facing
+
+[State 9999, 1]
+type = Varset
+trigger1 = 1
+var(9) = parent, var(9)
+
+[State 9999, 2]
+type = ParentVarSet
+triggerall = parent, RoundState = 2
+trigger1 = parent, command = "x"
+trigger2 = parent, command = "y"
+trigger3 = parent, command = "z"
+trigger4 = parent, command = "a"
+trigger5 = parent, command = "holdfwd"
+trigger6 = parent, command = "holdback"
+trigger7 = parent, command = "holdup"
+trigger8 = parent, command = "holddown"
+var(9) = 1
+
+[State 9999, 3]
+type = ParentVarSet
+triggerall = parent, RoundState = 2
+trigger1 = (command = "x" && parent, command = "x")
+trigger2 = (command = "y" && parent, command = "y")
+trigger3 = (command = "z" && parent, command = "z")
+trigger4 = (command = "a" && parent, command = "a")
+trigger5 = (command = "holdfwd" && parent, command = "holdfwd")
+trigger6 = (command = "holdback" && parent, command = "holdback")
+trigger7 = (command = "holdup" && parent, command = "holdup")
+trigger8 = (command = "holddown" && parent, command = "holddown")
+var(9) = -1
+
+[State 9999, 4]
+type = varset
+trigger1 = var(9) != parent, var(9)
+V = 47
+value = 0
+
+[State 9999, 5]
+type = VarAdd
+trigger1 = var(9) = parent, var(9)
+V = 47
+value = 1
+
+[State 9999, 6]
+type = Destroyself
+trigger1 = parent, var(9) = -1
+trigger1 = var(47) >= 23
+trigger2 = parent, var(9) = 2
+trigger2 = var(47) >= 23
+trigger3 = RoundState = 3
+;-------------------------------------------------------------------------------
+[Statedef -2]
+;===============================================================================
+; IA de Defensa
+[State -3, IA de Defensa]
+type = ChangeState
+value = 132
+triggerall = p2movetype = A || (enemy, NumProj >= 1) ;
+triggerall = P2bodydist X <= 40 || (enemy, NumProj >= 1)
+triggerall = statetype = A ; Activo unicamente si estas en el Aire
+triggerall = random <= 600 ; Aquí le ponemos un poco de aleteoriedad
+triggerall = var(9) = 1 ; La variable que activa la AI
+triggerall = ctrl
+triggerall = stateno != 132
+trigger1 = p2statetype = A
+trigger2 = (enemy, NumProj >= 1)
+
+[State -3, IA de Defensa]
+type = ChangeState
+value = 130
+triggerall = p2movetype = A || (enemy, NumProj >= 1)
+triggerall = P2bodydist X <= 40 || (enemy, NumProj >= 1)
+triggerall = random <= 400
+triggerall = statetype != A
+triggerall = var(9) = 1
+triggerall = ctrl
+triggerall = stateno != 120
+trigger1 = p2statetype = S
+trigger2 = (enemy, NumProj >= 1)
+
+;Correr:
+[State -3, Correr Adelante]
+type = ChangeState
+triggerall = var(9) = 1 && roundstate = 2
+triggerall = vel x = 0 ;P2bodydist X >= 50
+triggerall =  pos Y= 0
+triggerall = ctrl
+triggerall = stateno != 100
+triggerall = stateno != 105
+trigger1 = P2bodydist X >= 100 && random = [10,700]
+value = 100
+
+[State -3, Correr Atras]
+type = ChangeState
+triggerall = var(9) = 1 && roundstate = 2
+triggerall = vel x = 0 ;P2bodydist X >= 50
+triggerall =  pos Y= 0
+triggerall = ctrl
+triggerall = stateno != 100
+triggerall = stateno != 105
+trigger1 = P2bodydist X = [0,100]
+trigger1 = random = [10,300]
+value = 100
+;===============================================================================
+;--------------------------Ataques IA-------------------------------------------
+;===============================================================================
+;-----------------------Supers--------------------------------------------------
+;===============================================================================
+[State -1, Kuchiyose no Jutsu]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = power >= 2500
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X >= 150
+trigger1 = Random = [500,800]
+value = 3000
+
+[State -1, Kuchiyose no Jutsu Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = power >= 2500
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 5
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 3000
+
+[State -1, Naruto Rendan]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = frontedgebodydist > 150
+Triggerall = power >= 1500
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = Ctrl
+triggerall = P2BodyDist X < 70
+trigger1 = Random = [200,600]
+value = 3100
+
+[State -1, Naruto Rendan Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = frontedgebodydist > 150
+Triggerall = power >= 1500
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 3100
+
+[State -1, Rasengan]
+type = changestate
+Triggerall = power >= 2000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = Ctrl
+triggerall = P2BodyDist X = [80,130]
+trigger1 = Random = [400,800]
+value = ifelse(var(2) = 1,3800,ifelse(var(3) = 1,3280,3200))
+
+[State -1, Rasengan Combos]
+type = changestate
+Triggerall = power >= 2000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = random < 25
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)||stateno = 1551
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602||stateno = 3284)
+trigger4 = time > 20 && (stateno = 220||stateno = 221||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204||stateno = 3384||stateno = 3385)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+trigger8 = time > 40 && stateno = 2225
+trigger9 = time > 60 && stateno = 3900
+value = ifelse(var(2) = 1,3800,ifelse(var(3) = 1,3280,3200))
+
+[State -1, Red Chakra Mode]
+type = changestate
+Triggerall = var(2) = 0
+triggerall = var(3) = 0
+Triggerall = life < lifemax/3
+Triggerall = power >= 1000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X >= 50
+trigger1 = Random = [400,800]
+value = 3300
+
+[State -1, Red Chakra Mode Combos]
+type = changestate
+Triggerall = var(2) = 0
+triggerall = var(3) = 0
+triggerall = life <= 300
+Triggerall = power >= 1000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 50
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 3300
+
+[State -1, Kyubi Mode]
+type = changestate
+triggerall = numhelper(225) = 0 && numhelper(625) = 0 && numhelper(1450) = 0 && numhelper(626) = 0 && numhelper(627) = 0 && numhelper(226) = 0 && numhelper(227) = 0 && numhelper(33905) = 0
+Triggerall = var(2) = 0
+triggerall = var(3) = 0
+Triggerall = power >= 3000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X >= 50
+trigger1 = Random = [800,900]
+value = 3400
+
+[State -1, Kyubi Mode Combos]
+type = changestate
+triggerall = numhelper(225) = 0 && numhelper(625) = 0 && numhelper(1450) = 0 && numhelper(626) = 0 && numhelper(627) = 0 && numhelper(226) = 0 && numhelper(227) = 0 && numhelper(33905) = 0
+Triggerall = var(2) = 0
+triggerall = var(3) = 0
+Triggerall = power >= 3000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 50
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 3400
+
+[State -1, Kyubi Mode desde Chakra Rojo]
+type = changestate
+triggerall = numhelper(225) = 0 && numhelper(625) = 0 && numhelper(1450) = 0 && numhelper(626) = 0 && numhelper(627) = 0 && numhelper(226) = 0 && numhelper(227) = 0 && numhelper(33905) = 0
+triggerall = var(3) = 1
+Triggerall = power >= 1500
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X >= 50
+trigger1 = Random = [600,700]
+value = 3404
+
+[State -1, Kyubi Mode desde Chakra Rojo Combos]
+type = changestate
+triggerall = numhelper(225) = 0 && numhelper(625) = 0 && numhelper(1450) = 0 && numhelper(626) = 0 && numhelper(627) = 0 && numhelper(226) = 0 && numhelper(227) = 0 && numhelper(33905) = 0
+triggerall = var(3) = 1
+Triggerall = power >= 1500
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 50
+trigger1 = time > 5 && (stateno = 200||stateno = 201)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 221||stateno = 3384||stateno = 3385||stateno = 300998)
+value = 3404
+
+[State -1, Shuriken Trampa]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = frontedgebodydist > 150
+Triggerall = power >= 1000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = Ctrl
+triggerall = P2BodyDist X = [40,100]
+trigger1 = Random = [100,500]
+value = 3500
+
+[State -1, Shuriken Trampa Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = frontedgebodydist > 150
+Triggerall = power >= 1000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = random < 5
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 3500
+
+[State -1, Claws Combo]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(3) = 1
+Triggerall = power >= 2000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 40
+trigger1 = Random = [200,400]
+value = 3700
+
+[State -1, Claws Combo Combos]
+type = changestate
+Triggerall = var(3) = 1
+Triggerall = power >= 2000
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = random < 40
+trigger1 = time > 5 && (stateno = 200||stateno = 201)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 221||stateno = 3384||stateno = 3385||stateno = 300998)
+value = 3700
+
+[State -1, Chakra wave]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 1
+Triggerall = power >= 1500
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 40
+trigger1 = Random = [200,400]
+value = 3900
+
+[State -1, Chakra wave Combos]
+type = changestate
+Triggerall = var(2) = 1
+Triggerall = power >=1500
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = random < 40
+trigger1 = time > 5 && (stateno = 200||stateno = 201)||stateno = 1551
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 3384||stateno = 3385||stateno = 300998)
+trigger4 = time > 30 && stateno = 222099
+trigger5 = time > 40 && stateno = 2225
+trigger6 = time > 60 && stateno = 3900
+value = 3900
+;===============================================================================
+;-------------------------Especiales--------------------------------------------
+;-------------------------------------------------------------------------------
+[State -1, Kage Bushin Clon]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = power >= 500
+Triggerall = numhelper(1050) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X > 120
+trigger1 = Random = [10,400]
+value = 1000
+
+[State -1, Kage Bushin Clon  Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = power >= 500
+Triggerall = numhelper(1050) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 1
+trigger1 = time > 5 && (stateno = 200||stateno = 201)||stateno = 1603
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 1000
+
+[State -1, Kawarimi no Jutsu]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = power >= 500
+Triggerall = var(5) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X > 120
+trigger1 = Random = [10,300]
+value = 1100
+
+[State -1, Kawarimi no Jutsu Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = power >= 500
+Triggerall = var(5) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 1
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 50 && stateno = 3500
+value = 1100
+
+[State -1, Kawarimi Red Chakra]
+type = ChangeState
+triggerall = var(3) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = time < 5 && prevstateno != [5000,5300]
+triggerall = power >= 500
+triggerall = life >= 1
+triggerall = stateno = [5000,5300]
+trigger1 = Random = [10,100]
+value = 3392
+
+[State -1, Lanzamiento de Kunai]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = numhelper(1250) = 0
+Triggerall = numhelper(1251) = 0
+Triggerall = numhelper(1252) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X > 120
+trigger1 = Random = [10,400]
+value = 1200
+
+[State -1, Lanzamiento de Kunai Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = numhelper(1250) = 0
+Triggerall = numhelper(1251) = 0
+Triggerall = numhelper(1252) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 1200
+
+[State -1, Lanzamiento de Kunai Aereo]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = numhelper(1290) = 0
+Triggerall = numhelper(1291) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X < 90 && p2bodydist y > 20
+trigger1 = Random = [10,300]
+value = 1280
+
+[State -1, Lanzamiento de Kunai Aereo Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = numhelper(1290) = 0
+Triggerall = numhelper(1291) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 600||stateno = 1302)
+trigger2 = time > 10 && (stateno = 610||stateno = 3106)
+trigger3 = time > 15 && stateno = 1280
+trigger4 = time > 20 && stateno = 620
+value = 1280
+
+[State -1, Corte Ascendente]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X < 30
+trigger1 = Random = [10,300]
+value = 1300
+
+[State -1, Corte Ascendente Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 1300
+
+[State -1, Garrazos Ascendentes]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 1||var(3) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X < 30
+trigger1 = Random = [10,300]
+value = 1360
+
+[State -1, Garrazos Ascendentes Combos]
+type = changestate
+Triggerall = var(2) = 1||var(3) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1551)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 221||stateno = 3384||stateno = 3385||stateno = 300998)
+trigger4 = time > 30 && stateno = 222099
+trigger5 = time > 40 && stateno = 2225
+trigger6 = time > 60 && stateno = 3900
+value = 1360
+
+[State -1, Tornado de Cortes]
+type = changestate
+Triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 200
+trigger1 = stateno = 1362 && time >= 2
+value = 1380
+
+[State -1, Sorpresa Kage Bushin]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 60
+trigger1 = Random = [10,200]
+value = 1400
+
+[State -1, Sorpresa Kage Bushin  Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 10
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 1400
+
+[State -1, Surprise Punch]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+triggerall = var(3) = 1||var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 60
+trigger1 = Random = [10,300]
+value = 1480
+
+[State -1, Surprise Punch  Combos]
+type = changestate
+triggerall = var(3) = 1||var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 10
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1551)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 221||stateno = 3384||stateno = 3385||stateno = 300998)
+trigger4 = time > 40 && stateno = 2225
+trigger5 = time > 60 && stateno = 3900
+value = 1480
+
+[State -1, Kyubi Roll]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 1||VAR(3) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 40
+trigger1 = Random = [10,300]
+value = 1500
+
+[State -1, Kyubi Roll Combos]
+type = changestate
+Triggerall = var(2) = 1||VAR(3) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1551)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 221||stateno = 3384||stateno = 3385||stateno = 300998)
+trigger4 = time > 30 && stateno = 222099
+trigger5 = time > 40 && stateno = 2225
+trigger6 = time > 60 && stateno = 3900
+value = 1500
+
+[State -1, Chakra Liberation]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = power >= 1000
+Triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 30
+trigger1 = Random = [10,200]
+value = 1550
+
+[State -1, Chakra Liberation Combos]
+type = changestate
+Triggerall = power >= 1000
+Triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1551)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 3384||stateno = 3385||stateno = 300998)
+trigger4 = time > 30 && stateno = 222099
+trigger5 = time > 40 && stateno = 2225
+trigger6 = time > 60 && stateno = 3900
+value = 1550
+
+[State -1, Mini Rendan]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(3) = 0
+Triggerall = var(2) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 30
+trigger1 = Random = [10,300]
+value = 1600
+
+[State -1, Mini Rendan Combos]
+type = changestate
+Triggerall = var(3) = 0
+Triggerall = var(2) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601999||stateno = 1602999)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 1600
+
+[State -1, Mini Rendan Continuacion 1]
+type = changestate
+Triggerall = var(3) = 0
+Triggerall = var(2) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = A)
+Triggerall = movehit
+triggerall = stateno = 1600 && time >= 10
+trigger1 = Random = [700,900]
+value = 1601
+
+[State -1, Mini Rendan Continuacion 2]
+type = changestate
+Triggerall = var(3) = 0
+Triggerall = var(2) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = p2statetype = A
+Triggerall = stateno = 1601
+triggerall = time >= 18 && time < 21
+trigger1 = Random = [700,900]
+value = 1602
+
+[State -1, Kyubi Catch]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 90
+trigger1 = Random = [10,100]
+value = 2225
+
+[State -1, Kyubi Catch Combos]
+type = changestate
+Triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 5
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1551)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 3384||stateno = 3385||stateno = 300998)
+trigger4 = time > 30 && stateno = 222099
+trigger5 = time > 40 && stateno = 2225
+trigger6 = time > 60 && stateno = 3900
+value = 2225
+
+[State -1, Red Chakra Ball]
+type = changestate
+Triggerall = power >= 500
+Triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X < 100 && p2bodydist Y < 50
+trigger1 = Random = [10,300]
+value = 1700
+
+[State -1, Red Chakra Ball Combos]
+type = changestate
+Triggerall = power >= 500
+Triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 5
+trigger1 = time > 10 && stateno = 2600
+trigger2 = time > 15 && (stateno = 2650||stateno = 3386)
+trigger3 = time > 5 && (stateno = 1362||stateno = 1381||stateno = 1484)
+value = 1700
+;===============================================================================
+;----------------Normales-------------------------------------------------------
+;===============================================================================
+[State -1, Fisiko 1]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 15
+trigger1 = Random = [10,700]
+value = 200
+
+[State -1, Fisiko 1 Combos]
+type = changestate
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 50
+trigger1 = time > 5 && (stateno = 1001||stateno = 1603||stateno = 1551)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)||stateno = 3284
+trigger4 = time > 20 && (stateno = 220||stateno = 221||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204||stateno = 3384||stateno = 3385)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+trigger8 = time > 40 && stateno = 2225
+trigger9 = time > 60 && stateno = 3900
+value = 200
+
+[State -1, Fisiko 2]
+type = changestate
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+trigger1 = time > 7 && stateno = 200
+trigger1 = Random = [10,700]
+value = 201
+
+[State -1, Fisiko 3 Red Chakra]
+type = changestate
+triggerall = var(3) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+trigger1 = time > 8 && stateno = 201
+trigger1 = Random = [10,300]
+value = 3388
+
+[State -1, Fisico 4 (Teletransporte) Red Chakra]
+type = changestate
+triggerall = var(3) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+trigger1 = time > 17 && stateno = 3388
+trigger1 = Random = [10,200]
+value = ifelse(random < 500,3389,ifelse(random < 500,3390,33900))
+
+[State -1, Armas]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(3) = 0
+triggerall = var(2) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 15
+trigger1 = Random = [10,700]
+value = 210
+
+[State -1, Armas Combos]
+type = changestate
+Triggerall = var(3) = 0
+triggerall = var(2) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 50
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && stateno = 310
+trigger3 = time > 15 && (stateno = 1601||stateno = 1602)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 1600||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 210
+
+[State -1, Garrazo 1]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+triggerall = var(3) = 1||var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 25
+trigger1 = Random = [10,700]
+value = 3384
+
+[State -1, Garrazo 1 Combos]
+type = changestate
+triggerall = var(3) = 1||var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 50
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1551)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 221||stateno = 300998)
+trigger4 = time > 30 && stateno = 222099
+trigger5 = time > 40 && stateno = 2225
+trigger6 = time > 60 && stateno = 3900
+value = 3384
+
+[State -1, Garrazo 2]
+type = changestate
+triggerall = var(3) = 1||var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+trigger1 = time > 10 && stateno = 3384
+trigger1 = Random = [10,600]
+value = 3385
+
+[State -1, Kage Bushin]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = numhelper(225) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 90
+trigger1 = Random = [10,300]
+value = 220
+
+[State -1, Kage Bushin Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = numhelper(225) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1001||stateno = 1603)
+trigger2 = time > 10 && (stateno = 210||stateno = 310)
+trigger3 = time > 15 && (stateno = 160199||stateno = 160299)
+trigger4 = time > 20 && (stateno = 220||stateno = 300998||stateno = 1201||stateno = 1202||stateno = 1203||stateno = 1402||stateno = 3204)
+trigger5 = time > 30 && stateno = 1000
+trigger6 = time > 35 && stateno = 1100
+trigger7 = time > 50 && stateno = 3500
+value = 220
+
+[State -1, Kage Bushin Red]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(3) = 1
+Triggerall = numhelper(226) = 0||numhelper(227) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 90
+trigger1 = Random = [10,300]
+value = 221
+
+[State -1, Kage Bushin Combos Red]
+type = changestate
+Triggerall = var(3) = 1
+Triggerall = numhelper(226) = 0||numhelper(227) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 200||stateno = 201)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 221||stateno = 3384||stateno = 3385||stateno = 300998)
+value = 221
+
+[State -1, Mano Kyubi]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 70
+trigger1 = Random = [10,300]
+value = 2220
+
+[State -1, Mano Kyubi Combos]
+type = changestate
+Triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 10
+trigger1 = time > 5 && (stateno = 200||stateno = 201||stateno = 1551)
+trigger2 = time > 15 && stateno = 3284
+trigger3 = time > 20 && (stateno = 3384||stateno = 3385||stateno = 300998)
+trigger4 = time > 30 && stateno = 222099
+trigger5 = time > 40 && stateno = 2225
+trigger6 = time > 60 && stateno = 3900
+value = 2220
+
+[State -1, Fisiko Corriendo]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = p2bodydist x < 45
+trigger1 = time > 5 && stateno = 100
+trigger1 = Random = [10,700]
+value = 300
+
+[State -1, Armas Corriendo]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = p2bodydist x < 35
+trigger1 = time > 5 && stateno = 100
+trigger1 = Random = [10,700]
+value = 310
+
+[State -1, Garrazos Corriendo]
+type = changestate
+triggerall = var(3) = 1||var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = p2bodydist x < 35
+trigger1 = time > 5 && stateno = 100
+trigger1 = Random = [10,700]
+value = 3386
+
+[State -1, Fisiko Aire]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 15
+trigger1 = Random = [10,700]
+value = 600
+
+[State -1, Fisiko Aire  Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && stateno = 1302
+trigger2 = time > 10 && (stateno = 610||stateno = 3106)
+trigger3 = time > 15 && stateno = 1280
+trigger4 = time > 20 && stateno = 620
+value = 600
+
+[State -1, Fisiko Aire Red Chakra]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+triggerall = var(3) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 15
+trigger1 = Random = [10,700]
+value = 3387
+
+[State -1, Fisiko Aire Red Chakra  Combos]
+type = changestate
+triggerall = var(3) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 20 && stateno = 621
+trigger2 = time > 15 && stateno = 3386
+trigger3 = time > 5 && (stateno = 1362||stateno = 1381||stateno = 1484)
+trigger4 = time > 55 && stateno = 1700
+value = 3387
+
+[State -1, Fisiko Aire Kyubi]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 15
+trigger1 = Random = [10,700]
+value = 2600
+
+[State -1, Fisiko Aire Kyubi  Combos]
+type = changestate
+triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 10 && stateno = 260099
+trigger2 = time > 15 && (stateno = 2650||stateno = 3386)
+trigger3 = time > 5 && (stateno = 1362||stateno = 1381||stateno = 1484)
+trigger4 = time > 55 && stateno = 1700
+value = 2600
+
+[State -1, Coletazo Aire Kyubi]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 25
+trigger1 = Random = [10,700]
+value = 2650
+
+[State -1, Coletazo Aire Kyubi  Combos]
+type = changestate
+triggerall = var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 10 && stateno = 2600
+trigger2 = time > 15 && stateno = 3386
+trigger3 = time > 5 && (stateno = 1362||stateno = 1381||stateno = 1484)
+trigger4 = time > 55 && stateno = 1700
+value = 2650
+
+[State -1, Armas Aire]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 15
+trigger1 = Random = [10,700]
+value = 610
+
+[State -1, Armas Aire  Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 5 && (stateno = 600||stateno = 1302)
+trigger2 = time > 10 && stateno = 3106
+trigger3 = time > 15 && stateno = 1280
+trigger4 = time > 20 && stateno = 620
+value = 610
+
+[State -1, Garrazo Aire]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+triggerall = var(3) = 1||var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 15
+trigger1 = Random = [10,700]
+value = 3386
+
+[State -1, Garrazo Aire  Combos]
+type = changestate
+triggerall = var(3) = 1||var(2) = 1
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = S
+triggerall = (p2statetype = S) || (p2statetype = C)|| (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 20 && stateno = 621
+trigger2 = time > 15 && stateno = 2650
+trigger3 = time > 5 && (stateno = 1381||stateno = 1484)
+trigger4 = time > 55 && stateno = 1700
+trigger5 = time > 10 && stateno = 2600
+value = 3386
+
+[State -1, Kage Bushin Aire]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = numhelper(625) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 60 && p2bodydist y = [-10,40]
+trigger1 = Random = [10,300]
+value = 620
+
+[State -1, Kage Bushin Aire Combos]
+type = changestate
+Triggerall = var(2) = 0
+Triggerall = var(3) = 0
+Triggerall = numhelper(625) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = random < 20
+triggerall = (p2statetype = S) || (p2statetype = A)
+trigger1 = time > 5 && (stateno = 600||stateno = 1302)
+trigger2 = time > 10 && (stateno = 610||stateno = 3106)
+trigger3 = time > 15 && stateno = 1280
+trigger4 = time > 20 && stateno = 620
+value = 620
+
+[State -1, Kage Bushin Aire]
+type = changestate ; Cambia de estado (Statedef), sin mas.
+Triggerall = var(3) = 1
+Triggerall = numhelper(626) = 0||numhelper(627) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S)|| (p2statetype = A)
+triggerall = Ctrl
+triggerall = P2BodyDist X <= 60 && p2bodydist y = [-10,40]
+trigger1 = Random = [10,300]
+value = 621
+
+[State -1, Kage Bushin Aire Combos]
+type = changestate
+Triggerall = var(3) = 1
+Triggerall = numhelper(626) = 0||numhelper(627) = 0
+triggerall = RoundState = 2 && var(9)
+triggerall = StateType = A
+triggerall = (p2statetype = S) || (p2statetype = A)
+triggerall = random < 20
+trigger1 = time > 20 && stateno = 621
+trigger2 = time > 15 && stateno = 3386
+trigger3 = time > 5 && (stateno = 1362||stateno = 1381||stateno = 1484)
+trigger4 = time > 55 && stateno = 1700
+trigger5 = time > 25 && stateno = 3387
+value = 621
+;===============================================================================
+;---------------------------Estados usados Siempre------------------------------
+;===============================================================================
+[Statedef -3]
+;===============================================================================
+; Kage Bushin no Jutsu:
+;-------------------------------------------------------------------------------
+[State 0, Kage Bushin Clon Power Fuera]
+type = PowerAdd
+triggerall = numhelper(1050) = 1
+trigger1 = time% 5 = 0
+value = -5
+
+[State 0, VarSet, Eliminar Clon/es]
+type = VarSet
+triggerall = var(4) = 0
+trigger1 = life = 0
+trigger2 = power = 0
+trigger3 = stateno = 1001
+trigger4 = stateno = [170,199]
+trigger5 = stateno = 3100 ||stateno = 3200||stateno = 3009980||stateno = 3300||stateno = 3400
+v = 4
+value = 1
+
+[State 0, VarSet, Neutro]
+type = VarSet
+triggerall = var(4) = 1
+trigger1 = stateno = [0,119]
+v = 4
+value = 0
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = numhelper(225) = 1||numhelper(625) = 1||numhelper(1450) = 1||numhelper(626) = 1||numhelper(627) = 1||numhelper(226) = 1||numhelper(227) = 1
+triggerall = prevstateno = [5000,5300]
+triggerall = stateno = 0
+trigger1 = time = 1
+value = 1051
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = numhelper(1050) = 1
+triggerall = prevstateno = [5000,5300]
+triggerall = numhelper(1002) = 1
+triggerall = stateno = 0
+trigger1 = time = 1
+value = 1051
+
+[State 0, Helper]
+type = Helper
+triggerall = numhelper(1002) = 0
+triggerall = numhelper(1050) = 1
+triggerall = prevstateno = [1050,1099]
+trigger1 = time = 1
+helpertype = normal
+name = "Helper para eliminar clones si son golpeados por States alterados"
+ID = 1002
+stateno = 1002
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermove
+pausemove
+
+[State 0,Eliminador de Clones Voluntariamente]
+type = Changestate
+triggerall = stateno = [1050,1099]
+triggerall = stateno != 1051
+trigger1 = parent,var(4) = 1
+value = 1051
+;===============================================================================
+; Kawarimi no Jutsu:
+;-------------------------------------------------------------------------------
+[State -3, VarSet - Reemplazo Activo]
+type = VarSet
+trigger1 = numhelper(1150) = 1
+v = 5
+value = 1
+
+[State -3, VarSet - Reemplazo Inactivo]
+type = VarSet
+trigger1 = numhelper(1151) = 1
+trigger2 = var(2) = 1||var(3) = 1
+v = 5
+value = 0
+
+[State 1100, Kawarimi Activado]
+type = hitoverride
+triggerall = var(5) = 1
+triggerall = stateno != [1050,1099]
+triggerall = stateno != 225 && stateno != 625
+triggerall = stateno != [120,170]
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1165
+time = 1
+
+[State 200, Kawarimi Red Chakra]
+type = ChangeState
+triggerall = time < 10 && prevstateno != [5000,5300]
+triggerall = power >= 500
+triggerall = life >= 1
+triggerall = var(3) = 1
+triggerall = stateno = [5000,5300]
+trigger1 = command = "c"
+value = 3392
+;===============================================================================
+; Kunais:
+;-------------------------------------------------------------------------------
+[State 0, ChangeState]
+type = ChangeState
+triggerall = numhelper(1250) = 1||numhelper(1251) = 1||numhelper(1252) = 1||numhelper(1290) = 1||numhelper(1291) = 1
+triggerall = prevstateno = [5000,5300]
+triggerall = numhelper(1293) = 1
+triggerall = stateno = [0,199]
+trigger1 = time = 1
+value = 1253
+
+[State 0, Helper]
+type = Helper
+triggerall = numhelper(1293) = 0
+triggerall = numhelper(1050) = 1
+triggerall = prevstateno = 1250||prevstateno = 1251||prevstateno = 1252||prevstateno = 1290||prevstateno = 1291
+trigger1 = time = 1
+helpertype = normal
+name = "Helper para eliminar Kunais si son golpeados por States alterados"
+ID = 1293
+stateno = 1293
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermove
+pausemove
+;===============================================================================
+; Rasengan:
+;-------------------------------------------------------------------------------
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = p2stateno = 3292
+id = 3255
+
+[State 0, StopSnd]
+type = StopSnd
+triggerall = prevstateno = 3200
+triggerall = stateno = [5000,5300]
+trigger1 = time = 0
+channel = -1
+;===============================================================================
+; Red Chakra Mode:
+;-------------------------------------------------------------------------------
+[State -3, VarSet - Red Chakra]
+type = VarSet
+trigger1 = numhelper(3350) = 1
+v = 3
+value = 1
+
+[State -3, VarSet - Red Chakra]
+type = VarSet
+trigger1 = numhelper(3351) = 1
+trigger2 = stateno = 3404
+trigger3 = life = 0
+trigger4 = stateno = 170 && time = 11
+v = 3
+value = 0
+
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = numhelper(3350) = 1
+value = 300
+
+[State 3000, Red Chakra]
+type = Explod
+triggerall = stateno != [3050,3099]
+triggerall = var(3) = 1||var(2) = 1
+trigger1 = time%2 = 0
+anim = 8100
+ID = 8100
+pos = -5+(random%20),ifelse(statetype = A,0-(random%25),2-(random%25))
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = 10
+vel = -1+(random%2),-1.5+(random%1)
+accel = 0.05,0.05
+ownpal = 1
+scale = ifelse(var(2) = 1, .6,.5),ifelse(var(2) = 1, .6,.5)
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PowerAdd]
+type = PowerAdd
+triggerall = var(3) = 1
+trigger1 = time%1 = 0
+value = 3
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+Trigger1 = Var(3) = 1
+value = 1.1
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+Trigger1 = Var(3) = 0
+value = 1
+
+[State -3, Turn]
+type = ChangeAnim
+triggerall = var(3)= 1
+trigger1 = anim = 5
+value = 3365
+
+[State 0, PalFX]
+type = PalFX
+triggerall = Var(3)= 1
+trigger1 = time = 1
+trigger2 = time% 70 = 0
+time = 70
+add = 30,0,0
+;===============================================================================
+; MODO KYUBI:
+;-------------------------------------------------------------------------------
+[State -3, VarSet - Modo Kyubi]
+type = VarSet
+trigger1 = numhelper(3450) = 1
+v = 2
+value = 1
+
+[State -3, VarSet - Modo Kyubi]
+type = VarSet
+trigger1 = numhelper(3451) = 1
+trigger2 = life = 0
+trigger3 = stateno = 170 && time = 11
+v = 2
+value = 0
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+Trigger1 = Var(2) = 1
+value = 1.3
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+Trigger1 = Var(2) = 0
+value = 1
+
+[State 0, AttackMulSet]
+type = DefenceMulSet
+Trigger1 = Var(2) = 1
+value = .7
+
+[State 0, AttackMulSet]
+type = DefenceMulSet
+Trigger1 = Var(2) = 0
+value = 1
+
+[State 0, LifeAdd]
+type = LifeAdd
+triggerall = var(2) = 1
+trigger1 = time%12 = 1
+value = -1
+kill = 0
+absolute = 0
+
+[State -3, Turn]
+type = ChangeAnim
+triggerall = var(2)= 1
+trigger1 = anim = 5
+value = 2005
+
+[State 0, PowerAdd]
+type = PowerAdd
+triggerall = var(2) = 1
+trigger1 = time%5 = 0
+value = 1
+
+[State 0, PalFX]
+type = PalFX
+triggerall = Var(2)= 1
+trigger1 = time = 1
+trigger2 = time% 70 = 0
+time = 70
+add = 50,0,0
+
+[State 3000, Red Chakra]
+type = Explod
+triggerall = var(2) = 1
+trigger1 = time%2 = 0
+anim = 3566
+ID = 3566
+pos = -5+(random%20),ifelse(statetype = A,0-(random%25),2-(random%25))
+sprpriority = 3
+supermove = 1
+removetime = -2
+bindtime = 1
+vel = -1+(random%2),-1.5+(random%1)
+accel = 0.05,0.05
+ownpal = 0
+scale = 0.05,0.05
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+;-------------------------------------------------------------------------------
+; PARTES KYUBI:
+;-------------------------------------------------------------------------------
+; STAND:
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2001) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 0
+trigger1 = time = 1
+anim = 2001
+ID = 2001
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, Kyubi]
+type = Explod
+Triggerall = var(2) = 1
+Triggerall = stateno = 0
+triggerall = numexplod(2001) = 0
+trigger1 = time >= 10
+anim = 2001
+ID = 2001
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2000
+id = 2001
+
+; TURN:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2007) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 0 ;&& anim = 2005
+trigger1 = ANIM = 2005;time = 1
+anim = 2007
+ID = 2007
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2005
+id = 2007
+
+; TURN AGACHAU:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2008) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 11 ;&& anim = 2005
+trigger1 = ANIM = 2006;time = 1
+anim = 2008
+ID = 2008
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2006
+id = 2008
+
+; AGACHANDOSE:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2013) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 10
+trigger1 = ANIM = 2010
+anim = 2013
+ID = 2013
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2010
+id = 2013
+
+; AGACHADO:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2014) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 11
+trigger1 = ANIM = 2011
+anim = 2014
+ID = 2014
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2011
+id = 2014
+
+; LEVANTANDOSE:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2015) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 12
+trigger1 = ANIM = 2012
+anim = 2015
+ID = 2015
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2012
+id = 2015
+
+;WALK:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2022) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 20 && anim = 2020
+trigger1 = time = 1
+anim = 2022
+ID = 2022
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, Kyubi]
+type = Explod
+Triggerall = var(2) = 1
+Triggerall = stateno = 20
+triggerall = numexplod(2022) = 0
+trigger1 = time >= 10
+anim = 2022
+ID = 2022
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2020
+id = 2022
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2023) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 20 && anim = 2021
+trigger1 = time = 1
+anim = 2023
+ID = 2023
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, Kyubi]
+type = Explod
+Triggerall = var(2) = 1
+Triggerall = stateno = 20
+triggerall = numexplod(2023) = 0
+trigger1 = time >= 10
+anim = 2023
+ID = 2023
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2021
+id = 2023
+
+; Salto Start:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2050) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 40
+trigger1 = ANIM = 2040
+anim = 2050
+ID = 2050
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2040
+id = 2050
+
+; Salto Subiendo:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2051) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 50
+trigger1 = ANIM = [2041,2043]
+anim = 2051
+ID = 2051
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != [2041,2043]
+id = 2051
+
+; Salto Bajando:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2052) = 0
+Triggerall = var(2) = 1
+trigger1 = ANIM = 2044
+anim = 2052
+ID = 2052
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2044
+id = 2052
+
+; Salto Suelo:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2053) = 0
+Triggerall = var(2) = 1
+trigger1 = ANIM = 2047
+anim = 2053
+ID = 2053
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2047
+id = 2053
+
+; SUPER JUMP
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2054) = 0
+Triggerall = var(2) = 1
+trigger1 = ANIM = 2060
+anim = 2054
+ID = 2054
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2060
+id = 2054
+
+;RUN:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2102) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 100
+trigger1 = time = 1
+anim = 2102
+ID = 2102
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2100
+id = 2102
+
+; RUN STOP
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2103) = 0
+Triggerall = var(2) = 1
+Triggerall = stateno = 101
+trigger1 = time = 1
+anim = 2103
+ID = 2103
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2101
+id = 2103
+
+; GUARD:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2123) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2120
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2123
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2120
+id = 2123
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2124) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2121
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2124
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2121
+id = 2124
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2125) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2122
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2125
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2122
+id = 2125
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2133) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2130
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2133
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2130
+id = 2133
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2134) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2131
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2134
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2131
+id = 2134
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2135) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2132
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2135
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2132
+id = 2135
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2143) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2140
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2143
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2140
+id = 2143
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2144) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2141
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2144
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2141
+id = 2144
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2145) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2142
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2145
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2142
+id = 2145
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2153) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2150
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2153
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2150
+id = 2153
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2154) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2151
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2154
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2151
+id = 2154
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2155) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2152
+trigger1 = time = 1
+anim = ANIM + 3
+ID = 2155
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2152
+id = 2155
+
+;-------------GOLPES-------------
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2200) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3382
+trigger1 = time = 1
+anim = 2200
+ID = 2200
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3382
+id = 2200
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2651) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2650
+trigger1 = time = 1
+anim = 2651
+ID = 2651
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2650
+id = 2651
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2201) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3383
+trigger1 = time = 1
+anim = 2201
+ID = 2201
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3383
+id = 2201
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2210) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3384
+trigger1 = time = 1
+anim = 2210
+ID = 2210
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3384
+id = 2210
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2211) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3385
+trigger1 = time = 1
+anim = 2211
+ID = 2211
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3385
+id = 2211
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2610) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3386
+trigger1 = time = 1
+anim = 2610
+ID = 2610
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3386
+id = 2610
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2601) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 2600
+trigger1 = time = 1
+anim = 2601
+ID = 2601
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2600
+id = 2601
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(1490) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 1480
+trigger1 = time = 1
+anim = anim + 10
+ID = 1490
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 1480
+id = 1490
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(1491) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 1481
+trigger1 = time = 1
+anim = anim + 10
+ID = 1491
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 1481
+id = 1491
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(1492) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 1482
+trigger1 = time = 1
+anim = anim + 10
+ID = 1492
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 1482
+id = 1492
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(1494) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 1484
+trigger1 = time = 1
+anim = anim + 10
+ID = 1494
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 1484
+id = 1494
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(1370) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 1360
+trigger1 = time = 1
+anim = anim + 10
+ID = 1370
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 1360
+id = 1370
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(1372) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 1362
+trigger1 = time = 1
+anim = anim + 10
+ID = 1372
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 1362
+id = 1372
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(1390) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 1380
+trigger1 = time = 1
+anim = anim + 10
+ID = 1390
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 1380
+id = 1390
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(1391) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 1381
+trigger1 = time = 1
+anim = anim + 10
+ID = 1391
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 1381
+id = 1391
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2227) = 0
+;Triggerall = var(2) = 1
+Triggerall = ANIM = 2225
+trigger1 = time = 1
+anim = 2227
+ID = 2227
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2225
+id = 2227
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(2228) = 0
+;Triggerall = var(2) = 1
+Triggerall = ANIM = 2226
+trigger1 = time = 1
+anim = 2228
+ID = 2228
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 2226
+id = 2228
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(3396) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3395
+trigger1 = time = 1
+anim = 3396
+ID = 3396
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3395
+id = 3396
+
+;HITS:
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5000) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5000
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5000
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5000
+id = 5000
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5001) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5001
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5001
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5001
+id = 5001
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5002) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5002
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5002
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5002
+id = 5002
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5005) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5005
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5005
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5005
+id = 5005
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5006) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5006
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5006
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5006
+id = 5006
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5007) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5007
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5007
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5007
+id = 5007
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5010) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5010
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5010
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5010
+id = 5010
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5011) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5011
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5011
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5011
+id = 5011
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5012) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5012
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5012
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5012
+id = 5012
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5015) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5015
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5015
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5015
+id = 5015
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5016) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5016
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5016
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5016
+id = 5016
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5017) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5017
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5017
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5017
+id = 5017
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5020) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5020
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5020
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5020
+id = 5020
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5021) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5021
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5021
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5021
+id = 5021
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5022) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5022
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5022
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5022
+id = 5022
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5025) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5025
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5025
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5025
+id = 5025
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5026) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5026
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5026
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5026
+id = 5026
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5027) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5027
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5027
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5027
+id = 5027
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5030) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5030
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5030
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5030
+id = 5030
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5035) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5035
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5035
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5035
+id = 5035
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5040) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5040
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5040
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5040
+id = 5040
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5050) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5050
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5050
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5050
+id = 5050
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5051) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5051
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5051
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5051
+id = 5051
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5061) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5061
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5061
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5061
+id = 5061
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5070) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5070
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5070
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5070
+id = 5070
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5080) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5080
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5080
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5080
+id = 5080
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5090) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5090
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5090
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5090
+id = 5090
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5100) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5100
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5100
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5100
+id = 5100
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5160) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5160
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5160
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5160
+id = 5160
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5170) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5170
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5170
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5170
+id = 5170
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5101) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5101
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5101
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5101
+id = 5101
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = STATENO != 5110
+id = 5110
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5120) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5120
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5120
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5120
+id = 5120
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5150) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5150
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5150
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5150
+id = 5150
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5200) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5200
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5200
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5200
+id = 5200
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5210) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5210
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5210
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5210
+id = 5210
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(5300) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 5300
+trigger1 = time = 1
+anim = ANIM + 1000
+ID = 5300
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 5300
+id = 5300
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(3850) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3800
+trigger1 = time = 1
+anim = anim + 50
+ID = 3850
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+REMOVEONGETHIT = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3800
+id = 3850
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(3851) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3801
+trigger1 = time = 1
+anim = anim + 50
+ID = 3851
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+REMOVEONGETHIT = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3801
+id = 3851
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(3852) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3802
+trigger1 = time = 1
+anim = anim + 50
+ID = 3852
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+REMOVEONGETHIT = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3802
+id = 3852
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(3853) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3803
+trigger1 = time = 1
+anim = anim + 50
+ID = 3853
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+REMOVEONGETHIT = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3803
+id = 3853
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(3854) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3800
+trigger1 = time = 1
+anim = 3860
+ID = 3854
+pos = -17,-23
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+REMOVEONGETHIT = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3800
+id = 3854
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(3855) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3801
+trigger1 = time = 1
+anim = 3860
+ID = 3855
+pos = -7,-28
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+REMOVEONGETHIT = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3801
+id = 3855
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(3856) = 0
+Triggerall = var(2) = 1
+Triggerall = ANIM = 3802
+trigger1 = time = 1
+anim = 3860
+ID = 3856
+pos = 33,-25
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = 15
+scale = .5,.5
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+IGNOREHITPAUSE = 0
+REMOVEONGETHIT = 1
+
+[State 0, Kyubi]
+type = Explod
+TRIGGERALL = NUMEXPLOD(3950) = 0
+Triggerall = ANIM = 3900
+trigger1 = time = 1
+anim = 3950
+ID = 3950
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 2
+ontop = 1
+shadow = 0,0,0
+pausemove = 9999
+supermove = 9999
+supermovetime = 9999
+pausemovetime = 9999
+REMOVEONGETHIT = 1
+IGNOREHITPAUSE = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = anim != 3900
+id = 3950

@@ -1,0 +1,41 @@
+Dubble Tap Forward ; Shunpo, Get behind enemy in Stand
+
+Dubble Tap Backward ; Shunpo, Hold to get far back
+
+Dubble Tap Down ; Shunpo, Get behind enemy in air
+
+Up when Crouching ; Super Jump
+
+A B C ; Light hits
+
+X Y Z ; Heavy Hits, When you hit with Z button, Keeo pressing Z, Then you Spin the sword
+
+A in Air ; Air attack 1
+
+x in Air ; Air attack 2
+
+Down Z ; Sword Spin
+
+A + X ; Power Charge, Note, Need's to have less than 3000 power
+
+B + Y ; Strength Charge, Note, Needs to have 3000 Power and only lasts 1 Move, this can altso make you weaker
+
+Down Forward X ; First Special Attack, 1 Power Bar
+
+Down Forward Y ; Second Special Attack, 1 Power Bar
+
+Down Forward Z ; Third Special Attack, 1 Power Bar
+
+Down Forward A ; Forth Special Attack, 1 Power Bar
+
+Down Forward B ; Fifth Special Attack, 1 Power Bar
+
+Down Forward x + Y ; Bankai Special Attack, 3 Power Bars
+
+Down Forward a + b ; Summonone, 3 Power Bars
+
+
+Credits:
+
+To Neimad For the Awsome Sprites
+Cyanide for the charge bar code (i wrote it, he like wrote a tutorial).

@@ -1,0 +1,30 @@
+
+A - Whip Hit
+
+B - Gemini
+
+C - Lyra/Aries
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Leo
+
+D,DB,B,a - Virgo
+
+B,DB,D,DF,F,b - Capricorn
+
+D,DF,F,b - Tauros
+
+D,DB,B,b - Sagitarius
+
+B,DB,D,DF,F,b - Cancer
+
+D,DF,F,c - Scorpio
+
+D,DB,B,c - Acuarius
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Urano Metria

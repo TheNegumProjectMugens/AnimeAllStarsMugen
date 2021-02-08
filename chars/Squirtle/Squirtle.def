@@ -1,0 +1,27 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Squirlte by Bruno_SS - Pokemon MUGEN EDITION"
+displayname = "Squirtle"
+versiondate = 18/06/11
+mugenversion = 1.0
+author = "Bruno_SS"
+pal.defaults = 1,2
+
+[Files]
+sprite = BSquirtleSS.sff
+anim = BSquirtleSS.air
+sound = BSquirtleSS.snd
+cmd = BSquirtleSS.cmd
+cns = BSquirtleSS.cns
+stcommon = common1.cns
+st = BSquirtleSS.cns
+pal1 = 1.act
+pal2 = 2.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

@@ -1,0 +1,2235 @@
+;===============================================================================
+; Golden Pound 10t
+;===============================================================================
+;Golden Pound 10t - start
+[Statedef 3000]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3000
+poweradd = -1000
+
+[State 3250: portrait: Golden Pound 10t]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Golden Pound 10t"
+id		= 3070
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 50
+movetime = 50
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 30 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [50, 65]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= (AnimElem = 3, > 0)
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -5,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 0, PlaySnd - Golden Pound]
+type = PlaySnd
+trigger1 = time = 30
+value = S4,13
+volume = 50
+
+
+[State 1070, 3]
+type = ReversalDef
+trigger1 = 1
+;attr = S, NT
+reversal.attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT; S, NA
+numhits = 0
+pausetime = 1,10
+sparkno = s7000
+hitsound   =s1,10
+
+
+
+
+[State 3001, End]
+type = ChangeState
+trigger1 = Animtime = 0
+value	= 3001
+ctrl = 1
+
+
+
+;--------------------------------------------------
+; Golden Pound 10t - mazazo
+[Statedef 3001]
+type    = A
+movetype= A
+physics = N
+juggle  = 7
+ctrl = 0
+anim = 3001
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 3
+y = -2.5
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 16
+y = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [16,37]
+x = 0
+y = 0
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = Time > 37
+x = 0
+y = 0.3
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 1, 5
+volume = 10
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = animelem = 3
+value = 0, 3
+volume = 10
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 4
+trigger2 = animelem = 5
+attr = S, NA
+animtype  = Light
+damage    = 100
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,10
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,0
+air.velocity  	= -2,10
+slidetime = 8, 15
+p2stateno = 3060
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7020) = 0
+trigger1 = Movehit = 1
+anim = 7020
+ID = 7020
+postype = P1
+pos = 70,40
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.25,0.25
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 200, ground]
+type = Explod
+trigger1 = animelem = 4
+anim = 7200
+ID = 7200
+postype = P1
+pos = 70,60
+facing = 1
+sprpriority = -2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.75,0.75
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 1, 14
+volume = 10
+
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= animelem = 4
+time			= 10
+freq			= 120
+ampl			= -8
+phase			= 50
+
+
+[State 1460:		Helper]
+type		= Helper
+trigger1	= animelem = 10
+helpertype	= Normal
+name		= "PALO"
+id		= 3050
+pos		= 50,-30
+postype		= p1
+facing		= 1
+stateno		= 3050
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 1460:		Helper]
+type		= Helper
+trigger1	= animelem = 10
+helpertype	= Normal
+name		= "Auxiliar de tiempo para inhivir infinitos"
+id		= 3090
+pos		= 50,-30
+postype		= p1
+facing		= 1
+stateno		= 3090
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 105, 3]
+type = ChangeState
+triggerall = time > 10
+trigger1 = pos y > 30
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Golden Pound 10t - P2
+[Statedef 3060]
+type    = A
+movetype= H
+physics = N
+juggle  = 0
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time >= 0
+y = 0
+
+[State 1480, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 0
+value = 5002
+
+[State 1480, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 30
+value = 5300
+;elem = 1
+
+[State 0, VelSet]
+type = poweradd
+trigger1 =  time > 0
+value = -6
+
+[State 0, ChangeState]
+type = selfstate
+trigger1 = time = 175
+value = 0
+ctrl = 1
+
+
+;-------------------------------------------------------------------------
+;Golden Pound 10t - Portrait
+[Statedef 3070]
+type    = A
+physics = N
+velset = 0,0
+anim = 3070
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Veau Shot  -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 12
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+;-------------------------------------------------------------------------
+;Golden Pound 10t - palo
+[Statedef 3050]
+type    = A
+physics = N
+velset = 0,0
+anim = 3050
+ctrl = 0
+sprpriority = -1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 0
+v = 10
+value = -20
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 0.25
+
+[State 0, VelMul]
+type = Veladd
+trigger1 = time >= 0
+y = 0.3
+
+[State 0, VelMul]
+type = Velset
+trigger1 = pos y > -20
+y = -3-(Random%2)
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;-------------------------------------------------------------------------
+;Golden Pound 10t - Auxiliar de tiempo para inhivir infinitos
+[Statedef 3090]
+type    = A
+physics = N
+velset = 0,0
+anim = 3090
+ctrl = 0
+sprpriority = -1
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 175
+
+
+;===============================================================================
+; Impact Dial Dischargue
+;===============================================================================
+;Impact Dial Dischargue - start
+[Statedef 3100]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3100
+poweradd = -1000
+
+[State 3250: portrait: Impact Dial]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Impact Dial"
+id		= 3170
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3170
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [38, 53]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= AnimElem = 1
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 38
+value = S4,14
+volume = 50
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 38
+trigger1 = command != "hold_b" && time < 100
+trigger2 = time = 101
+value	= 3101
+ctrl = 0
+
+[State 3001, End]
+type = ChangeState
+triggerall = time > 38
+triggerall = var(9) = 1
+trigger1 = p2bodydist x < 40 && time < 100
+trigger2 = time = 101
+value	= 3101
+ctrl = 0
+
+;-----------------------------------------------------------------
+;Impact Dial Dischargue - impacto
+[Statedef 3101]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3101
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+value = S3,17
+volume = 50
+
+[State 0, PlaySnd - iaaa!!!]
+type = PlaySnd
+trigger1 =  animelem = 2
+value = S4,5
+volume = 50
+
+[State 60, Explod atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = -10,15
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.6, 0.6
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 3250: Impacto]
+type		= Helper
+trigger1 = animelem = 1
+helpertype	= Normal
+name		= "Fx Impacto"
+id		= 3150
+pos		= 10,-35
+postype		= p1
+facing		= 1
+stateno		= 3150
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 0.3
+size.yscale     = 0.3
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = AnimElem = 1
+attr = S, NA
+animtype  = high
+damage    = var(15),(var(15))/5
+guardflag = MA
+pausetime = 8,10
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -20,-30
+hitsound   = 0,13
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -6,-6
+air.velocity = -6,-6
+fall = 1
+
+
+[State 1000, Spark]
+type = Explod
+triggerall = Numexplod(7020) = 0
+trigger1 = movehit = 1
+anim = 7020
+ID = 7020
+pos = 25,-35
+sprpriority = 2
+supermove = 1
+removetime = -2
+facing = -1
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 3250: Camara lenta]
+type		= Helper
+trigger1 = AnimElem = 2
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3151
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3151
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 2
+x = -7
+y = 0
+
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = animelem = 2
+value = -(var(15))/5
+kill = 1
+
+[State 0, PlaySnd - cansado]
+type = PlaySnd
+trigger1 =  animelem = 4
+value = S4,15
+volume = 50
+
+
+[State 3250: Camara lenta]
+type		= Helper
+triggerall = Numhelper(3190) < 3
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Auxiliar de cámara lenta"
+id		= 3190
+pos		= 0,0
+postype		= p1
+facing		= 1
+stateno		= 3190
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = time = 100
+value = 0
+ctrl = 1
+
+
+;-------------------------------------------------------------------------
+;Impact Dial Dischargue - FX Impacto
+[Statedef 3150]
+type    = A
+physics = N
+velset = 0,0
+anim = 8200
+ctrl = 0
+sprpriority = 3
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = -90
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+;-------------------------------------------------------------------------
+;Impact Dial Dischargue - descarga Var(15)
+[Statedef 3151]
+type    = A
+physics = N
+velset = 0,0
+anim = 3190
+ctrl = 0
+sprpriority = 3
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 10
+
+;-------------------------------------------------------------------------
+;Impact Dial Dischargue  - Portrait
+[Statedef 3170]
+type    = A
+physics = N
+velset = 0,0
+anim = 3170
+ctrl = 0
+sprpriority = 3
+
+[State 200, Impact Dial Dischargue -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 12
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+;-------------------------------------------------------------------------
+;Auxiliar de cámara lenta
+[Statedef 3190]
+type    = A
+physics = N
+velset = 0,0
+anim = 3190
+ctrl = 0
+sprpriority = 3
+
+[State 3290, Cámara lenta]
+type = Pause
+trigger1 = time = [0, 15]
+time = 1
+movetime = 0
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 16
+
+
+;===============================================================================
+;Shuriken Ryuu Seigun
+;===============================================================================
+;---------------------------------------------------------------------------
+; Shuriken Ryuu Seigun - Start
+[Statedef 3200]
+type    = S
+physics = N
+ctrl = 0
+anim = 3200
+sprpriority = 1
+velset = 0,0
+poweradd = -1000
+
+[State 3250: portrait: Shuriken Ryuu Seigun ]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Shuriken Ryuu Seigun "
+id		= 3270
+pos             = 300,-150
+postype         = back
+facing		= 1
+stateno		= 3270
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 30
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 0 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [38, 53]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= Time = 0
+time			= 30
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -5,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,0
+volume = 50
+channel = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 56
+value = 4, 16
+volume = 10
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 56
+anim = 7098
+ID = 7098
+pos = 10,-35
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 3250: Shuriken]
+type		= Helper
+triggerall = time >= 55
+triggerall = time <= 135
+trigger1 = time%4 = 0
+helpertype	= Normal
+name		= "Shuriken"
+id		= 3250
+pos		= 10,-35
+postype		= p1
+facing		= 1
+stateno		= 3250+(random%7)
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 200, 2]
+type = PlaySnd
+triggerall = time >= 55
+triggerall = time <= 135
+trigger1 = time%4 = 0
+value = 1, 19
+volume = 10
+
+[State 105, 3]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;------------------------------------------------------------------------
+; Shuriken Ryuu Seigun - projetile 1
+[Statedef 3250]
+type    = S
+movetype= A
+physics = N
+ctrl = 0
+anim = 7097
+sprpriority = 2
+Juggle = 0
+
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 0
+v = 10
+value = -25
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+scale = 1,1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 10
+y = 0
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-5
+hitsound   = S0,14
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -3,0
+air.velocity = -4,0
+p1stateno = 3259
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 3259
+time = 1
+
+[State 200, End]
+type = changestate
+trigger1 = moveguarded = 1
+value = 3259
+
+
+[State 1300,0]
+type = AfterImage
+trigger1 = Time = 0
+time = 30
+trans = add1
+TimeGap  = 2
+FrameGap = 2
+length = 6
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 200, End]
+type = changestate
+Triggerall = time > 5
+trigger1 = pos y >= 0
+trigger2 = time = 30
+value = 3259
+
+;------------------------------------------------------------------------
+; Shuriken Ryuu Seigun - projetile 2
+[Statedef 3251]
+type    = S
+movetype= A
+physics = N
+ctrl = 0
+anim = 7097
+sprpriority = 2
+Juggle = 0
+
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 0
+v = 10
+value = -25
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+scale = 1,1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 10
+y = -0.5
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-5
+hitsound   = S0,14
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -3,0
+air.velocity = -4,0
+p1stateno = 3259
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 3259
+time = 1
+
+[State 200, End]
+type = changestate
+trigger1 = moveguarded = 1
+value = 3259
+
+
+[State 1300,0]
+type = AfterImage
+trigger1 = Time = 0
+time = 30
+trans = add1
+TimeGap  = 2
+FrameGap = 2
+length = 6
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 200, End]
+type = changestate
+Triggerall = time > 5
+trigger1 = pos y >= 0
+trigger2 = time = 30
+value = 3259
+
+;------------------------------------------------------------------------
+; Shuriken Ryuu Seigun - projetile 3
+[Statedef 3252]
+type    = S
+movetype= A
+physics = N
+ctrl = 0
+anim = 7097
+sprpriority = 2
+Juggle = 0
+
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 0
+v = 10
+value = -25
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+scale = 1,1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 10
+y = 0.5
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-5
+hitsound   = S0,14
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -3,0
+air.velocity = -4,0
+p1stateno = 3259
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 3259
+time = 1
+
+[State 200, End]
+type = changestate
+trigger1 = moveguarded = 1
+value = 3259
+
+
+[State 1300,0]
+type = AfterImage
+trigger1 = Time = 0
+time = 30
+trans = add1
+TimeGap  = 2
+FrameGap = 2
+length = 6
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 200, End]
+type = changestate
+Triggerall = time > 5
+trigger1 = pos y >= 0
+trigger2 = time = 30
+value = 3259
+
+;------------------------------------------------------------------------
+; Shuriken Ryuu Seigun - projetile 4
+[Statedef 3253]
+type    = S
+movetype= A
+physics = N
+ctrl = 0
+anim = 7097
+sprpriority = 2
+Juggle = 0
+
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 0
+v = 10
+value = -25
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+scale = 1,1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 10
+y = -1
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-5
+hitsound   = S0,14
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -3,0
+air.velocity = -4,0
+p1stateno = 3259
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 3259
+time = 1
+
+[State 200, End]
+type = changestate
+trigger1 = moveguarded = 1
+value = 3259
+
+
+[State 1300,0]
+type = AfterImage
+trigger1 = Time = 0
+time = 30
+trans = add1
+TimeGap  = 2
+FrameGap = 2
+length = 6
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 200, End]
+type = changestate
+Triggerall = time > 5
+trigger1 = pos y >= 0
+trigger2 = time = 30
+value = 3259
+;------------------------------------------------------------------------
+; Shuriken Ryuu Seigun - projetile 5
+[Statedef 3254]
+type    = S
+movetype= A
+physics = N
+ctrl = 0
+anim = 7097
+sprpriority = 2
+Juggle = 0
+
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 0
+v = 10
+value = -25
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+scale = 1,1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 10
+y = 1
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-5
+hitsound   = S0,14
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -3,0
+air.velocity = -4,0
+p1stateno = 3259
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 3259
+time = 1
+
+[State 200, End]
+type = changestate
+trigger1 = moveguarded = 1
+value = 3259
+
+
+[State 1300,0]
+type = AfterImage
+trigger1 = Time = 0
+time = 30
+trans = add1
+TimeGap  = 2
+FrameGap = 2
+length = 6
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 200, End]
+type = changestate
+Triggerall = time > 5
+trigger1 = pos y >= 0
+trigger2 = time = 30
+value = 3259
+
+;------------------------------------------------------------------------
+; Shuriken Ryuu Seigun - projetile 6
+[Statedef 3255]
+type    = S
+movetype= A
+physics = N
+ctrl = 0
+anim = 7097
+sprpriority = 2
+Juggle = 0
+
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 0
+v = 10
+value = -25
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+scale = 1,1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 10
+y = -2
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-5
+hitsound   = S0,14
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -3,0
+air.velocity = -4,0
+p1stateno = 3259
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 3259
+time = 1
+
+[State 200, End]
+type = changestate
+trigger1 = moveguarded = 1
+value = 3259
+
+
+[State 1300,0]
+type = AfterImage
+trigger1 = Time = 0
+time = 30
+trans = add1
+TimeGap  = 2
+FrameGap = 2
+length = 6
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 200, End]
+type = changestate
+Triggerall = time > 5
+trigger1 = pos y >= 0
+trigger2 = time = 30
+value = 3259
+
+;------------------------------------------------------------------------
+; Shuriken Ryuu Seigun - projetile 7
+[Statedef 3256]
+type    = S
+movetype= A
+physics = N
+ctrl = 0
+anim = 7097
+sprpriority = 2
+Juggle = 0
+
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 0
+v = 10
+value = -25
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+scale = 1,1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 10
+y = -3
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-5
+hitsound   = S0,14
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -3,0
+air.velocity = -4,0
+p1stateno = 3259
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 3259
+time = 1
+
+[State 200, End]
+type = changestate
+trigger1 = moveguarded = 1
+value = 3259
+
+
+[State 1300,0]
+type = AfterImage
+trigger1 = Time = 0
+time = 30
+trans = add1
+TimeGap  = 2
+FrameGap = 2
+length = 6
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 200, End]
+type = changestate
+Triggerall = time > 5
+trigger1 = pos y >= 0
+trigger2 = time = 30
+value = 3259
+
+;------------------------------------------------------------------------
+; Shuriken Ryuu Seigun - projetile 8
+[Statedef 3257]
+type    = S
+movetype= A
+physics = N
+ctrl = 0
+anim = 7097
+sprpriority = 2
+Juggle = 0
+
+[State VarAdd - GIRAR]
+type = Varadd
+trigger1 = time >= 0
+v = 10
+value = -25
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = var(10)
+scale = 1,1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 10
+y = -4
+
+
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-5
+hitsound   = S0,14
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -3,0
+air.velocity = -4,0
+p1stateno = 3259
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 3259
+time = 1
+
+[State 200, End]
+type = changestate
+trigger1 = moveguarded = 1
+value = 3259
+
+
+[State 1300,0]
+type = AfterImage
+trigger1 = Time = 0
+time = 30
+trans = add1
+TimeGap  = 2
+FrameGap = 2
+length = 6
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 200, End]
+type = changestate
+Triggerall = time > 5
+trigger1 = pos y >= 0
+trigger2 = time = 30
+value = 3259
+
+;--------------------------------------------
+; Makibishi Jigoku - HIT
+[Statedef 3259]
+type    = S
+physics = S
+ctrl = 0
+anim = 1059
+sprpriority = 2
+Juggle = 0
+Velset = 0,0
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 0
+anim = 7005+(random%4)
+ID = 7005
+postype = P1
+pos = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = Time = 1
+;-------------------------------------------------------------------------
+;Roseo Michieri - Portrait
+[Statedef 3270]
+type    = A
+physics = N
+velset = 0,0
+anim = 3270
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 200, Portrait Roseo Michieri    -  Banda Negra]
+type = Explod
+trigger1 = time = 0
+anim = 9005
+ID = 9005
+pos= -300,0
+postype= p1
+bindtime= 1
+removetime = -2
+supermovetime= 99999999
+pausemovetime= 99999999
+scale= 1,0.5
+sprpriority= -1
+ontop= 0
+ownpal= 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 12
+x = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 37
+x = -20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+
+
+
+;===============================================================================
+; Sogeking
+;===============================================================================
+;Sogeking  - Start
+[Statedef 3400]
+type = S
+movetype = A
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3400
+poweradd = -3000
+
+
+[State 3250: portrait: Sogeking]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "portrait: Sogeking"
+id		= 3470
+pos             = -100,-200
+postype         = front ;p2,front,back,left,right
+facing		= 1
+stateno		= 3470
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 50
+movetime = 40
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -200
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 10 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [40, 55]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= AnimElem = 1
+time			= 30
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -3,-70
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S3,1
+volume = 50
+channel = 1
+
+[State 0, PlaySnd - Sogeking]
+type = PlaySnd
+trigger1 = time = 30
+value = S4,21
+volume = 50
+
+
+
+[State 3001, End]
+type = ChangeState
+trigger1 = time = 60
+value	= 3410
+ctrl = 0
+
+;-----------------------------------------------------------------
+;Sogeking - chargue
+[Statedef 3410]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3410
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = S4,22
+volume = 50
+
+[State 60, fire chargue]
+type = Explod
+trigger1 = Time = 0
+anim = 7040
+ID =  7040
+pos = -20,-35
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.5, 0.5
+sprpriority = 1
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 0
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = animelem = 5
+helpertype	= Normal
+name		= "Fire Bird"
+id		= 3450
+pos		= 10,-35
+postype		= p1
+facing		= 1
+stateno		= 3450
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 3515:	ScreenBound]
+type = ScreenBound
+trigger1 = (time > 52) || (BackEdgeBodyDist < -1)
+value = 0
+movecamera = 0,0
+
+[State 3515:	ChangeState]
+type = ChangeState
+triggerall = time >= 80
+trigger1 = numhelper(3450) = 0
+value = (IfElse(BackEdgeBodyDist > -5,3411,100))
+ctrl = 1
+
+
+;--------------------------------
+;Sogeking - chargue
+[Statedef 3411]
+type = S
+physics = S
+velset = 0,0
+ctrl = 0
+anim = 3411
+
+[State 0, DestroySelf]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+
+;----------------------------------------------------------------------
+;Sogeking - Fire Bird
+[Statedef 3450]
+movetype= A
+ctrl = 0
+anim = 7037
+sprpriority = 2
+Juggle = 0
+Velset = 7,-1.5
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+ignorehitpause = 1
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 2000, VarSet]
+type = Varset
+trigger1 = time = 0
+fv = 12
+value = 0.00
+
+[State 2000, VarAdd]
+type = Varadd
+triggerall = fvar(12) < 1.0
+trigger1 = time >= 0
+fv = 12
+value = 0.05
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = 20
+scale = fvar(12), fvar(12)
+
+[State 200, estela de fuego]
+type = Explod
+trigger1 = time%1 = 0
+anim = 7035
+ID = 7035
+postype = P1
+vel = -0.5, -0.5
+accel = 0,0
+pos = -10+(random%20),40-(random%10)
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, estela de fuego]
+type = Explod
+trigger1 = time%1 = 1
+anim = 7035
+ID = 7035
+postype = P1
+vel = -0.5, -0.5
+accel = 0,0
+pos = -10+(random%20),10-(random%10)
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 5
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+trigger3 = animelem = 6
+trigger4 = animelem = 8
+attr = S, NA
+animtype  = Light
+damage    = 100
+guardflag = MA
+pausetime = 10,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S2,9
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -3,-7
+air.velocity = -3,-4
+Fall = 1
+Palfx.time       = 50
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+
+[State 200, Spark Fuego]
+type = Explod
+trigger1 = Movehit = 1
+anim = 7035
+ID = 7035
+postype = P1
+pos = -20+(random%40),10-(random%40)
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.4,0.4
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = movehit >= 5
+trigger2 = time = 70
+value = 3451
+ctrl = 0
+
+;----------------------------------
+;Sogeking - Fire Bird - finish
+[Statedef 3451]
+type    = A
+physics = N
+ctrl = 0
+anim = 7038
+sprpriority = 2
+Juggle = 0
+Velset = 2,-0.2
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+ignorehitpause = 1
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = 80
+scale = fvar(12), fvar(12)
+
+[State 200, Fuego grande]
+type = Explod
+trigger1 = time = 0
+anim = 7039
+ID = 7039
+postype = P1
+pos = 0,20
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.8,0.8
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = animTime = 0
+
+;--------------------------------------------------------------------
+ ;-------------------------------------------------------------------------
+;Sogeking -  Banda negra
+[Statedef 3470]
+type    = A
+physics = N
+velset = 0,0
+anim = 3470
+ctrl = 0
+sprpriority = 3
+
+
+
+[State 3250: portrait Banda negra]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Banda negra"
+id		= 3471
+pos             = 0,200
+postype         = P1 ;p2,front,back,left,right
+facing		= 1
+stateno		= 3471
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 1
+size.yscale     = 0.5
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+Y = 20
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = time = 3
+Y = 0.04
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time = 25
+Y = 20
+
+
+
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+
+
+;-------------------------------------------------------------------------
+;Banda negra - vertical
+[Statedef 3471]
+type    = A
+physics = N
+velset = 0,0
+anim = 9005
+ctrl = 0
+sprpriority = 3
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value = 90
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+

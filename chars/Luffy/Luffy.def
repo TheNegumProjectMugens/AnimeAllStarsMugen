@@ -1,0 +1,51 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name="Mokey D. Luffy"
+displayname="Luffy"
+versiondate=04,14,2002
+mugenversion=04,14,2002
+author=""
+pal.defaults=6,3,4,2
+
+; Files for the player
+[Files]
+cmd=Luffy_v2.cmd
+sprite=Luffy_v2.sff
+anim=Luffy_v2.air
+sound=Luffy_v2.snd
+stcommon =common1.cns
+st=Luffy_v2.cns
+cns=Luffy_v2.cns
+pal1=Luffy_v2_01.act
+pal2=Luffy_v2_02.act
+pal3=Luffy_v2_03.act
+pal4=Luffy_v2_04.act
+pal5=Luffy_v2_05.act
+pal6=Luffy_v2_06.act
+pal7=Luffy_v2_07.act
+pal8=Luffy_v2_08.act
+pal9=Luffy_v2_09.act
+pal10=Luffy_v2_10.act
+pal11=Luffy_v2_11.act
+pal12=Luffy_v2_12.act
+st1=Luffy_v2_GearSecond.cns
+st2=Luffy_v2_Specials.cns
+st3=Luffy_v2_Supers.cns
+st4=Luffy_v2_IA.cns
+
+
+
+; Arcade mode
+;[Arcade]
+;intro.storyboard=intro.def
+;ending.storyboard=ending.def
+
+
+
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=

@@ -1,0 +1,28 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "gzsasuke"
+displayname = "Sasuke"
+versiondate = 06/09/2010
+mugenversion = Mugen 1.0
+author = "Gotagz"
+pal.defaults = 1,2,3,4
+
+[Files]
+sprite = gzsasuke.sff
+anim = gzsasuke.air
+sound = gzsasuke.snd
+cmd = gzsasuke.cmd
+cns = gzsasuke.cns
+stcommon = common1.cns
+st = gzsasuke.cns
+st1 = especiais.cns
+pal1 = pal1.act
+pal2 = pal2.act
+pal3 = pal3.act
+pal4 = pal4.act
+
+

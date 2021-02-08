@@ -1,0 +1,3017 @@
+;===============================================================================
+;----------------------Especiales-----------------------------------------------
+;===============================================================================
+; Kawarimi no Jutsu:
+;-------------------------------------------------------------------------------
+[Statedef 1000]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 220
+poweradd = -500
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,21
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,23
+volume = 999
+
+[State 0, Kawarimi]
+type = Helper
+trigger1 = time = 7
+helpertype = normal
+name = "Kawarimi"
+ID = 1050
+stateno = 1050
+pos = 500,500
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = time = 15
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Reemplazo - Activado
+[Statedef 1050]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+anim = 9999
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 1
+;-------------------------------------------------------------------------------
+; Reemplazo - Desactivado
+[Statedef 1051]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+anim = 9999
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 1
+;---------------------------------------------------------------------------
+; Kawarimi - Destroy
+[Statedef 1052]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+ctrl = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = 1050
+ID = 1050
+pos = -1,-20
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5,.5
+sprpriority = 4
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,20
+volume = 9999
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 1
+;-------------------------------------------------------------------------------
+; Kawarimi - Señuelo
+[Statedef 1060]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+anim = 1060
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,20
+volume = 9999
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = 1050
+ID = 1050
+pos = -1,-20
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5,.5
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 200, End]
+type = Changestate
+triggerall = pos y < 0
+trigger1 = time = 10
+value = 1061
+
+[State 200, End]
+type = Changestate
+trigger1 = time = 30
+value = 1052
+;-------------------------------------------------------------------------------
+; Kawarimi - Señuelo Aire
+[Statedef 1061]
+type    = S
+movetype= I
+physics = S
+juggle  = 2
+anim = 1060
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 =  1
+value = 1+time*4
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+y = 7
+
+[State 200, End]
+type = Changestate
+trigger1 = pos y > -10
+value = 1062
+;-------------------------------------------------------------------------------
+; Kawarimi - Señuelo Aire Suelo
+[Statedef 1062]
+type    = S
+movetype= I
+physics = S
+velset = 0,0
+juggle  = 1
+anim = 1060
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 =  1
+value = 30
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 200, End]
+type = Changestate
+trigger1 = time = 20
+value = 1052
+;-------------------------------------------------------------------------------
+; Kawarimi - P1 Teletr
+[Statedef 1065]
+type    = S
+movetype= I
+physics = S
+velset = 0,0
+juggle  = 1
+anim = 44
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,24
+volume = 9999
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, Turn]
+type = Turn
+trigger1 = time = 1
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = time = 1
+x = p2bodydist x -50
+y = p2bodydist y -50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1
+value = S5,20
+volume = 9999
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 1
+anim = 1050
+ID = 1050
+pos = -1,-28
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5,.5
+sprpriority = 3
+ontop = 1
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 0, Kawarimi Cancelar]
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+name = "Kawarimi Cancelar"
+ID = 1051
+stateno = 1051
+pos = 500,500
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kawarimi Cancelar]
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+name = "Kawarimi Cancelar"
+ID = 1060
+stateno = 1060
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1
+value = S0,18
+volume = 9999
+
+[State 200, End]
+type = Changestate
+trigger1 = time = 2
+value = 50
+;-------------------------------------------------------------------------------
+; Kawarimi Aire
+[Statedef 1080]
+type    = A
+movetype= I
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1020
+poweradd = -500
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,21
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,23
+volume = 999
+
+[State 0, Kawarimi]
+type = Helper
+trigger1 = time = 7
+helpertype = normal
+name = "Kawarimi"
+ID = 1050
+stateno = 1050
+pos = 500,500
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = time = 15
+value = 50
+ctrl = 1
+;===============================================================================
+; Shikamaru Kick:
+;-------------------------------------------------------------------------------
+[Statedef 1100]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1100
+poweradd = 60
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [13,18]
+x = 4
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 5
+value = S0,2
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 12
+value = S5,1
+volume = 50
+
+[State 0, Run FWD]
+type = Explod
+trigger1 = time = 12
+anim = 7015
+ID = 7015
+pos = 5,6
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .15,.5
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 200, 1]
+type = HitDef
+trigger1 = timemod = 2,0
+attr = S, NA
+animtype  = Light
+damage    = 15
+guardflag = MA
+pausetime = 6,5
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,3
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4
+air.velocity = -1.5,-1
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) = 0
+triggerall = Movehit = 1
+trigger1 = hitcount = 1
+anim = 7013
+ID = 7001
+postype = P1
+pos = 25+random%10,-20-random%20
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.15,0.15
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7002) = 0
+triggerall = Movehit = 1
+trigger1 = hitcount = 2
+anim = 7013
+ID = 7002
+postype = P1
+pos = 25+random%10,-20-random%20
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.15,0.15
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7003) = 0
+triggerall = Movehit = 1
+trigger1 = hitcount = 3
+anim = 7013
+ID = 7003
+postype = P1
+pos = 25+random%10,-20-random%20
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.15,0.15
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;===============================================================================
+; Shikamaru Catch:
+;-------------------------------------------------------------------------------
+; Shikamaru Catch - Start
+[Statedef 1200]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1200
+poweradd = 50
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 3
+value = S5,5
+volume = 50
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 5
+x = 2
+
+[State 200, Catch Hit]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 0
+guardflag = MA
+pausetime = 5,5
+sparkno = s7030
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0
+air.velocity = 0
+Fall = 0
+p1stateno = 1201
+p2stateno = 1205
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = time >= 5
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Shikamaru Catch - Fin
+[Statedef 1201]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1201
+sprpriority = 2
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,16
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,7
+volume = 50
+
+[State 0, Turn]
+type = Turn
+trigger1 = time = 7
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = animelem = 1
+pos = 25,0
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = animelem = 2
+pos = 3,-27
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = animelem = 3
+pos = 18,-20
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = animelem = 4
+pos = 30,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 5
+value = S3,1
+volume = 50
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 18
+anim = 8200
+ID = 8200
+pos = 28,10
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .3,.3
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 18
+anim = 7013
+ID = 8200
+pos = 28,-5
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .25,.25
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 105
+;-------------------------------------------------------------------------------
+; Shikamaru Catch - P2
+[Statedef 1205]
+type    = S
+movetype= H
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+facep2 = 1
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = animelem = 4
+value = -40-random%40
+
+[State 0, Turn]
+type = Turn
+trigger1 = time = 11
+
+[State 0, SprPriority]
+type = SprPriority
+trigger1 = animelem = 2
+value = 3
+
+[State 0, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = time = 0
+value = 1205
+
+[State 200, End]
+type = Selfstate
+trigger1 = p2stateno != 1201
+value = 5110
+;===============================================================================
+; Kunai Throw:
+;-------------------------------------------------------------------------------
+; Kunai Throw - Start
+[Statedef 1300]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1300
+poweradd = 20
+sprpriority = 2
+
+[State 0, Kunai Charge]
+type = Explod
+trigger1 = time = 30||time = 60
+anim = 1350
+ID = 1350
+pos = 12,-27
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .2,.2
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 30||time = 60
+value = S5,17
+volume = 50
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 10
+trigger1 = command != "hold_b"
+trigger2 = time = 100
+value = ifelse(time > 60,1303,ifelse(time > 30,1302,1301))
+;-------------------------------------------------------------------------------
+; Kunai Throw - Lanzamiento 1
+[Statedef 1301]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1301
+poweradd = 20
+sprpriority = 2
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 0
+id = 1350
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1
+value = S5,8
+volume = 20
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,10
+volume = 999
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 1
+helpertype = Normal
+name = "Kunai"
+ID = 1350
+stateno = 1350
+pos = 30,-22
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kunai Throw - Lanzamiento 2
+[Statedef 1302]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1301
+poweradd = 30
+sprpriority = 2
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 0
+id = 1350
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1
+value = S5,8
+volume = 20
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,10
+volume = 999
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 1
+helpertype = Normal
+name = "Kunai"
+ID = 1350
+stateno = 1350
+pos = 30,-30
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 3
+helpertype = Normal
+name = "Kunai"
+ID = 1350
+stateno = 1351
+pos = 25,-15
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kunai Throw - Lanzamiento 3
+[Statedef 1303]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1301
+poweradd = 40
+sprpriority = 2
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 0
+id = 1350
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1
+value = S5,8
+volume = 20
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,10
+volume = 999
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 1
+helpertype = Normal
+name = "Kunai"
+ID = 1350
+stateno = 1350
+pos = 30,-20
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 3
+helpertype = Normal
+name = "Kunai"
+ID = 1350
+stateno = 1351
+pos = 25,-8
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 5
+helpertype = Normal
+name = "Kunai"
+ID = 1350
+stateno = 1352
+pos = 20,-32
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kunai Throw - Kunai
+[Statedef 1350]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1355
+sprpriority = 2
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = 22
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1353
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,0
+hitsound   = S1,5
+guardsound = S4,2
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7005) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7016
+ID = 7005
+postype = P1
+pos = 15,0
+facing = ifelse(random < 500,-1,1)
+vfacing = ifelse(random < 500,-1,1)
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 10
+
+[State 200, End]
+type = Destroyself
+trigger1 = movehit
+trigger2 = time = 40
+
+[State 200, End]
+type = Changestate
+trigger1 = moveguarded
+value = 1353
+;-------------------------------------------------------------------------------
+; Kunai Throw - Kunai
+[Statedef 1351]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1355
+sprpriority = 2
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = 22
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1353
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,0
+hitsound   = S1,5
+guardsound = S4,2
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7006) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7016
+ID = 7006
+postype = P1
+pos = 15,0
+facing = ifelse(random < 500,-1,1)
+vfacing = ifelse(random < 500,-1,1)
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 10
+
+[State 200, End]
+type = Destroyself
+trigger1 = movehit
+trigger2 = time = 40
+
+[State 200, End]
+type = Changestate
+trigger1 = moveguarded
+value = 1353
+;-------------------------------------------------------------------------------
+; Kunai Throw - Kunai
+[Statedef 1352]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1355
+sprpriority = 2
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = 22
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1353
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,0
+hitsound   = S1,5
+guardsound = S4,2
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7007) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7016
+ID = 7007
+postype = P1
+pos = 15,0
+facing = ifelse(random < 500,-1,1)
+vfacing = ifelse(random < 500,-1,1)
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 10
+
+[State 200, End]
+type = Destroyself
+trigger1 = movehit
+trigger2 = time = 40
+
+[State 200, End]
+type = Changestate
+trigger1 = moveguarded
+value = 1353
+;-------------------------------------------------------------------------------
+; Kunai Throw - Kunai si es golpeado
+[Statedef 1353]
+type    = A
+movetype= I
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1355
+sprpriority = 2
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -3+random%6
+y = -5-random%5
+
+[State 0, Trans]
+type = Trans
+triggerall = time >= 10
+trigger1 = 1
+trans = addalpha
+alpha = 256-time*20,256
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = 22+time*30
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 20
+;-------------------------------------------------------------------------------
+; Kunai Throw - Aire
+[Statedef 1380]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1380
+poweradd = 60
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 5
+x = -1
+y = -4
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,8
+volume = 20
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,10
+volume = 999
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 5
+helpertype = Normal
+name = "Kunai"
+ID = 1390
+stateno = 1390
+pos = 0,-30
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Kunai]
+type = Helper
+trigger1 = time = 9
+helpertype = Normal
+name = "Kunai"
+ID = 1391
+stateno = 1391
+pos = 20,-25
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kunai Throw - Kunai Aereo
+[Statedef 1390]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1355
+sprpriority = 2
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1353
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,5
+hitsound   = S1,5
+guardsound = S4,2
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7007) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7016
+ID = 7007
+postype = P1
+pos = 15,5
+facing = ifelse(random < 500,-1,1)
+vfacing = ifelse(random < 500,-1,1)
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 8
+y = 6
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = -15
+
+[State 200, End]
+type = Changestate
+trigger1 = pos y > -1
+value = 1392
+
+[State 200, End]
+type = Destroyself
+trigger1 = movehit
+trigger2 = time = 100
+
+[State 200, End]
+type = Changestate
+trigger1 = moveguarded
+value = 1353
+;-------------------------------------------------------------------------------
+; Kunai Throw - Kunai Aereo
+[Statedef 1391]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1355
+sprpriority = 2
+
+[State 270, hitoverride]
+type = hitoverride
+trigger1 = 1
+attr = SCA, NT, ST, HT, NA, SA, HA,NP,SP,HP
+stateno = 1353
+time = 1
+
+[State 1050,Afterimage]
+type = AfterImage
+trigger1 = time = 0
+time = 1000
+trans = Add
+length = 9
+timegap = 1
+framegap = 1
+palbright = 0 , 0 , 0
+palcontrast = 100, 100, 100
+paladd = 0,0,0
+palmul = .90, .90, .90
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = 0,5
+hitsound   = S1,5
+guardsound = S4,2
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7008) = 0
+triggerall = Movehit
+trigger1 = hitcount = 1
+anim = 7016
+ID = 7008
+postype = P1
+pos = 15,5
+facing = ifelse(random < 500,-1,1)
+vfacing = ifelse(random < 500,-1,1)
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 8
+y = 6
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = -15
+
+[State 200, End]
+type = Changestate
+trigger1 = pos y > -1
+value = 1392
+
+[State 200, End]
+type = Destroyself
+trigger1 = movehit
+trigger2 = time = 100
+
+[State 200, End]
+type = Changestate
+trigger1 = moveguarded
+value = 1353
+;-------------------------------------------------------------------------------
+; Kunai Throw - Kunai si toca suelo
+[Statedef 1392]
+type    = A
+movetype= I
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1355
+sprpriority = 2
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 1
+y = -5
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S4,2
+volume = 20
+
+[State 0, Trans]
+type = Trans
+triggerall = time >= 10
+trigger1 = 1
+trans = addalpha
+alpha = 256-time*20,256
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = -15-time*30
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 20
+;===============================================================================
+; Kage Gijin no Jutsu:
+;-------------------------------------------------------------------------------
+; Kage Gijin no Jutsu - Start
+[Statedef 1400]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 220
+poweradd = 80
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,21
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,21
+volume = 999
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time >= 5
+flag = noshadow
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 7
+helpertype = normal
+name = "Kage Gijin no Jutsu - Clon"
+ID = 1450
+stateno = 1450
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermove
+pausemove
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 5
+helpertype = normal
+name = "Kage Gijin no Jutsu - Sombra de Apollo"
+ID = 1453
+stateno = 1453
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermove
+pausemove
+
+[State 0, Engordar]
+type = Explod
+trigger1 = time = 7
+anim = 1455
+ID = 1455
+pos = -6,7
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = 1,1
+sprpriority = 1
+ontop = 0
+ownpal = 1
+removeongethit = 1
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 8
+Triggerall = numhelper(1453) = 0
+trigger1 = numhelper(1450) = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kage Gijin no Jutsu - Clon - Ataque 1
+[Statedef 1450]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1450
+sprpriority = 2
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,17
+volume = 50
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 30,0
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 20,5
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,5
+guardsound = S4,2
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -3
+air.velocity = -2.5,-2
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) = 0
+trigger1 = Movehit = 1
+anim = 7016
+ID = 7004
+postype = P1
+pos = 25,-20
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.35,0.35
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, Corte FX]
+type = Explod
+Triggerall = numexplod(216) = 0
+trigger1 = time = 3
+anim = 216
+ID = 216
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = 1,1
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = time >= 6
+trigger1 = parent,command = "b"
+value = 1451
+
+[State 200, End]
+type = Destroyself
+trigger1 = parent,stateno != 1400
+trigger2 = animtime = 0
+;-------------------------------------------------------------------------------
+; Kage Gijin no Jutsu - Clon - Ataque 2
+[Statedef 1451]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1451
+sprpriority = 2
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,6
+volume = 50
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 35,0
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 25
+guardflag = MA
+pausetime = 8,10
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,4
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.5,-3
+Fall = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) = 0
+trigger1 = Movehit = 1
+anim = 7013
+ID = 7001
+postype = P1
+pos = 25,-28
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.15,0.15
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = time >= 10
+trigger1 = parent,command = "b"
+value = 1452
+
+[State 200, End]
+type = Destroyself
+trigger1 = parent,stateno != 1400
+trigger2 = animtime = 0
+;-------------------------------------------------------------------------------
+; Kage Gijin no Jutsu - Clon - Ataque 3
+[Statedef 1452]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1452
+sprpriority = 2
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,4
+volume = 50
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 40,0
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = up
+damage    = 40
+guardflag = MA
+pausetime = 10,12
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S2,3
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1,-7.5
+air.velocity = -2,-6
+Fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) = 0
+trigger1 = Movehit = 1
+anim = 7013
+ID = 7001
+postype = P1
+pos = 10,-50
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, End]
+type = Destroyself
+trigger1 = parent,stateno != 1400
+trigger2 = animtime = 0
+;-------------------------------------------------------------------------------
+; Kage Gijin no Jutsu - Sombra de Apollo
+[Statedef 1453]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1453
+sprpriority = 2
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = -18,7
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, End]
+type = changestate
+triggerall = time >= 2
+trigger1 = numhelper(1450) = 0
+value = 1454
+
+[State 200, End]
+type = Destroyself
+trigger1 = parent,stateno != 1400
+;-------------------------------------------------------------------------------
+; Kage Gijin no Jutsu - Sombra de Apollo Fin
+[Statedef 1454]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1454
+sprpriority = 2
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = -18,7
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, End]
+type = Destroyself
+trigger1 = animtime = 0
+;===============================================================================
+; Bakushiki Shojin:
+;-------------------------------------------------------------------------------
+; Bakushiki Shojin - Start
+[Statedef 1500]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1500
+poweradd = 70
+sprpriority = 2
+
+[State 0, Run FWD]
+type = Explod
+trigger1 = time = 0
+anim = 7015
+ID = 7015
+pos = 0,10
+postype = p1
+facing = -1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .15,.5
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,20
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,8
+volume = 50
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+y = -6
+x = -1
+
+[State 0, Bakushiki Shojin]
+type = Helper
+trigger1 = time = 6||time = 8||time = 10
+helpertype = Normal
+name = "Bakushiki Shojin"
+ID = 1550
+stateno = 1550
+pos = 8,-40
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Bakushiki Shojin - Proyectil
+[Statedef 1550]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1550
+sprpriority = 2
+
+[State 0, Explod]
+type = Explod
+trigger1 = time%10 = 0
+anim = 1560
+ID = 1560
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .1,.2
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = time%1 = 0
+anim = 1560
+ID = 1560
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 7
+removetime = -2
+scale = .1,.2
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 4+random%4
+y = -2-random%4
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 30,10
+guardflag = MA
+pausetime = 10,10
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = S5,14
+guardsound = S5,14
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -3,-4
+air.velocity = -2,-5
+Fall = 1
+Palfx.time = 80
+Palfx.add = 40,-70,-200
+Palfx.sinadd = 40,30,0,10
+Palfx.color = 0
+Palfx.invertall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) = 0
+trigger1 = Movecontact = 1
+anim = 1570
+ID = 7001
+postype = P1
+pos = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = .3,.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, End]
+type = Changestate
+trigger1 = pos y >= -20
+value = 1551
+
+[State 200, End]
+type = Destroyself
+trigger1 = movecontact
+;-------------------------------------------------------------------------------
+; Bakushiki Shojin - Proyectil Explosion Suelo
+[Statedef 1551]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1551
+sprpriority = 2
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,14
+volume = 50
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7002) = 0
+trigger1 = time = 0
+anim = 1570
+ID = 7002
+postype = P1
+pos = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = .3,.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = medium
+damage    = 30,10
+guardflag = MA
+pausetime = 10,10
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = -1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -3,-4
+air.velocity = -2,-5
+Fall = 1
+Palfx.time = 80
+Palfx.add = 40,-70,-200
+Palfx.sinadd = 40,30,0,10
+Palfx.color = 0
+Palfx.invertall = 1
+
+[state 0]
+type = envshake
+trigger1 = time = 0
+ampl = 5
+time = 5
+
+[State 200, End]
+type = Destroyself
+trigger1 = animtime = 0
+;-------------------------------------------------------------------------------
+; Bakushiki Shojin - Aire
+[Statedef 1580]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+ctrl = 0
+anim = 1500
+poweradd = 70
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,20
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,8
+volume = 50
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+y = -6
+x = -1
+
+[State 0, Bakushiki Shojin]
+type = Helper
+trigger1 = time = 6||time = 8||time = 10
+helpertype = Normal
+name = "Bakushiki Shojin"
+ID = 1550
+stateno = 1550
+pos = 8,-40
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+;===============================================================================
+; Kage Kubishibari no Jutsu:
+;-------------------------------------------------------------------------------
+; Kage Kubishibari no Jutsu - Start
+[Statedef 1600]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 220
+poweradd = 80
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,21
+volume = 50
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time >= 5
+flag = noshadow
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,29
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,16
+volume = 50
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 5
+helpertype = normal
+name = "Kage Kubishibari no Jutsu"
+ID = 1650
+stateno = 1650
+pos = 20,7
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermove
+pausemove
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 5
+helpertype = normal
+name = "Kage Kubishibari no Jutsu - Sombra de Apollo"
+ID = 1653
+stateno = 1653
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermove
+pausemove
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 6
+Triggerall = numhelper(1653) = 0
+trigger1 = numhelper(1650) = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kage Kubishibari no Jutsu - Helper
+[Statedef 1650]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1650
+sprpriority = 2
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 20,7
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, Catch Hit]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 0
+guardflag = MA
+pausetime = 5,5
+sparkno = s7030
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0
+air.velocity = 0
+Fall = 0
+p1stateno = 1651
+p2stateno = 1655
+
+[State 200, End]
+type = Destroyself
+trigger1 = animtime = 0
+trigger2 = parent,stateno != 1600
+;-------------------------------------------------------------------------------
+; Kage Kubishibari no Jutsu - Helper Continuacion
+[Statedef 1651]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 20,7
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,7
+volume = 50
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time < 70
+value = 1650
+elem = 5
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 71
+value = 1650
+elem = 5
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = time = 0
+pos = 25,-25
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 10||time = 25||time = 40||time = 55
+value = S1,6
+volume = 50
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 10||time = 25||time = 40||time = 55
+anim = 7013
+ID = 7005
+postype = P2
+pos = -10+random%20,-10-random%30
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, End]
+type = Destroyself
+trigger1 = animtime = 0
+trigger2 = parent,stateno != 1600
+;-------------------------------------------------------------------------------
+; Kage Kubishibari no Jutsu - Sombra de Apollo
+[Statedef 1653]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1453
+sprpriority = 2
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = -18,7
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, End]
+type = changestate
+triggerall = time >= 2
+trigger1 = numhelper(1650) = 0
+value = 1454
+
+[State 200, End]
+type = Destroyself
+trigger1 = parent,stateno != 1600
+;-------------------------------------------------------------------------------
+; Kage Kubishibari no Jutsu - P2
+[Statedef 1655]
+type    = S
+movetype= H
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+facep2 = 1
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = time = 10||time = 25||time = 40||time = 55
+value = -15-random%3
+
+[State 0, SprPriority]
+type = SprPriority
+trigger1 = 1
+value = -1
+
+[State 0, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = time = 0
+value = 5030
+
+[State 200, End]
+type = Selfstate
+trigger1 = time = 80
+value = 5050
+;===============================================================================
+; Kagemane no Jutsu:
+;-------------------------------------------------------------------------------
+; Kagemane no Jutsu - Start
+[Statedef 1700]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 220
+poweradd = -500
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,21
+volume = 50
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time >= 5
+flag = noshadow
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,15
+volume = 0
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 5
+helpertype = normal
+name = "Kagemane no Jutsu"
+ID = 1750
+stateno = 1750
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermove
+pausemove
+
+[State 0, ChangeAnim2]
+type = ChangeAnim
+trigger1 = time = 40
+value = 1755
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time >= 180
+value = 1755
+elem = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = time < 180
+triggerall = anim = 1755
+trigger1 = animelem = 2
+value = S5,2
+volume = 0
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 6
+trigger1 = numhelper(1750) = 0
+value = ifelse(time >= 40,12,0)
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kagemane no Jutsu - Helper
+[Statedef 1750]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1750
+sprpriority = 2
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = -18,7
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, Catch Hit]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 0
+guardflag = MA
+pausetime = 5,5
+sparkno = s7030
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0
+air.velocity = 0
+Fall = 0
+p1stateno = 1751
+p2stateno = 1755
+
+[State 200, End]
+type = Destroyself
+trigger1 = animtime = 0
+trigger2 = parent,stateno != 1700
+;-------------------------------------------------------------------------------
+; Kagemane no Jutsu - Helper Continuacion
+[Statedef 1751]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,30
+volume = 999
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = -18,7
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,7
+volume = 50
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time < 180
+value = 1750
+elem = 3
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 181
+value = 1750
+elem = 6
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = time = 0
+pos = 100,-7
+
+[State 200, End]
+type = Destroyself
+trigger1 = animtime = 0
+trigger2 = parent,stateno != 1700
+;-------------------------------------------------------------------------------
+; Kagemane no Jutsu - P2
+[Statedef 1755]
+type    = S
+movetype= H
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+facep2 = 1
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 0, LifeAdd]
+type = Poweradd
+triggerall = time >= 30
+trigger1 = time%5 = 0
+value = -20
+
+[State 0, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = time = 0
+value = 5300
+
+[State 0, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = time = 30
+value = 1755
+
+[State 200, End]
+type = Selfstate
+triggerall = time >= 30
+trigger1 = time = 178
+trigger2 = p2stateno != 1700
+value = 5110
+
+[State 200, End]
+type = Selfstate
+triggerall = time < 30
+trigger1 = p2stateno != 1700
+value = 0
+ctrl = 1
+;===============================================================================
+; Kage Naraku no Jutsu:
+;-------------------------------------------------------------------------------
+; Kage Naraku no Jutsu - Start
+[Statedef 1800]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 220
+poweradd = 60
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,18
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,21
+volume = 50
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time >= 5
+flag = noshadow
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,15
+volume = 0
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 5
+helpertype = normal
+name = "Kage Naraku no Jutsu"
+ID = 1850
+stateno = 1850
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermove
+pausemove
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 6
+trigger1 = numhelper(1850) = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kage Naraku no Jutsu - Helper
+[Statedef 1850]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1750
+sprpriority = 2
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = -18,7
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, Catch Hit]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 0
+guardflag = MA
+pausetime = 5,5
+sparkno = s7030
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0
+air.velocity = 0
+Fall = 0
+p1stateno = 1851
+p2stateno = 1855
+
+[State 200, End]
+type = Destroyself
+trigger1 = animtime = 0
+trigger2 = parent,stateno != 1800
+;-------------------------------------------------------------------------------
+; Kage Naraku no Jutsu - Helper Continuacion
+[Statedef 1851]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = -18,7
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,7
+volume = 50
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time < 70
+value = 1750
+elem = 3
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 71
+value = 1750
+elem = 6
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = time = 0
+pos = 100,-7
+
+[State 200, End]
+type = Destroyself
+trigger1 = animtime = 0
+trigger2 = parent,stateno != 1800
+;-------------------------------------------------------------------------------
+; Kage Naraku no Jutsu - P2
+[Statedef 1855]
+type    = S
+movetype= H
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+facep2 = 1
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 0, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = 1
+value = 5000
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time = [10,30]
+scale = 1-(time*0.03),1+(time*0.03)
+value = 0
+
+[State 0, AngleDraw]
+type = Angledraw
+trigger1 = time >= 31
+scale = .15,3.8-(time*0.06)
+value = 0
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 61
+y = -300
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = time = 61
+x = -100
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 0
+
+[State 200, End]
+type = changestate
+trigger1 = time = 62
+value = 1856
+
+[State 200, End]
+type = Selfstate
+triggerall = time <= 59
+trigger1 = p2stateno != 1800
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Kage Naraku no Jutsu - P2
+[Statedef 1856]
+type    = A
+movetype= H
+physics = A
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 0, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = time = 0
+value = 5050
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 = pos y <= -50
+value = 0
+
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = time = 35
+value = -60
+
+[State 200, End]
+type = Selfstate
+trigger1 = pos y >= -20
+value = 5110

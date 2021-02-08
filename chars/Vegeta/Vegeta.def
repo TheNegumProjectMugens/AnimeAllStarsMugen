@@ -1,0 +1,21 @@
+[Info]
+name ="Vegeta"
+displayname ="Vegeta"
+versiondate =2015.08.01
+mugenversion =1.0
+author ="LegendTTA"
+pal.defaults =1
+
+[Files]
+cmd     =Vegeta.cmd
+cns     =Vegeta.cns
+st      =Vegeta.cns
+stcommon =common1.cns
+sprite  =Vegeta.sff
+anim    =Vegeta.air
+sound   =Vegeta.snd
+pal1=Vegeta.act
+st1=others.cns
+[Arcade]
+intro.storyboard=
+ending.storyboard=

@@ -1,0 +1,76 @@
+;--------------------------------------------
+;Config archive
+
+;============================================|
+[Statedef 5900]                             ;|
+type = A                                    ;|
+                                            ;|
+[State 5900, varreset]                      ;|
+type = varrangeset                          ;|
+trigger1 = !roundsexisted                   ;|
+value = 0                                   ;| 
+                                            ;|
+[State 5900, varreset]                      ;| Don't modify it!
+type = varrangeset                          ;|
+trigger1 = !roundsexisted                   ;|
+fvalue = 0                                  ;|
+                                            ;|
+[State 5900,end]                            ;|
+type = changestate                          ;|
+trigger1 = 1                                ;|
+value = 5901                                ;|
+                                            ;|
+[Statedef 5901]                             ;| 
+type = A                                    ;|
+;============================================|
+
+
+[State 5900, hit ideograms]
+type = varset
+trigger1 = time = 0
+var(40) = 1
+persistent = 1
+
+[State 5900, omote/ura renge always on the center of screen]
+type = varset
+trigger1 = time = 0
+var(41) = 1
+persistent = 1
+
+[State 5900, omote renge costing life]
+type = varset
+trigger1 = time = 0
+var(42) = -100
+persistent = 1
+
+[State 5900, ura renge costing life]
+type = varset
+trigger1 = time = 0
+var(43) = -200
+persistent = 1
+
+[State 5900, striker Tenten]
+type = varset
+trigger1 = time = 0
+var(44) = 1
+persistent = 1
+
+[State 5900, striker Neji]
+type = varset
+trigger1 = time = 0
+var(45) = 1
+persistent = 1
+
+; var(40) : 1 = on, 0 = off 
+; var(41) : 1 = on, 0 = off
+; var(42) : insert the life value
+; var(43) : insert the life value
+; var(44) : 1 = on, 0 = off
+; var(45) : 1 = on, 0 = off
+
+;============================================|
+[State 5901, end]                           ;|
+type = changestate                          ;| Don't modify it!
+trigger1 = roundno = 1                      ;|
+value = 190                                 ;|
+;============================================|

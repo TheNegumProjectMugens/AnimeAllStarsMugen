@@ -1,0 +1,26 @@
+
+A - Phisic Attack
+
+B - Yo-Yo
+
+C - Thunder Attack
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Izutsuchi
+
+D,DB,B,a - Killer Counter
+
+D,DF,F,b - The Snake Awakens
+
+D,DB,B,b - Silent Kill
+
+D,DF,F,c - Narukami
+
+D,DB,B,c - Kanmuru
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Fatal Assassination

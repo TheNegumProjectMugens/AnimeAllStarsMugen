@@ -1,0 +1,2049 @@
+;===============================================================================
+; Diable Jamble mode Start
+;===============================================================================
+[Statedef 220]
+type    = S
+movetype = A
+physics = S
+juggle  = 10
+poweradd = 35
+ctrl = 0
+velset = 0,0
+anim = 220
+sprpriority = 2
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 0
+anim = 231
+ID = 231
+postype = P1
+pos = 0,-40
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time%20 = 0
+anim = 232
+ID = 232
+postype = P1
+pos = -3+(random%6),-10+(random%6)
+vel = 0,-2.5+(random%1)
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.7,0.7
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time%15 = 0
+value = 0, 2
+volume = 10
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 5
+volume = 10
+
+[State 1000: Espada arena]
+type		= Helper
+trigger1	= animelem = 11
+helpertype	= Normal
+name		= "Diable Jamble - Auxiliar"
+id		= 230
+pos		= 40,-30
+postype		= p1
+facing		= 1
+stateno		= 230
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 600, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 222
+ctrl = 0
+
+;--------------------------------------------
+; Diable Jamble - terminación
+[Statedef 221]
+type    = A
+physics = N
+ctrl = 0
+anim = 105
+sprpriority = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,5
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = Time = 0
+anim = 7101
+ID =  7101
+pos = 5,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.2, 0.2
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 105, 1]
+type = VelSet
+trigger1 = Time = 5
+x = -4
+y = -3.5
+
+[State 105, 3]
+type = ChangeState
+trigger1 = time = 15
+value = 106
+
+;================================================================================
+;---------------------------------------------------------------------------------
+; Diable Jambe -  Stand
+[Statedef 222]
+type = S
+physics = S
+anim = 222
+sprpriority = 0
+velset = 0,0
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2bodydist x < -1
+
+[State 991, parar1]
+type = VelSet
+trigger1 = Time >= 0
+x = 0
+y = 0
+
+[State 200, Frit Assorité]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "Frit Assorité"
+value = 3040
+ctrl = 0
+
+[State 200, Stand Light Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "a"
+value = 3000
+ctrl = 0
+
+[State 200, Stand Strong Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "b"
+value = 3010
+ctrl = 0
+
+;-----------------------------------------------------
+; Walk fwd
+[State 20, 3]
+type = Changestate
+trigger1 = command = "FF"
+value = 223
+
+; Walk Back
+[State 20, 3]
+type = Changestate
+trigger1 = command = "BB"
+value = 225
+
+;-----------------------------------------------------
+; Diable Jamble Jump Fwd
+[State 20, 3]
+type = Changestate
+trigger1 = command = "holdfwd"
+trigger1 = command = "holdup"
+value = 226
+
+; Diable Jamble Jump Back
+[State 20, 3]
+type = Changestate
+trigger1 = command = "holdback"
+trigger1 = command = "holdup"
+value = 227
+
+; Diable Jamble Jump neutral
+[State 20, 3]
+type = Changestate
+trigger1 = command = "holdup"
+value = 228
+
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Triggerall = var(9) != 1
+trigger1 = Numhelper(230) = 0
+value = 221
+
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Trigger1 = command != "hold_c"
+value = 221
+
+;---------------------------------------------------------
+; Diable Jamble  - Walk FWD
+[Statedef 223]
+type = A
+physics = N
+juggle  = 2
+ctrl = 0
+anim = 223
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,5
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 6
+y = -2.5
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = Time > 0
+y = 0.3
+
+[State 0, 4] ;Are you dead?
+type = ChangeState
+triggerall = time > 5
+trigger1 = Pos y > -1
+value = 224
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Triggerall = var(9) != 1
+trigger1 = Numhelper(230) = 0
+value = 221
+
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Trigger1 = command != "hold_c"
+value = 221
+
+[State 200, Jump Light Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "a"
+value = 3020
+ctrl = 0
+
+[State 200, Jump Strong Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "b"
+value = 3030
+ctrl = 0
+
+;---------------------------------------------------------
+; Diable Jamble - Jump Land
+[Statedef 224]
+type = S
+physics = N
+juggle  = 2
+ctrl = 0
+anim = 224
+sprpriority = 2
+velset = 0,0
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,1
+volume = 50
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Triggerall = var(9) != 1
+trigger1 = Numhelper(230) = 0
+value = 221
+
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Trigger1 = command != "hold_c"
+value = 221
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+trigger1 = animtime = 0
+value = 222
+
+;---------------------------------------------------------
+; Diable Jamble  - Walk Back
+[Statedef 225]
+type = A
+physics = N
+juggle  = 2
+ctrl = 0
+anim = 225
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,5
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = Time = 0
+anim = 7101
+ID =  7101
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -6
+y = -2.5
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = Time > 0
+y = 0.3
+
+[State 0, 4] ;Are you dead?
+type = ChangeState
+triggerall = time > 5
+trigger1 = Pos y > -1
+value = 224
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Triggerall = var(9) != 1
+trigger1 = Numhelper(230) = 0
+value = 221
+
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Trigger1 = command != "hold_c"
+value = 221
+
+[State 200, Jump Light Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "a"
+value = 3020
+ctrl = 0
+
+[State 200, Jump Strong Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "b"
+value = 3030
+ctrl = 0
+
+;---------------------------------------------------------
+; Diable Jamble - Jump Fwd
+[Statedef 226]
+type = S
+physics = N
+juggle  = 2
+ctrl = 0
+anim = 223
+sprpriority = 2
+
+[State 60, PlaySnd]
+type = PlaySnd
+trigger1 =  time = 1
+value = s1,5
+volume = 50
+channel = -1
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 2
+y = -6.3
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = Time > 0
+y = 0.38
+
+[State 0, 4] ;Are you dead?
+type = ChangeState
+triggerall = time > 5
+trigger1 = Pos y > -1
+value = 224
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Triggerall = var(9) != 1
+trigger1 = Numhelper(230) = 0
+value = 221
+
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Trigger1 = command != "hold_c"
+value = 221
+
+[State 200, Jump Light Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "a"
+value = 3020
+ctrl = 0
+
+[State 200, Jump Strong Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "b"
+value = 3030
+ctrl = 0
+
+;---------------------------------------------------------
+; Diable Jambe -  Jump Back
+[Statedef 227]
+type = S
+physics = N
+juggle  = 2
+ctrl = 0
+anim = 225
+sprpriority = 2
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = Time = 0
+anim = 7101
+ID =  7101
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, PlaySnd]
+type = PlaySnd
+trigger1 =  time = 0
+value = s1,5
+volume = 50
+channel = -1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+y = -6.3
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = Time > 0
+y = 0.38
+
+[State 0, 4] ;Are you dead?
+type = ChangeState
+triggerall = time > 5
+trigger1 = Pos y > -1
+value = 224
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Triggerall = var(9) != 1
+trigger1 = Numhelper(230) = 0
+value = 221
+
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Trigger1 = command != "hold_c"
+value = 221
+
+[State 200, Jump Light Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "a"
+value = 3020
+ctrl = 0
+
+[State 200, Jump Strong Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "b"
+value = 3030
+ctrl = 0
+
+;---------------------------------------------------------
+;Gia Sado - Jump Neu
+[Statedef 228]
+type = S
+physics = N
+juggle  = 2
+ctrl = 0
+anim = 228
+sprpriority = 2
+
+[State 60, PlaySnd]
+type = PlaySnd
+trigger1 =  time = 1
+value = s1,5
+volume = 50
+channel = -1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 0
+y = -6
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = Time > 0
+y = 0.3
+
+
+[State 0, 4] ;Are you dead?
+type = ChangeState
+triggerall = time > 5
+trigger1 = Pos y > -1
+value = 224
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Triggerall = var(9) != 1
+trigger1 = Numhelper(230) = 0
+value = 221
+
+[State 20, 3]
+type = Changestate
+Triggerall = time > 4
+Trigger1 = command != "hold_c"
+value = 221
+
+[State 200, Jump Light Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "a"
+value = 3020
+ctrl = 0
+
+[State 200, Jump Strong Attack]
+type = ChangeState
+triggerall = time > 0
+trigger1 = command = "b"
+value = 3030
+ctrl = 0
+
+;-------------------------------------------------------------------------
+;Auxiluar Para activar el modo Diable Jamble
+[Statedef 230]
+type    = A
+physics = N
+velset = 0,0
+anim = 230
+ctrl = 0
+sprpriority = 3
+
+[State 290, DestroySelf]
+type = DestroySelf
+trigger1 = Parent, command != "hold_c"
+
+;===============================================================================
+; Diable Jambe - Stand Light Attack
+;===============================================================================
+[Statedef 3000]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 3000
+poweradd = 20
+sprpriority = 2
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 3
+attr = S, NA
+animtype  = Light
+damage    = 20
+guardflag = MA
+pausetime = 6,9
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,7
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7051) = 0
+trigger1 = Movehit = 1
+anim = 7051
+ID = 7051
+postype = P1
+pos = 30,-30
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 2, 1
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 13
+trigger1 = command = "b"
+value = 3010
+
+[State 700:		Helper]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Auxiliar de fuego Adelante"
+id		= 3001
+pos		= 0,-25
+postype		= p1
+facing		= 1
+stateno		= 3001
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+trigger1 = animtime = 0
+value = 222
+
+;---------------------------------------
+;Auxiliar de fuego - adelante
+[Statedef 3001]
+type    = A
+physics = N
+velset = 0,0
+anim = 3001
+ctrl = 0
+sprpriority = 3
+
+[State 2150, 2]
+type = VelSet
+trigger1 = Time = 0
+X = 5
+
+[State 2150, 3]
+type = VelAdd
+trigger1 = Time >= 0
+X = -0.1
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%5 = 0
+anim =  7050
+ID = 7050
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = 1
+bindtime = 1
+scale = 0.4,0.4
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%3 = 0
+anim =  8100
+ID = 8100
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = 1
+bindtime = 1
+scale = .5,.25
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 10
+
+;---------------------------------------
+;Patada Sonica Fuerte - Auxiliar de fuego en el oponente
+[Statedef 3002]
+type    = A
+physics = N
+velset = 0,0
+anim = 3002
+ctrl = 0
+sprpriority = 3
+
+[State 1420]
+type = posadd
+trigger1 = 1
+x = p2bodydist X-1
+y = p2bodydist Y-30
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%7 = 0
+anim =  7010
+ID = 7010
+pos = 50+(random%50),-45+(random%40)
+postype = p1
+vel = 0,-0.5
+accel = 0,0
+facing = 1
+vfacing = 1
+bindtime = 1
+scale = 1,1
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 50
+
+;===============================================================================
+; Diable Jambe - Stand Strong Attack
+;===============================================================================
+[Statedef 3010]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 3010
+poweradd = 20
+sprpriority = 2
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 2
+trigger2 = animelem = 3
+trigger3 = animelem = 4
+trigger4 = animelem = 5
+attr = S, NA
+animtype  = Light
+damage    = 30
+guardflag = MA
+pausetime = 6,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S2,5
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 25
+ground.hittime  = 25
+ground.velocity = -3,0
+air.velocity = -3.5,4
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7051) = 0
+trigger1 = Movehit = 1
+anim = 7051
+ID = 7051
+postype = P1
+pos = 30,-30
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 2, 0
+volume = 10
+
+
+
+[State 700:		Helper]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Auxiliar de fuego"
+id		= 3011
+pos		= -10,-80
+postype		= p1
+facing		= 1
+stateno		= 3011
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 13
+trigger1 = command = "a"
+value = 3000
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+trigger1 = animtime = 0
+value = 222
+
+;---------------------------------------
+;Auxiliar de fuego - abajo circular
+[Statedef 3011]
+type    = A
+physics = N
+velset = 0,0
+anim = 3001
+ctrl = 0
+sprpriority = 3
+
+[State 2150, 2]
+type = VelSet
+trigger1 = Time = 0
+X = 5
+y = 6
+
+[State 2150, 3]
+type = VelAdd
+trigger1 = Time >= 0
+X = -0.3
+y = -0.1
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%3 = 0
+anim =  7051
+ID = 7051
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = 1
+bindtime = 1
+scale = 0.15,0.3
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%1 = 0
+anim =  8100
+ID = 8100
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = 1
+bindtime = 1
+scale = .5,.25
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 15
+
+;===============================================================================
+; Diable Jambe - Jump Light Attack
+;===============================================================================
+[Statedef 3020]
+type    = A
+movetype= A
+physics = N
+juggle  = 4
+poweradd = 30
+ctrl = 0
+anim = 3020
+sprpriority = 0
+
+[State 2150, 2]
+type = Veladd
+trigger1 = Time = 0
+Y = -2
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 3
+trigger2 = animelem = 4
+trigger3 = animelem = 5
+trigger4 = animelem = 6
+trigger5 = animelem = 7
+attr = S, NA
+animtype  = Light
+damage    = 30
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,7
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,-9
+air.velocity = -2,-9
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7051) = 0
+trigger1 = Movehit = 1
+anim = 7051
+ID = 7051
+postype = P1
+pos = 30,-30
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 10
+value = 2, 1
+volume = 10
+
+
+[State 700:		Helper]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Auxiliar de fuego"
+id		= 3021
+pos		= 20,-20
+postype		= p1
+facing		= 1
+stateno		= 3021
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, PosAdd]
+type = Veladd
+trigger1 = time >= 8
+y = 0.3
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 20
+trigger1 = command = "b"
+value = 3030
+ctrl = 1
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+Triggerall = Time > 10
+trigger1 = pos y > -1
+value = 224
+
+;---------------------------------------
+;Auxiliar de fuego - Arriba Circular
+[Statedef 3021]
+type    = A
+physics = N
+velset = 0,0
+anim = 3001
+ctrl = 0
+sprpriority = 3
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = time = 0
+time = 10
+pos = 35,-30
+
+[State 2150, 2]
+type = VelSet
+trigger1 = Time = 0
+X = 8
+Y = -10
+
+[State 2150, 3]
+type = VelAdd
+trigger1 = Time >= 0
+X = -0.7
+Y = 0.3
+
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%3 = 0
+anim =  7051
+ID = 7051
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = -1
+bindtime = 1
+scale = 0.2,0.4
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%1 = 0
+anim =  8100
+ID = 8100
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = 1
+bindtime = 1
+scale = .5,.25
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 20
+
+
+;===============================================================================
+; Diable Jambe - Jump Strong Attack
+;===============================================================================
+[Statedef 3030]
+type    = A
+movetype= A
+physics = N
+juggle  = 4
+poweradd = 30
+ctrl = 0
+anim = 3030
+sprpriority = 0
+
+[State 2150, 2]
+type = Veladd
+trigger1 = Time = 0
+X = 1
+Y = -3
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 3
+trigger2 = animelem = 4
+trigger3 = animelem = 5
+trigger4 = animelem = 6
+attr = S, NA
+animtype  = Light
+damage    = 30
+guardflag = MA
+pausetime = 9,11
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S2,4
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -3,8
+air.velocity = -4,8
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 5
+ground.velocity = -3, -3
+air.velocity = -3,-3
+guard.velocity = -7
+fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7051) = 0
+trigger1 = Movehit = 1
+anim = 7051
+ID = 7051
+postype = P1
+pos = 30,-30
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 10
+value = 2, 1
+volume = 10
+
+
+[State 700:		Helper]
+type		= Helper
+trigger1	= time = 5
+helpertype	= Normal
+name		= "Auxiliar de fuego"
+id		= 3031
+pos		= 10,-50
+postype		= p1
+facing		= 1
+stateno		= 3031
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 0, PosAdd]
+type = Veladd
+trigger1 = time >= 8
+y = 0.3
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 20
+trigger1 = command = "a"
+value = 3020
+ctrl = 1
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+Triggerall = Time > 10
+trigger1 = pos y > -1
+value = 224
+
+;---------------------------------------
+;Auxiliar de fuego - abajo Circular
+[Statedef 3031]
+type    = A
+physics = N
+velset = 0,0
+anim = 3001
+ctrl = 0
+sprpriority = 3
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = time = 0
+time = 10
+pos = 35,-30
+
+[State 2150, 2]
+type = VelSet
+trigger1 = Time = 0
+X = 10
+Y = -2
+
+[State 2150, 3]
+type = VelAdd
+trigger1 = Time >= 0
+X = -0.5
+Y = 0.75
+
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%3 = 0
+anim =  7051
+ID = 7051
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = 1
+bindtime = 1
+scale = 0.3,0.3
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%1 = 0
+anim =  8100
+ID = 8100
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = 1
+bindtime = 1
+scale = .5,.25
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 20
+
+;==========================================================================
+; Frit Assorité
+;===============================================================================
+[Statedef 3040]
+type    = S
+physics = N
+ctrl = 0
+anim = 3040
+sprpriority = 1
+power = 5
+velset = 0,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Animelem = 3
+value = S2,3
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 11
+volume = 10
+
+[State 60, Arena Grande Adelante]
+type = Explod
+trigger1 = Animelem = 2
+anim = 7100
+ID =  7100
+pos = 5,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = Animelem = 3
+anim = 7101
+ID =  7101
+pos = -5,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.4, 0.4
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 700:		Helper]
+type		= Helper
+trigger1	= animelem = 3
+helpertype	= Normal
+name		= "Auxiliar de fuego"
+id		= 3041
+pos		= -5,0
+postype		= p1
+facing		= 1
+stateno		= 3041
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+[State 700:		Helper]
+type		= Helper
+trigger1	= animelem = 4
+helpertype	= Normal
+name		= "Auxiliar de fuego Espirales vertical"
+id		= 3042
+pos		= 0,-50
+postype		= p1
+facing		= 1
+stateno		= 3042
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 700:		Helper]
+type		= Helper
+trigger1	= animelem = 4
+helpertype	= Normal
+name		= "Auxiliar de fuego Espirales Diagonal adelante"
+id		= 3043
+pos		= 10,-35
+postype		= p1
+facing		= 1
+stateno		= 3043
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 700:		Helper]
+type		= Helper
+trigger1	= animelem = 4
+helpertype	= Normal
+name		= "Auxiliar de fuego Espirales Diagonal atras"
+id		= 3044
+pos		= -10,-35
+postype		= p1
+facing		= 1
+stateno		= 3044
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+;Recuperación
+[State 20, 3]
+type = Changestate
+trigger1 = animtime = 0
+value = 222
+
+;---------------------------------------
+;Auxiliar de fuego - Arriba
+[Statedef 3041]
+type    = A
+physics = N
+velset = 0,0
+anim = 3001
+ctrl = 0
+sprpriority = 3
+
+[State 2150, 2]
+type = VelSet
+trigger1 = Time = 0
+y = -6
+
+[State 2150, 3]
+type = VelAdd
+trigger1 = Time >= 0
+y = 0.1
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%3 = 0
+anim =  7051
+ID = 7051
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = -1
+bindtime = 1
+scale = 0.15,0.3
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+[State 2200, Explod]
+type = Explod
+trigger1 = time%1 = 0
+anim =  8100
+ID = 8100
+pos = 0+(random%10),-5+(random%10)
+postype = p1
+vel = 0.5,-0.5
+accel = 0,0
+facing = 1
+vfacing = 1
+bindtime = 1
+scale = .5,.25
+Ontop = 1
+removetime = -2
+removeongethit = 1
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 10
+
+;--------------------------------------------------
+;Frit Assorité - Espirales vertical
+[Statedef 3042]
+movetype= A
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 3042
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time >= 0
+x = 0
+y = -2
+
+[State 1100, Spark]
+type = Explod
+trigger1 = time%5 = 0
+anim = 233
+ID = 233
+postype = p1
+pos = 0,-25
+vel = 0,0.5
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.6,0.6
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, 2]
+type = HitDef
+trigger1 =  animelem = 2
+attr = A, NA
+damage    = 30, 2
+guardflag = HA
+priority = 4
+pausetime = 6,6
+sparkno = -1
+sparkxy = -25,-40
+guard.sparkno = s7000
+hitsound   = s2,4
+guardsound = s0,8
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -3,-4
+air.velocity = -3,-4
+guard.velocity = -3
+airguard.velocity =-3,0
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+Fall = 1
+
+
+
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7001) = 0
+triggerall = hitcount = 1 || hitcount = 5
+trigger1 = movehit = 1
+anim = 7001
+ID = 7001
+postype = p1
+pos = 40,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7002) = 0
+triggerall = hitcount = 2 || hitcount = 6
+trigger1 = movehit = 1
+anim = 7002
+ID = 7002
+postype = p1
+pos = 55,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7003) = 0
+triggerall = hitcount = 3 || hitcount = 7
+trigger1 = movehit = 1
+anim = 7003
+ID = 7003
+postype = p1
+pos = 40,-30
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7004) = 0
+triggerall = hitcount = 4 || hitcount = 8
+trigger1 = movehit = 1
+anim = 7004
+ID = 7004
+postype = p1
+pos = 55,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, 3]
+type = Destroyself
+trigger1 = time = 20
+
+;--------------------------------------------------
+;Frit Assorité - Auxiliar de fuego Espirales Diagonal adelante
+[Statedef 3043]
+movetype= A
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 3043
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time >= 0
+x = 1.5
+y = -1.5
+
+[State 1100, Spark]
+type = Explod
+trigger1 = time%5 = 0
+anim = 234
+ID = 234
+postype = p1
+pos = 30,-30
+vel = -0.5,0.5
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.6,0.6
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, 2]
+type = HitDef
+trigger1 =  animelem = 2
+attr = A, NA
+damage    = 30, 2
+guardflag = HA
+priority = 4
+pausetime = 6,6
+sparkno = -1
+sparkxy = -25,-40
+guard.sparkno = s7000
+hitsound   = s2,4
+guardsound = s0,8
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -3,-4
+air.velocity = -3,-4
+guard.velocity = -3
+airguard.velocity =-3,0
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+Fall = 1
+
+
+
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7001) = 0
+triggerall = hitcount = 1 || hitcount = 5
+trigger1 = movehit = 1
+anim = 7001
+ID = 7001
+postype = p1
+pos = 40,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7002) = 0
+triggerall = hitcount = 2 || hitcount = 6
+trigger1 = movehit = 1
+anim = 7002
+ID = 7002
+postype = p1
+pos = 55,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7003) = 0
+triggerall = hitcount = 3 || hitcount = 7
+trigger1 = movehit = 1
+anim = 7003
+ID = 7003
+postype = p1
+pos = 40,-30
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7004) = 0
+triggerall = hitcount = 4 || hitcount = 8
+trigger1 = movehit = 1
+anim = 7004
+ID = 7004
+postype = p1
+pos = 55,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, 3]
+type = Destroyself
+trigger1 = time = 20
+
+;--------------------------------------------------
+;Frit Assorité - Auxiliar de fuego Espirales Diagonal atras
+[Statedef 3044]
+movetype= A
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 3044
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time >= 0
+x = -1.5
+y = -1.5
+
+[State 1100, Spark]
+type = Explod
+trigger1 = time%5 = 0
+anim = 235
+ID = 235
+postype = p1
+pos = -30,-30
+vel = 0.5,0.5
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.6,0.6
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, 2]
+type = HitDef
+trigger1 =  animelem = 2
+attr = A, NA
+damage    = 30, 2
+guardflag = HA
+priority = 4
+pausetime = 6,6
+sparkno = -1
+sparkxy = -25,-40
+guard.sparkno = s7000
+hitsound   = s2,4
+guardsound = s0,8
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -3,-4
+air.velocity = -3,-4
+guard.velocity = -3
+airguard.velocity =-3,0
+Palfx.time       = 20
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+Fall = 1
+
+
+
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7001) = 0
+triggerall = hitcount = 1 || hitcount = 5
+trigger1 = movehit = 1
+anim = 7001
+ID = 7001
+postype = p1
+pos = 40,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7002) = 0
+triggerall = hitcount = 2 || hitcount = 6
+trigger1 = movehit = 1
+anim = 7002
+ID = 7002
+postype = p1
+pos = 55,-20
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7003) = 0
+triggerall = hitcount = 3 || hitcount = 7
+trigger1 = movehit = 1
+anim = 7003
+ID = 7003
+postype = p1
+pos = 40,-30
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 1100, Spark]
+type = Explod
+triggerall = NumExplod(7004) = 0
+triggerall = hitcount = 4 || hitcount = 8
+trigger1 = movehit = 1
+anim = 7004
+ID = 7004
+postype = p1
+pos = 55,-25
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 1100, 3]
+type = Destroyself
+trigger1 = time = 20
+
+

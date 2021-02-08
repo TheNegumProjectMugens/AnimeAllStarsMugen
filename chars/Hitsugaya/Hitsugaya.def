@@ -1,0 +1,29 @@
+; Definition file for Blank
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Hitsugaya"        ;Name of character
+displayname = "Hitsugaya" ;Name of character to display
+versiondate = 05,23,2006    ;Version date of character (MM-DD-YYYY)
+mugenversion = 04,14,2002   ;Version of M.U.G.E.N character works on
+author = "Viper X2"         ;Character author name
+pal.defaults = 1      ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd     = Hitsugaya.cmd   ;Command set
+cns     = Hitsugaya.cns   ;Constants
+st      = Hitsugaya.cns   ;States
+st1     = common.cns
+stcommon = common1.cns ;Common states
+sprite  = Hitsugaya.sff   ;Sprite
+anim    = Hitsugaya.air   ;Animation
+sound   = Hitsugaya.snd   ;Sound
+pal1    = Hitsugaya.act  ;Palettes (can have up to 12)
+
+
+; Arcade mode
+;[Arcade]
+;intro.storyboard = intro.def
+;ending.storyboard = ending.def

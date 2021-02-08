@@ -1,0 +1,42 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name="Zoro Roronoa"
+displayname="Roronoa"
+versiondate=04,14,2002
+mugenversion=04,14,2002
+author=""
+pal.defaults=1,2,3,4,5,6
+
+; Files for the player
+[Files]
+cmd=ZoroRoronoa.cmd
+sprite=ZoroRoronoa.sff
+anim=ZoroRoronoa.air
+sound=ZoroRoronoa.snd
+stcommon =common1.cns
+st=ZoroRoronoa.cns
+cns=ZoroRoronoa.cns
+pal1=ZoroRoronoa_v2_01.act
+pal2=ZoroRoronoa_v2_02.act
+pal3=ZoroRoronoa_v2_03.act
+pal4=ZoroRoronoa_v2_04.act
+pal5=ZoroRoronoa_v2_05.act
+pal6=ZoroRoronoa_v2_06.act
+st1=ZoroRoronoa_Specials.cns
+st2=ZoroRoronoa_Supers.cns
+st3=ZoroRoronoa_IA.cns
+
+; Arcade mode
+;[Arcade]
+;intro.storyboard=intro.def
+;ending.storyboard=ending.def
+
+
+
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=

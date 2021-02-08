@@ -1,0 +1,27 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Pikachu by Bruno_SS"
+displayname = "Pikachu"
+versiondate = 18/06/11
+mugenversion = 1.0
+author = "Bruno_SS"
+pal.defaults = 1,2
+
+[Files]
+sprite = BPiikachuSS.sff
+anim = BPiikachuSS.air
+sound = BPiikachuSS.snd
+cmd = BPiikachuSS.cmd
+cns = BPiikachuSS.cns
+stcommon = common1.cns
+st = BPiikachuSS.cns
+pal1 = 1.act
+pal2 = 2.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

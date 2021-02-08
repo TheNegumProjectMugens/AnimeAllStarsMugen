@@ -1,0 +1,62 @@
+Lista do golpes do Sasuke:
+
+Portuguese - English:
+
+baixo = Down
+frente = Forward
+Cima = Up
+Trás = Back
+ar = Air
+Segurando/Segure = hold
+Chakra = Chakra (energy)
+
+
+[Remap]
+x = x
+y = y
+z = z
+a = a
+b = b
+c = c
+s = s
+
+Básico:
+
+Soco leve = a
+Soco médio = a (após soco leve atingir)
+Soco forte = b
+Chute médio = x
+Chute forte = y
+Teleport = c
+Kunais e Shurikens = z
+Socos no ar = a
+Soco no ar2 = b
+chute no ar = x
+chute no ar2 = y
+Teleport no ar = c
+Kunais e Shurikens no ar = z
+Soco abaixado = a
+soco abaixado2 = b
+Uppercut = x (abaixado)
+Chute giratório = y (abaixado)
+Agarrão = segura pra frente + a ou b (oponente perto)
+Walljump = Cima + Frente (encostado na parede)
+
+Outros:
+
+Chakra charge = a + b 
+Taunt = S
+Correr para frente = Frente + Frente
+Pular p/ trás = trás + trás
+
+Especiais:
+
+Shishi rendan = Trás, frente, trás, frente, a (chakra >= 2000) <--- Fique apertando "a" pra completar
+Chidori = Baixo, frente, baixo, frente, a (chakra >= 500) <---- Segure "a" pra carregar.
+Ryuuka no Jutsu = Baixo, frente, z (chakra >= 3000)
+Housenka no Jutsu = Baixo, trás, x (chakra >= 1000) <--- no ar é o mesmo comando
+Goukakyu no Jutsu = baixo, frente, x (chakra >= 500 no chão e 1000 no ar) <--- no ar é o mesmo comando
+Goukakyu no Jutsu 2 = Frente, trás, frente, trás, x (chakra >= 1000)
+Sharingan = Baixo, frente, b (chakra >= 1000)
+Fuuma Shuriken = baixo, trás, z (charak >= 1000)
+CS1 = baixo, trás, b (chakra >= 2500) <--- Fique apertando "b" para completar.

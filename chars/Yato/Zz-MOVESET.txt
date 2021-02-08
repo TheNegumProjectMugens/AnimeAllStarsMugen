@@ -1,0 +1,26 @@
+
+A - Kick
+
+B - Sword Slash
+
+C - Sword Proyection
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Sword Rush
+
+D,DB,B,a - Yukine - Baku
+
+D,DF,F,b - Yukine - Slash Proyection
+
+D,DB,B,b - Sword Tornado
+
+D,DF,F,c - Sword Speed Attack
+
+D,DB,B,c - Yukine - Frontier
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Double Sword

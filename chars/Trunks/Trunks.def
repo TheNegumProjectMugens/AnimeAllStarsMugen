@@ -1,0 +1,34 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name ="Trunks"
+displayname ="Trunks"
+versiondate =11/12/2015
+mugenversion =1.0
+author ="Mikel8888"
+pal.defaults =1,2,3,4,5,6
+
+[Files]
+sprite =Trunks_Future_SS.sff
+anim =Trunks_Future_SS.air
+sound =Trunks_Future_SS.snd
+cmd =Trunks_Future_SS.cmd
+cns =Trunks_Future_SS.cns
+stcommon =common1.cns
+st =Trunks_Future_SS.cns
+pal1=1.act
+pal2=2.act
+pal3=3.act
+pal4=4.act
+pal5=5.act
+pal6=6.act
+st1=IA.cns
+st2=Especiales.cns
+st3=Supers.cns
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

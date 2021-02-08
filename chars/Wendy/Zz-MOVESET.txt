@@ -1,0 +1,26 @@
+
+A - Weak Hit
+
+B - Strong Hit
+
+C - Tenryu no Toiki
+
+S - Power Charge
+
+SPECIALS:
+
+D,DF,F,a - Tenryu no Gyokugeki
+
+D,DB,B,a - Deus Eques X Deus Corona
+
+D,DF,F,b - Tenryu no Saiga
+
+D,DB,B,b - Tenryu no Kagitsume
+
+D,DF,F,c - Tenryu no Hoko
+
+D,DB,B,c - Tenryu no Namioroshi
+
+SUPER: 
+
+D,DF,F,D,DF,F,a+b - Shoha Tenkusen

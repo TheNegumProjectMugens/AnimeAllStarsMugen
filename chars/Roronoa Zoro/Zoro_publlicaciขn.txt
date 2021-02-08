@@ -1,0 +1,236 @@
+Despues de un buen tiempo les traigo mi tercer char de One piece
+se trata de Zoro Roronoa, el primero en unirse a la Banda de Luffy Sombrero de Paja. 
+es uno de los miembros de la banda que más respeta las decisiones de Luffy por más abzurdas e irracionales que sean. 
+la recompenza que la marina ofrece por su captura asciende a 120.000.000 de berries, y así se tranforma en el miembro ma´s buscado de la banda luego de Luffy (por el cual ofrecen 300.000.000)
+
+para los que no lo conozcan, Zoro ha desarrollado una técnica para utilizar 3 espadas: una en cada mano y una en la boca.
+desde luego ques e trata un poco del giro gracioso del personaje. 
+a Zoro además le gusta chupar mucho alcohol, dormir, y tiene un pésimo sentido de la orientación. 
+a pesar de todo eso es uno de los mejores espadachines del mundo. Tiene el sueño de llegar a convertirse ne el mejor, pero aún le falta... para ello tiene que vencer a Mihawk, quien le prpicuó un corte en medio del pecho que casi lo mata.
+
+Bueno, acá les dejo al char.
+
+
+[img]http://www.freeimagehosting.net/uploads/de0e400cb0.png[/img]
+[size=18][color=green][b]ZORO RORONOA[/b][/color][/size]
+
+[b]sistema básico:[/b]
+
+A = ataque de 1 espada
+B = ataque de 2 Espadas
+C = ataque de 3 espadas
+
+
+[size=15][color=yellow]-| Super Motions |------------------------------------------------------[/color][/size]
+
+[size=12][color=green][b]"Ashura Makyuusen"[/b][/color][/size]
+command = D,DF,F,DF,D,DB,B,c
+[img]http://www.freeimagehosting.net/uploads/db7d741260.png[/img]
+[b][color=orange][-3000 power][/color][/b]
+
+
+[size=12][color=green][b]"San Zen Se Kai"[/b][/color][/size]
+command = (2 seg)B,F,B,F+a+b
+[img]http://www.freeimagehosting.net/uploads/e483f10ac4.png[/img][img]http://www.freeimagehosting.net/uploads/24120468ca.png[/img]
+[b][color=orange][-2000 power][/color][/b]
+
+
+[size=12][color=green][b]"Hiryuu Kaen"[/b][/color][/size]
+command = D,DF,F,D,DF,F+a
+[img]http://www.freeimagehosting.net/uploads/198be1316d.png[/img]
+(en el aire)
+[b][color=orange][-2000 power][/color][/b]
+
+
+[size=12][color=green][b]"Rashomon"[/b][/color][/size]
+command = D,DF,F,D,DF,F+b
+[img]http://www.freeimagehosting.net/uploads/274ee29659.png[/img]
+[b][color=orange][-1000 power][/color][/b]
+
+[size=12][color=green][b]"Shishi Sonson"[/b][/color][/size]
+command = D,DB,B,D,DB,B,a
+[img]http://www.freeimagehosting.net/uploads/be89642cff.png[/img]
+[b][color=orange][-1000 power][/color][/b]
+(Si mantienen apretado apra adelante, sale disparado adelante,. Si no, da un corte parado)
+
+
+[size=15][color=yellow]-| Special Motions |------------------------------------------------------[/color][/size]
+
+
+[size=12][color=green][b]"Dai Butsu Giri"[/b][/color][/size]
+command = D,DB,B+c
+(en el aire)
+
+[size=12][color=green][b]"Tatsu Maki"[/b][/color][/size]
+command = F,DF,D,DB,B+c
+[img]http://www.freeimagehosting.net/uploads/1c88d48d21.png[/img]
+
+[size=12][color=green][b]"Oni Giri"[/b][/color][/size]
+command = 4 seg)B,F+c
+[img]http://www.freeimagehosting.net/uploads/e00fdf49e2.png[/img][img]http://www.freeimagehosting.net/uploads/06bb033868.png[/img]
+
+[size=12][color=green][b]"Ushi Bari"[/b][/color][/size]
+command = (4 seg)B,F+b
+
+
+[size=12][color=green][b]"Nigorizake"[/b][/color][/size]
+command = F,D,DF+b
+
+[size=12][color=green][b]"Nigiri Combo"[/b][/color][/size]
+command = D,DB,B+b
+[img]http://www.freeimagehosting.net/uploads/83e7432320.png[/img][img]http://www.freeimagehosting.net/uploads/9bbc91f712.png[/img]
+[img]http://www.freeimagehosting.net/uploads/88c2ba7030.png[/img][img]http://www.freeimagehosting.net/uploads/5421331ef2.png[/img]
+
+
+[size=12][color=green][b]"Taka Nami"[/b][/color][/size]
+command = F,D,DF+a
+
+
+[size=12][color=green][b] "Pondo Hou"[/b][/color][/size]
+command = D,DF,F+a/b/c
+[img]http://www.freeimagehosting.net/uploads/6cc207f917.png[/img] una espada
+[img]http://www.freeimagehosting.net/uploads/edc64a6e21.png[/img] dos espadas
+[img]http://www.freeimagehosting.net/uploads/9665b978a9.png[/img] tres espadas
+
+
+[size=20][b]Link de descarga[/b][/size]
+http://www.4shared.com/file/a3XZy3QT/ZoroRoronoa.html
+
+
+
+
+
+que lo disfruten!
+
+
+---------------------------------------------------------------------------------------------------------------
+
+por si alguien se pregunta, ya estoy trabajando en el proximo char: Sanji.  
+[img]http://www.freeimagehosting.net/uploads/a7382981c5.png[/img][img]http://www.freeimagehosting.net/uploads/8bc552498b.gif[/img]
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zoro Roronoa - One Piece char
+
+
+
+
+
+
+
+hi all.
+
+here I bring you my third char of One Piece, Roronoa Zoro.
+I used different sprite sheets, but based on the classic style of Wonder Swam. A style that adapted the game sprites and Gigant Battle of Jum to Ultimate Stars.
+
+Blogoversary hope the char, as I tried hard to have the most technical of the series.
+
+instruction in spanish. 
+
+
+[img]http://www.freeimagehosting.net/uploads/de0e400cb0.png[/img]
+[size=18][color=green][b]ZORO RORONOA[/b][/color][/size]
+
+[b]Basic system:[/b]
+
+A = 1 sword atack
+B = 2 sword atack
+C = 3 sword atack
+
+
+[size=12][color=green]-| Super Motions |------------------------------------------------------[/color][/size]
+
+[size=12][color=green][b]"Ashura Makyuusen"[/b][/color][/size]
+command = D,DF,F,DF,D,DB,B,c
+[img]http://www.freeimagehosting.net/uploads/db7d741260.png[/img]
+[b][color=orange][-3000 power][/color][/b]
+
+
+[size=12][color=green][b]"San Zen Se Kai"[/b][/color][/size]
+command = (2 seg)B,F,B,F+a+b
+[img]http://www.freeimagehosting.net/uploads/e483f10ac4.png[/img][img]http://www.freeimagehosting.net/uploads/24120468ca.png[/img]
+[b][color=orange][-2000 power][/color][/b]
+
+
+[size=12][color=green][b]"Hiryuu Kaen"[/b][/color][/size]
+command = D,DF,F,D,DF,F+a
+[img]http://www.freeimagehosting.net/uploads/198be1316d.png[/img]
+(en el aire)
+[b][color=orange][-2000 power][/color][/b]
+
+
+[size=12][color=green][b]"Rashomon"[/b][/color][/size]
+command = D,DF,F,D,DF,F+b
+[img]http://www.freeimagehosting.net/uploads/274ee29659.png[/img]
+[b][color=orange][-1000 power][/color][/b]
+
+[size=12][color=green][b]"Shishi Sonson"[/b][/color][/size]
+command = D,DB,B,D,DB,B,a
+[img]http://www.freeimagehosting.net/uploads/be89642cff.png[/img]
+[b][color=orange][-1000 power][/color][/b]
+(Si mantienen apretado apra adelante, sale disparado adelante,. Si no, da un corte parado)
+
+
+[size=12][color=green]-| Special Motions |------------------------------------------------------[/color][/size]
+
+
+[size=12][color=green][b]"Dai Butsu Giri"[/b][/color][/size]
+command = D,DB,B+c
+(en el aire)
+
+[size=12][color=green][b]"Tatsu Maki"[/b][/color][/size]
+command = F,DF,D,DB,B+c
+[img]http://www.freeimagehosting.net/uploads/1c88d48d21.png[/img]
+
+[size=12][color=green][b]"Oni Giri"[/b][/color][/size]
+command = 4 seg)B,F+c
+[img]http://www.freeimagehosting.net/uploads/e00fdf49e2.png[/img][img]http://www.freeimagehosting.net/uploads/06bb033868.png[/img]
+
+[size=12][color=green][b]"Ushi Bari"[/b][/color][/size]
+command = (4 seg)B,F+b
+
+
+[size=12][color=green][b]"Nigorizake"[/b][/color][/size]
+command = F,D,DF+b
+
+[size=12][color=green][b]"Nigiri Combo"[/b][/color][/size]
+command = D,DB,B+b
+[img]http://www.freeimagehosting.net/uploads/83e7432320.png[/img][img]http://www.freeimagehosting.net/uploads/9bbc91f712.png[/img]
+[img]http://www.freeimagehosting.net/uploads/88c2ba7030.png[/img][img]http://www.freeimagehosting.net/uploads/5421331ef2.png[/img]
+
+
+[size=12][color=green][b]"Taka Nami"[/b][/color][/size]
+command = F,D,DF+a
+
+
+[size=12][color=green][b] "Pondo Hou"[/b][/color][/size]
+command = D,DF,F+a/b/c
+[img]http://www.freeimagehosting.net/uploads/6cc207f917.png[/img] una espada
+[img]http://www.freeimagehosting.net/uploads/edc64a6e21.png[/img] dos espadas
+[img]http://www.freeimagehosting.net/uploads/9665b978a9.png[/img] tres espadas
+
+
+[size=20][b]Download[/b][/size]
+http://www.4shared.com/file/a3XZy3QT/ZoroRoronoa.html
+
+
+
+
+
+enjoy it!
+
+
+---------------------------------------------------------------------------------------------------------------
+
+Next char:  Sanji.  
+[img]http://www.freeimagehosting.net/uploads/a7382981c5.png[/img][img]http://www.freeimagehosting.net/uploads/8bc552498b.gif[/img]

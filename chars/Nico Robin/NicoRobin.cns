@@ -1,0 +1,2491 @@
+[Data]
+life = 800
+power = 3000
+attack = 90
+defence = 100
+fall.defence_up = 50
+liedown.time = 60
+airjuggle = 15
+sparkno = 2
+guard.sparkno = 40
+KO.echo = 0
+volume = 0
+IntPersistIndex = 60
+FloatPersistIndex = 40
+
+[Size]
+xscale = 1
+yscale = 1
+ground.back = 10
+ground.front = 10
+air.back = 12
+air.front = 12
+height = 60
+attack.dist = 160
+proj.attack.dist = 90
+proj.doscale = 0
+head.pos = -5, -90
+mid.pos = -5, -60
+shadowoffset = 0
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd  = 1.2
+walk.back = -1.2
+run.fwd  = 5.5, 0
+run.back = -2.5, -3.5
+jump.neu = 0,-10
+jump.back = -1.5
+jump.fwd = 1.7
+runjump.back = -3.65,-5
+runjump.fwd = 4.5,-5
+airjump.neu = 0,-5.1
+airjump.back = -0.55
+airjump.fwd = 0.5
+
+[Movement]
+airjump.num = 0
+airjump.height = 35
+yaccel = .44
+stand.friction = .70
+crouch.friction = .70
+
+;===============================================================================
+; Lose by Time Over
+;===============================================================================
+[Statedef 170]
+type = S
+ctrl = 0
+anim = 5300
+velset = 0,0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 20
+value = S4,24
+volume = 100
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time = [0,170]
+flag = roundnotover
+
+;===============================================================================
+; Win state decider
+;===============================================================================
+[Statedef 180]
+type = S
+
+[State 180, 1]
+type = ChangeState
+trigger1 = life > 400
+value = 181
+
+[State 180, 1]
+type = ChangeState
+trigger1 = life <= 400
+value = 185
+
+
+
+;===============================================================================
+; Win pose 1
+;===============================================================================
+[Statedef 181]
+type = S
+ctrl = 0
+anim = 181
+velset = 0,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S4,23
+volume = 100
+
+[State 181, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time = [0,100]
+flag = roundnotover
+
+
+;===============================================================================
+; Win pose 2
+;===============================================================================
+[Statedef 185]
+type = S
+ctrl = 0
+anim = 185
+velset = 0,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 250
+value = S4,22
+volume =100
+
+
+[State 200, Manitos]
+type = Explod
+trigger1 = time = 17
+anim = 186
+ID = 186
+postype = P1
+pos = 0,0
+vel = 0,0
+accel = 0,0
+facing = -1
+sprpriority = -1
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3250: Arbol MANO]
+type		= Helper
+trigger1 = time = 100
+helpertype	= Normal
+name		= "Arbol MANO 01"
+id		= 187
+pos		= 40,0
+postype		= p1
+facing		= 1
+stateno		= 187
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time = [0,400]
+flag = roundnotover
+
+
+;---------------------------------------
+[Statedef 187]
+type = S
+ctrl = 0
+anim = 187
+velset = 0,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+trigger2 = Time = 23
+trigger3 = Time = 43
+trigger4 = Time = 47
+trigger5 = Time = 51
+value = S1,13
+volume = 100
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [0,12]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 0+(random%20),-40-(random%20)
+vel = 1,-2
+accel = 0,0.2
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+;------------
+;Rama 1
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [43,46]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -15-(random%10),-90-(random%30)
+vel = 0-(random%2),0-(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [43,46]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -15-(random%10),-90-(random%30)
+vel = 0+(random%2),0-(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [43,46]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -15-(random%10),-90-(random%30)
+vel = 0-(random%2),0+(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [43,46]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -15-(random%10),-90-(random%30)
+vel = 0+(random%2),0+(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalo Circular]
+type = Explod
+trigger1 = time = 43
+anim = 7076
+ID = 7076
+postype = P1
+pos = -20,-105
+vel = 0,0
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+;-------------
+; Rama 2
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [47,50]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 50+(random%10),-80-(random%20)
+vel = 0-(random%2),0-(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [47,50]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 50+(random%10),-80-(random%20)
+vel = 0+(random%2),0-(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [47,50]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 50+(random%10),-80-(random%20)
+vel = 0-(random%2),0+(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [47,50]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 50+(random%10),-80-(random%20)
+vel = 0+(random%2),0+(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalo Circular]
+type = Explod
+trigger1 = time = 47
+anim = 7076
+ID = 7076
+postype = P1
+pos = 60,-90
+vel = 0,0
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+;-----------
+; Rama 3
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [51,54]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 40+(random%10),-65-(random%20)
+vel = 0-(random%2),0-(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [51,54]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 40+(random%10),-65-(random%20)
+vel = 0+(random%2),0-(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [51,54]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 40+(random%10),-65-(random%20)
+vel = 0-(random%2),0+(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [51,54]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 40+(random%10),-65-(random%20)
+vel = 0+(random%2),0+(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalo Circular]
+type = Explod
+trigger1 = time = 51
+anim = 7076
+ID = 7076
+postype = P1
+pos = 50,-75
+vel = 0,0
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = parent, stateno != 185
+
+
+
+
+
+
+;===============================================================================
+; Intro
+;===============================================================================
+[Statedef 191]
+type = S
+ctrl = 0
+anim = 190
+
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 190: 	ChangeState]
+type 		= ChangeState
+trigger1        = time = 225
+value 		= 192
+
+
+;-------------------------------------------
+[Statedef 192]
+type = S
+ctrl = 0
+anim = 191
+velset = 0,0
+
+[State 200, Manitos]
+type = Explod
+trigger1 = time = 20
+anim = 195
+ID = 195
+postype = P1
+pos = 0,0
+vel = 0,0
+accel = 0,0
+facing = 1
+sprpriority = -1
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [34,50]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -30+(random%20),-5-(random%20)
+vel = 0,-2
+accel = 0,0.2
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 21
+value = S1,13
+volume = 100
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 40
+value = S4,22
+volume = 100
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 190: 	ChangeState]
+type 		= ChangeState
+trigger1	= time = 70
+value 		= 0
+
+;===============================================================================
+; Stand Light Atack
+;===============================================================================
+[Statedef 200]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 200
+poweradd = 20
+sprpriority = 2
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 6
+trigger2 = animelem = 7
+attr = S, NA
+animtype  = Light
+damage    = 10
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) = 0
+trigger1 = Movehit = 1
+anim = 7001
+ID = 7001
+postype = P1
+pos = 50,-30
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 1
+volume = 10
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 4, 0
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "a"
+value = 201
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "b"
+value = 210
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "c"
+value = 220
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;===============================================================================
+; Stand Light Atack 2
+;===============================================================================
+[Statedef 201]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 201
+poweradd = 20
+sprpriority = 2
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 4
+trigger2 = animelem = 5
+attr = S, NA
+animtype  = Light
+damage    = 20
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -3,0
+air.velocity = -2.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7002) = 0
+trigger1 = Movehit = 1
+anim = 7002
+ID = 7002
+postype = P1
+pos = 45,-30
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 0
+volume = 10
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 4, 1
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "b"
+value = 210
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "c"
+value = 220
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;===============================================================================
+; Un Fleur
+;===============================================================================
+[Statedef 210]
+type    = S
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+;velset = 0,0
+anim = 210
+sprpriority = -1
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = time = 9
+helpertype	= Normal
+name		= "Un Fleur - Mano"
+id		= 215
+pos		= ifelse(numhelper(1750),P2bodydist x+20,30),0
+postype		= p1
+facing		= 1
+stateno		= 215
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 2
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 17
+trigger1 = command = "b"
+value = 211
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 31
+trigger1 = command = "c"
+value = 220
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------
+[Statedef 211]
+type    = S
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+;velset = 0,0
+anim = 211
+sprpriority = -1
+
+[State 215: Un Fleur - Mano]
+type		= Helper
+trigger1 = time = 0
+helpertype	= Normal
+name		= "Un Fleur - Mano"
+id		= 215
+pos		= ifelse(numhelper(1750),P2bodydist x+20,60),0
+postype		= p1
+facing		= 1
+stateno		= 215
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "b"
+value = 212
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "c"
+value = 220
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------
+[Statedef 212]
+type    = S
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+;velset = 0,0
+anim = 211
+sprpriority = -1
+
+[State 215: Un Fleur - Mano]
+type		= Helper
+trigger1 = time = 0
+helpertype	= Normal
+name		= "Un Fleur - Mano"
+id		= 215
+pos		= ifelse(numhelper(1750),P2bodydist x+20,90),0
+postype		= p1
+facing		= 1
+stateno		= 215
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "b"
+value = 213
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "c"
+value = 220
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;---------------------------------
+[Statedef 213]
+type    = S
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+;velset = 0,0
+anim = 211
+sprpriority = -1
+
+[State 215: Un Fleur - Mano]
+type		= Helper
+trigger1 = time = 0
+helpertype	= Normal
+name		= "Un Fleur - Mano"
+id		= 215
+pos		= ifelse(numhelper(1750),P2bodydist x+20,120),0
+postype		= p1
+facing		= 1
+stateno		= 215
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "c"
+value = 220
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+
+
+;-------------------------------------------------------------------------
+;Un Fleur - Mano
+[Statedef 215]
+movetype= A
+juggle  = 4
+ctrl = 0
+velset = 0,0
+anim = 215
+sprpriority = -1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 13
+volume = 10
+
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [0,7]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -10+(random%20),-5-(random%20)
+vel = 0,-2
+accel = 0,0.2
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 4
+trigger2 = animelem = 5
+attr = S, NA
+animtype  = Medium
+damage    = 20
+guardflag = MA
+pausetime = 6,6
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -6,0
+air.velocity = -2.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7003) < 2
+trigger1 = Movehit = 1
+anim = 7003
+ID = 7003
+postype = P2
+pos = 0,-30
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 0, 0
+volume = 10
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+
+
+;===============================================================================
+; Fleur Cluch
+;===============================================================================
+[Statedef 220]
+type    = S
+physics = S
+juggle  = 10
+poweradd = 35
+ctrl = 0
+velset = 0,0
+anim = 220
+sprpriority = 2
+
+
+
+[State 220: Fleur Grab - Helper de agarre]
+type		= Helper
+trigger1 = time = 13
+helpertype	= Normal
+name		= "Fleur Grab - Helper de agarre"
+id		= 224
+pos		= ifelse(numhelper(1750),P2bodydist x+20,100),-15
+postype		= p1
+facing		= 1
+stateno		= 224
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 5
+volume = 10
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = time > 23
+trigger1 = numhelper (229) = 1
+value = 221
+ctrl = 0
+
+[State 210, End]
+type = ChangeState
+trigger1 = Time = 33
+value = 0
+ctrl = 1
+
+;------------------------------
+; Fleur Grab - Cluch
+[Statedef 221]
+type    = S
+physics = S
+juggle  = 10
+ctrl = 0
+velset = 0,0
+anim = 221
+sprpriority = 2
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 6
+volume = 10
+
+[State 210, End]
+type = ChangeState
+trigger1 = animTime = 0
+value = 0
+ctrl = 1
+
+;----------------------------------------
+;Fleur Grab - Helper de agarre
+[Statedef 224]
+movetype = A
+juggle  = 10
+ctrl = 0
+velset = 0,0
+anim = 224
+sprpriority = 2
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = unguardable
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 13
+volume = 10
+
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [0,9]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -15+(random%30),0-(random%30)
+vel = 0-(random%2),0-(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [0,9]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -15+(random%30),0-(random%30)
+vel = 0+(random%2),0-(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [0,9]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -15+(random%30),0-(random%30)
+vel = 0-(random%2),0+(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [0,9]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = -15+(random%30),0-(random%30)
+vel = 0+(random%2),0+(random%2)
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalo Circular]
+type = Explod
+trigger1 = time = 0
+anim = 7076
+ID = 7076
+postype = P1
+pos = 0,-15
+vel = 0,0
+accel = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 1]
+type = HitDef
+triggerall = numhelper(224) < 2
+triggerall = numhelper(244) < 1
+triggerall = hitcount < 1
+trigger1 = animelem = 2
+attr = S, NA
+animtype = light          ;light,medium,hard,back,up,diagup
+priority = 4,Hit
+damage    = 0,0
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,9
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 25
+ground.hittime  = 25
+ground.velocity = -1,-3
+air.velocity = -1,-3
+p1stateno = 225
+p2stateno = 228
+
+
+[State 220: Fleur Grab - auxiliar de contacto]
+type		= Helper
+trigger1 = movehit = 1
+helpertype	= Normal
+name		= "Fleur Grab - auxiliar de contacto"
+id		= 229
+pos		= 100,100
+postype		= p1
+facing		= 1
+stateno		= 229
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;----------------------------------------
+;Fleur Grab - Manos
+[Statedef 225]
+movetype = A
+juggle  = 10
+ctrl = 0
+velset = 0,0
+anim = 225
+sprpriority = 2
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = 1
+time = -1
+pos = 0,15
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 226
+
+
+;----------------------------------------
+;Fleur Grab - Manos terminación
+[Statedef 226]
+movetype = A
+juggle  = 10
+ctrl = 0
+velset = 0,0
+anim = 226
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,12
+volume = 100
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7011) < 2
+trigger1 = time = 0
+anim = 7011
+ID = 7011
+postype = P2
+pos = 0,-30
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = animtime = 0
+
+;---------------------------------------------------
+;Fleur Grab - P2
+[Statedef 228]
+type    = A
+movetype= H
+physics = N
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 0
+value = 5000
+elem = 1
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 38
+value = 5002
+elem = 1
+
+[State 0, LifeAdd]
+type = velset
+trigger1 = time = 38
+x = -1
+y = -3
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time >= 38
+y = 0.3
+
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = time = 38
+value = -50
+kill = 1
+
+[State 1291, Hit ground]
+type = SelfState
+trigger1 = p2stateno = 226
+value = 5030
+
+;----------------------------------------
+;Fleur Grab - auxiliar de contacto
+[Statedef 229]
+movetype = A
+juggle  = 10
+ctrl = 0
+velset = 0,0
+anim = 224
+sprpriority = 2
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 20
+
+
+;===============================================================================
+; Fleur Catch
+;===============================================================================
+[Statedef 240]
+type    = S
+physics = S
+juggle  = 10
+poweradd = 35
+ctrl = 0
+velset = 0,0
+anim = 240
+sprpriority = 2
+
+
+
+[State 220: Fleur Catch - Helper de agarre]
+type		= Helper
+trigger1 = time = 5
+helpertype	= Normal
+name		= "Fleur Catch - Helper de agarre"
+id		= 244
+pos		= ifelse(numhelper(1750),P2bodydist x+20,60),-15
+postype		= p1
+facing		= 1
+stateno		= 244
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 5
+volume = 10
+
+[State 210, End]
+type = ChangeState
+trigger1 = Time = 33
+value = 11
+ctrl = 1
+
+;----------------------------------------
+;Fleur Catch - Helper de agarre
+[Statedef 244]
+movetype = A
+juggle  = 10
+ctrl = 0
+velset = 0,0
+anim = 224
+sprpriority = 2
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = unguardable
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time >= 0
+x = 1.8
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time%10 = 0
+value = 1, 13
+volume = 10
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time%1 = 0
+trigger1 = time = [0,5]
+trigger2 = time = [10,15]
+trigger3 = time = [20,25]
+trigger4 = time = [30,35]
+anim = 7071
+ID = 7071
+postype = P1
+pos = 20-(random%50),25-(random%20)
+vel = 0,-2
+accel = 0,0.15
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, Petalos dobles]
+type = Explod
+triggerall = time%1 = 0
+trigger1 = time = [0,5]
+trigger2 = time = [10,15]
+trigger3 = time = [20,25]
+trigger4 = time = [30,35]
+anim = 7072
+ID = 7072
+postype = P1
+pos = 20-(random%50),25-(random%20)
+vel = 0,-2
+accel = 0,0.15
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 210, 1]
+type = HitDef
+triggerall = numhelper(244) < 2
+triggerall = numhelper(224) < 1
+triggerall = hitcount < 1
+trigger1 = animelem = 2
+attr = S, NA
+animtype = light          ;light,medium,hard,back,up,diagup
+priority = 4,Hit   ;Hit,Miss,Dodge
+damage    = 0,0
+guardflag = MA
+pausetime = 8,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,9
+guardsound = S0,8
+ground.type = Trip; Low,Trip,High, None
+ground.slidetime = 25
+ground.hittime  = 25
+ground.velocity = 0,0
+air.velocity = 0,0
+p1stateno = 245
+p2stateno = 248
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 35
+
+;----------------------------------------
+;Fleur Grab - Manos
+[Statedef 245]
+movetype = A
+juggle  = 10
+ctrl = 0
+velset = 0,0
+anim = 245
+sprpriority = 2
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = 1
+time = -1
+pos = 0,15
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = P2stateno != 248
+trigger4 = animtime = 0
+value = 246
+
+
+;----------------------------------------
+;Fleur Grab - Manos terminación
+[Statedef 246]
+movetype = A
+juggle  = 10
+ctrl = 0
+velset = 0,0
+anim = 246
+sprpriority = 2
+
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = animtime = 0
+
+;---------------------------------------------------
+[Statedef 248]
+type    = S
+movetype= H
+physics = N
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 0
+value = 5000
+elem = 1
+
+[State 0, SelfState]
+type = SelfState
+trigger1 = time = 120
+value = 0
+ctrl = 1
+
+;===============================================================================
+; Run Punches
+;===============================================================================
+[Statedef 300]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+;velset = 0,0
+anim = 200
+sprpriority = -1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 1 || animelem = 3
+x = 6
+y = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 4
+x = 10
+y = 0
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 4
+trigger2 = animelem = 5
+attr = S, NA
+animtype  = Light
+damage    = 10
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7002) = 0
+trigger1 = Movehit = 1
+anim = 7002
+ID = 7002
+postype = P1
+pos = 45,-30
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 1
+volume = 10
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 4, 0
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "a"
+value = 201
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "b"
+value = 210
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "c"
+value = 220
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+
+;===============================================================================
+; Run Un Fleur
+;===============================================================================
+[Statedef 310]
+type    = S
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+anim = 320
+sprpriority = 2
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 5
+volume = 10
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = Time >= 0
+value = 0
+
+[State 300, 3]
+type = VelSet
+trigger1 = Time = [0,6]
+x = 10
+
+[State 300, 3]
+type = Veladd
+trigger1 = Time >= 0
+x = 0.2
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = Time = 15
+value = 311
+ctrl = 1
+
+
+;--------------------------------------
+[Statedef 311]
+type    = S
+physics = S
+juggle  = 4
+ctrl = 0
+anim = 311
+sprpriority = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 0
+volume = 10
+
+[State 300, 3]
+type = VelSet
+trigger1 = Time = [0,5]
+x = 5
+
+
+
+[State 315: Run Fleur - Mano]
+type		= Helper
+trigger1 = time = 5
+helpertype	= Normal
+name		= "Run Fleur - Mano"
+id		= 315
+pos		= ifelse(p2bodydist x > 0, 55, -55)
+postype		= p1
+facing		= 1
+stateno		= 315
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 15
+trigger1 = command = "c"
+value = 220
+
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = Time = 25
+value = 12
+ctrl = 1
+
+;------------------------------------------------
+;Run Medim - Mano
+[Statedef 315]
+movetype= A
+juggle  = 4
+ctrl = 0
+velset = 0,0
+anim = 315
+sprpriority = -1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 13
+volume = 10
+
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [0,7]
+trigger1 = time%1 = 0
+anim = 7072
+ID = 7072
+postype = P1
+pos = -10+(random%20),-5-(random%20)
+vel = 0,-2
+accel = 0,0.2
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 4
+trigger2 = animelem = 5
+attr = S, NA
+animtype  = Medium
+damage    = 20
+guardflag = MA
+pausetime = 6,6
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,7
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = 1,-8
+air.velocity = 1,-8
+fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7003) < 2
+trigger1 = Movehit = 1
+anim = 7003
+ID = 7003
+postype = P2
+pos = 0,-30
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 0, 2
+volume = 10
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;===============================================================================
+; Run Special
+;===============================================================================
+[Statedef 320]
+type    = S
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+anim = 320
+sprpriority = 2
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = Time >= 0
+value = 0
+
+[State 300, 3]
+type = VelSet
+trigger1 = Time = [0,6]
+x = 10
+
+[State 300, 3]
+type = Veladd
+trigger1 = Time >= 0
+x = 0.2
+
+[State 60, Arena Grande atras]
+type = Explod
+trigger1 = time = 0
+anim = 7100
+ID =  7100
+pos = 0,10
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+supermove = 1
+pausemove =1
+scale = 0.3, 0.3
+sprpriority = 1
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = Time = 15
+value = 321
+ctrl = 1
+
+
+;--------------------------------------
+[Statedef 321]
+type    = S
+physics = S
+juggle  = 4
+ctrl = 0
+anim = 321
+sprpriority = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 5
+volume = 10
+
+[State 300, 3]
+type = VelSet
+trigger1 = Time = [0,7]
+x = 5
+
+[State 220: Fleur Catch - Helper de agarre]
+type		= Helper
+trigger1 = time = 5
+helpertype	= Normal
+name		= "Fleur Catch - Helper de agarre"
+id		= 244
+pos		= -70,-15
+postype		= p1
+facing		= 1
+stateno		= 244
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 210, End]
+type = ChangeState
+trigger1 = Time = 25
+value = 12
+ctrl = 1
+
+;===============================================================================
+;Jump Whip Mano
+;===============================================================================
+[Statedef 600]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+poweradd = 25
+ctrl = 0
+anim = 600
+sprpriority = 2
+
+[State 600, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = AnimElem = 5
+trigger2 = AnimElem = 6
+trigger3 = AnimElem = 7
+attr = A, NA
+damage = 20
+guardflag = HA
+priority = 3
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -15,-35
+hitsound   = S0,5
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 5
+ground.velocity = -3.5
+air.velocity = -1.3,-1.5
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) < 2
+trigger1 = Movehit = 1
+anim = 7004
+ID = 7004
+postype = P1
+pos = 30,-15
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 600, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 1
+volume = 10
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 0
+volume = 10
+
+[State 600, End]
+type = ChangeState
+triggerall = Time > 7
+trigger1 = command = "b"
+value = 610
+
+[State 600, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+;===============================================================================
+;Jump Un Fleur
+;===============================================================================
+[Statedef 610]
+type    = A
+physics = A
+juggle  = 2
+poweradd = 25
+ctrl = 0
+anim = 610
+sprpriority = 2
+
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = time = 9
+helpertype	= Normal
+name		= "Un Fleur - Mano Vertical"
+id		= 615
+pos		= 0,ifelse(numhelper(1750),P2bodydist y-20,30)
+postype		= P1
+facing		= 1
+stateno		= 615
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = time = 12
+helpertype	= Normal
+name		= "Un Fleur - Mano Vertical"
+id		= 615
+pos		= 0,ifelse(numhelper(1750),P2bodydist y-20,0)
+postype		= P1
+facing		= 1
+stateno		= 615
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = time = 15
+helpertype	= Normal
+name		= "Un Fleur - Mano Vertical"
+id		= 615
+pos		= 0,ifelse(numhelper(1750),P2bodydist y-20,-30)
+postype		= P1
+facing		= 1
+stateno		= 615
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 2
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 17
+trigger1 = command = "a"
+value = 600
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 17
+trigger1 = command = "c"
+value = 620
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+
+
+
+;-------------------------------------------------------------------------
+;Un Fleur - Mano Vertical
+[Statedef 615]
+movetype= A
+juggle  = 4
+ctrl = 0
+velset = 0,0
+anim = 615
+sprpriority = -1
+
+[State 0, PosSet]
+type = Posadd
+trigger1 = time >= 0
+x = frontedgedist+15
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+value =  90
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 13
+volume = 10
+
+
+
+[State 200, Petalos Básicos]
+type = Explod
+triggerall = time = [0,7]
+trigger1 = time%1 = 0
+anim = 7071
+ID = 7071
+postype = P1
+pos = 5-(random%20),10-(random%20)
+vel = -2,-1
+accel = 0,0.2
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 4
+trigger2 = animelem = 5
+attr = S, NA
+animtype  = Medium
+damage    = 10
+guardflag = MA
+pausetime = 8,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -1,-5
+air.velocity = -2.5,-5
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7003) < 2
+trigger1 = Movehit = 1
+anim = 7003
+ID = 7003
+postype = P2
+pos = 0,-30
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 0, 0
+volume = 10
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;===============================================================================
+;Jump Special Atack
+;===============================================================================
+[Statedef 620]
+type    = A
+physics = N
+juggle  = 10
+poweradd = 35
+ctrl = 0
+anim = 620
+sprpriority = 2
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = Ifelse(vel x > 0, 1,-1)
+y = -1
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = Time >= 0
+y = 0.2
+
+
+
+[State 220: Fleur Grab - Helper de agarre]
+type		= Helper
+trigger1 = time = 9
+helpertype	= Normal
+name		= "Fleur Grab - Helper de agarre"
+id		= 224
+pos		= ifelse(numhelper(1750),P2bodydist x+20,80),20
+postype		= p1
+facing		= 1
+stateno		= 224
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 5
+volume = 10
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = time > 9
+trigger1 = p2movetype= H
+value = 621
+ctrl = 0
+
+[State 210, End]
+type = ChangeState
+trigger1 = Time = 20
+value = 50
+ctrl = 1
+
+
+;------------------------------
+; Fleur Grab - Cluch
+[Statedef 621]
+type    = A
+physics = N
+juggle  = 10
+ctrl = 0
+anim = 610
+sprpriority = 2
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 6
+volume = 10
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time = 0
+x = -0.5
+y = -3
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = Time >= 0
+y = 0.2
+
+[State 210, End]
+type = ChangeState
+trigger1 = animTime = 0
+value = 50
+ctrl = 1
+
+
+

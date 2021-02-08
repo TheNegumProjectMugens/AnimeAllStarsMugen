@@ -1,0 +1,2396 @@
+[Data]
+life = 800
+power = 2000
+attack = 90
+defence = 100
+fall.defence_up = 60
+liedown.time = 60
+airjuggle = 15
+sparkno = 2
+guard.sparkno = 40
+KO.echo = 0
+volume = 0
+IntPersistIndex = 60
+FloatPersistIndex = 40
+
+[Size]
+xscale = 1
+yscale = 1
+ground.back = 5
+ground.front = 5
+air.back = 12
+air.front = 12
+height = 30
+attack.dist = 100
+proj.attack.dist = 90
+proj.doscale = 0
+head.pos = -5, -90
+mid.pos = -5, -60
+shadowoffset = 0
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd  = 1.3
+walk.back = -1.5
+run.fwd  = 5.5, 0
+run.back = -6.2,0
+jump.neu = 0,-8
+jump.back = -1.5
+jump.fwd = 1.7
+runjump.back = -3.65,-5
+runjump.fwd = 4.5,-5
+airjump.neu = 0,-5.1
+airjump.back = -0.55
+airjump.fwd = 0.5
+
+[Movement]
+airjump.num = 0
+airjump.height = 35
+yaccel = .44
+stand.friction = .70
+crouch.friction = .70
+
+;===============================================================================
+; Lose by Time Over
+;===============================================================================
+[Statedef 170]
+type = S
+ctrl = 0
+anim = 5300
+velset = 0,0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = S4,15
+volume = 100
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time = [0,100]
+flag = roundnotover
+
+;===============================================================================
+; Win state decider
+;===============================================================================
+[Statedef 180]
+type = S
+
+[State 180, 1]
+type = ChangeState
+trigger1 = life > 400
+value = ifelse(random > 666, 181, ifelse(random < 333, 185, 189))
+
+[State 180, 1]
+type = ChangeState
+trigger1 = life <= 400
+value = 185
+
+;===============================================================================
+; Win pose 1
+;===============================================================================
+[Statedef 181]
+type = S
+ctrl = 0
+anim = 181
+velset = 0,0
+
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = time = [16,65]
+trigger1 = time% 7 = 0
+value = S0,1
+volume =100
+
+
+[State 200, ground]
+type = Explod
+trigger1 = animelem = 2
+anim = 182
+ID = 182
+postype = P1
+pos = 25,-40
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -1
+bindtime = 1
+ownpal = 1
+scale = 1,1
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 65
+id = 182
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 3
+value = S0,9
+volume =100
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 66
+value = S4,29
+volume =100
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time = [0,200]
+flag = roundnotover
+
+
+
+;===============================================================================
+; Win pose 2
+;===============================================================================
+[Statedef 185]
+type = S
+ctrl = 0
+anim = 185
+velset = 0,0
+
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S4,28
+volume = 100
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time = [0,180]
+flag = roundnotover
+
+
+;===============================================================================
+; Win pose 3
+;===============================================================================
+[Statedef 189]
+type = S
+ctrl = 0
+anim = 189
+velset = 0,0
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = nomusic
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S4,30
+volume = 100
+
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time = [0,850]
+flag = roundnotover
+
+
+
+;===============================================================================
+; Intro
+;===============================================================================
+[Statedef 191]
+type = S
+ctrl = 0
+anim = 190
+
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 4, 24
+volume = 10
+
+
+
+[State 190: 	ChangeState]
+type 		= ChangeState
+trigger1	= time = 78
+value 		= ifelse(random > 600, 192, 196)
+
+
+;-------------------------------------------
+; Intro 1 - Muertito
+[Statedef 192]
+type = S
+ctrl = 0
+anim = 1900
+velset = 0,0
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 4, 17
+volume = 10
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 190: 	ChangeState]
+type 		= ChangeState
+trigger1	= time = 100
+value 		= 193
+
+
+;-------------------------------------------
+; Intro 1 - recuperación
+[Statedef 193]
+type    = S
+physics = S
+juggle  = 7
+velset = 0,0
+ctrl = 0
+anim = 1100
+sprpriority = 2
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 4
+volume = 10
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 194
+ctrl = 0
+
+
+;--------------------------------------------
+; Intro 1 - salto
+[Statedef 194]
+type    = A
+movetype= A
+physics = N
+ctrl = 0
+anim = 1101
+sprpriority = 2
+Juggle = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = 4,26
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 0
+y = -5
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time > 0
+y = 0.3
+
+[State 200, End]
+type = changestate
+Triggerall = time > 5
+trigger1 = pos y >= 0
+value = 0
+
+;----------------------------------------------------------------------
+; Intro 2 - corrida
+[Statedef 196]
+type = S
+ctrl = 0
+anim = 196
+velset = 0,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Animelem = 2 || animelem = 6
+value = S40,0
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 190: 	ChangeState]
+type 		= ChangeState
+trigger1	= Animtime = 0
+value 		= 197
+
+
+;----------------------
+; Intro 2 - caida
+[Statedef 197]
+type = S
+ctrl = 0
+anim = 197
+velset = 0,10
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 4,27
+
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = -200
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 0
+movecamera = 0,0
+ignorehitpause = 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 190: 	ChangeState]
+type 		= ChangeState
+trigger1	= pos y > - 1
+value 		= 198
+
+;----------------------
+; Intro 2 - recuperación
+[Statedef 198]
+type = S
+ctrl = 0
+anim = 198
+velset = 0,0
+
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+
+[State 200, ground]
+type = Explod
+trigger1 = animelem = 1
+anim = 7200
+ID = 7200
+postype = P1
+pos = 0,10
+facing = 1
+sprpriority = -2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.5,0.5
+removeongethit = 1
+ontop = 0
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 4, 25
+volume = 10
+
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 0, 10
+volume = 10
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= animelem = 1
+time			= 5
+freq			= 120
+ampl			= -4
+phase			= 50
+
+[State 190: 	ChangeState]
+type 		= ChangeState
+trigger1	= time = 69
+value 		= 0
+
+
+;===============================================================================
+; Stand Light Atack
+;===============================================================================
+[Statedef 200]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 200
+poweradd = 20
+sprpriority = 2
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 3
+attr = S, NA
+animtype  = Light
+damage    = 10
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -3,0
+air.velocity = -3.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) = 0
+trigger1 = Movehit = 1
+anim = 7001
+ID = 7001
+postype = P1
+pos = 30,-37
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 1
+volume = 10
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 4, 1
+volume = 10
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "a"
+value = 201
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "b"
+value = 210
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "c"
+trigger1 = command = "holddown"
+value = 250
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "c"
+value = 220
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;===============================================================================
+; Stand Light Atack 2
+;===============================================================================
+[Statedef 201]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 200
+poweradd = 20
+sprpriority = 2
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 3
+attr = S, NA
+animtype  = Light
+damage    = 10
+guardflag = MA
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -3,0
+air.velocity = -3.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7002) = 0
+trigger1 = Movehit = 1
+anim = 7002
+ID = 7002
+postype = P1
+pos = 30,-37
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 0
+volume = 10
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 1
+value = 4, 1
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "a"
+value = 202
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "b"
+value = 210
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "c"
+trigger1 = command = "holddown"
+value = 250
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "c"
+value = 220
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;===============================================================================
+; Stand Light Atack 2
+;===============================================================================
+[Statedef 202]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 202
+poweradd = 20
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 8
+x = 6
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 2
+trigger2 = animelem = 3
+attr = S, NA
+animtype  = Light
+damage    = 15
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -5,0
+air.velocity = -5,-2
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) = 0
+trigger1 = Movehit = 1
+anim = 7004
+ID = 7004
+postype = P1
+pos = 40,-38
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 8
+value = 0, 2
+volume = 10
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 8
+value = 4, 0
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "b"
+value = 210
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "c"
+trigger1 = command = "holddown"
+value = 250
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "c"
+value = 220
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;===============================================================================
+; Stand strong attack
+;===============================================================================
+[Statedef 210]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+;velset = 0,0
+anim = 210
+sprpriority = -1
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 4
+trigger2 = animelem = 5
+attr = S, NA
+animtype  = Medium
+damage    = 35
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,7
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -4,0
+air.velocity = -2.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7003) < 2
+trigger1 = Movehit = 1
+anim = 7003
+ID = 7003
+postype = P1
+pos = 35,-35
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 2
+volume = 10
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 3
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 13
+trigger1 = command = "b"
+value = 211
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "c"
+trigger1 = command = "holddown"
+value = 250
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 13
+trigger1 = command = "c"
+value = 220
+
+
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;===============================================================================
+; Stand strong attack
+;===============================================================================
+[Statedef 211]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+;velset = 0,0
+anim = 211
+sprpriority = -1
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 3
+trigger2 = animelem = 4
+trigger3 = animelem = 5
+attr = S, NA
+animtype  = Medium
+damage    = 35
+guardflag = MA
+pausetime = 10,12
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,11
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -1.5,-6
+air.velocity = -2.5,-5
+Fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) < 2
+trigger1 = Movehit = 1
+anim = 7001
+ID = 7001
+postype = P1
+pos = 20,-50
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 2
+volume = 10
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 5
+volume = 10
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 7
+trigger1 = command = "c"
+trigger1 = command = "holddown"
+value = 250
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 13
+trigger1 = command = "c"
+value = 220
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+
+;===============================================================================
+; stand special attack
+;===============================================================================
+;Kabuto - CARGA
+[Statedef 220]
+type    = S
+physics = S
+juggle  = 10
+poweradd = 35
+ctrl = 0
+velset = 0,0
+anim = 220
+sprpriority = 2
+
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 8
+volume = 10
+channel = 5
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 3
+volume = 10
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+triggerall = animtime = 0
+trigger1 = Command = "holdup"
+value = 223
+
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+triggerall = animtime = 0
+trigger1 = Command != "holdup"
+value = 224
+
+
+[State 230, 3]
+type = ChangeState
+triggerall = time > 10
+trigger1 = Command = "holdup"
+trigger1 = Command != "hold_c"
+value = 222
+ctrl = 1
+
+[State 230, 3]
+type = ChangeState
+triggerall = time > 10
+trigger1 = ifelse(var(9) = 1, time >= 10+(random%10), Command != "hold_c")
+value = 221
+ctrl = 1
+
+;--------------------------------------
+;Kabuto - Tiro adelante
+[Statedef 221]
+type    = S
+physics = S
+juggle  = 10
+poweradd = 35
+ctrl = 0
+velset = 0,0
+anim = 221
+sprpriority = 2
+
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 9
+volume = 10
+channel = 5
+
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = animelem = 1
+helpertype	= Normal
+name		= "Boshi - Normal"
+id		= 290
+pos		= 10,-35
+postype		= p1
+facing		= 1
+stateno		= 290
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;--------------------------------------
+;Kabuto - Tiro diagonal
+[Statedef 222]
+type    = S
+physics = S
+juggle  = 10
+poweradd = 35
+ctrl = 0
+velset = 0,0
+anim = 222
+sprpriority = 2
+
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 9
+volume = 10
+channel = 5
+
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = animelem = 1
+helpertype	= Normal
+name		= "Boshi - Normal Diagonal"
+id		= 295
+pos		= 10,-45
+postype		= p1
+facing		= 1
+stateno		= 295
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;-----------------------------------------------------------
+;----------------------------------------------------------------------
+; Kabuto - Boshi - Normal
+[Statedef 290]
+movetype= A
+ctrl = 0
+anim = 7090
+sprpriority = 2
+Juggle = 0
+Velset = 10,0
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 10
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7005) < 2
+trigger1 = Movehit = 1
+anim = 7005
+ID = 7005
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 291
+time = 1
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = Time = 200
+trigger2 = movecontact = 1
+
+;--------------------------------------------
+; Kabuto - Boshi - Normal terminando
+[Statedef 291]
+movetype= A
+ctrl = 0
+anim = 291
+sprpriority = 2
+Juggle = 0
+Velset = 0,0
+
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 0
+anim = 7005
+ID = 7005
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = Time = 2
+
+;-----------------------------------------------------------
+;----------------------------------------------------------------------
+; Kabuto - Boshi - atras
+[Statedef 293]
+movetype= A
+ctrl = 0
+anim = 7090
+sprpriority = 2
+Juggle = 0
+Velset = -10,0
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 10
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = 2,0
+air.velocity = 2.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7005) < 2
+trigger1 = Movehit = 1
+anim = 7005
+ID = 7005
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 291
+time = 1
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = Time = 200
+trigger2 = movecontact = 1
+
+
+;-----------------------------------------------------------
+;-----------------------------------------------------------
+; Kabuto - Boshi - Normal Diagonal abajo
+[Statedef 294]
+movetype= A
+ctrl = 0
+anim = 7090
+sprpriority = 2
+Juggle = 0
+Velset = 8,6
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 10
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7005) < 2
+trigger1 = Movehit = 1
+anim = 7005
+ID = 7005
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 291
+time = 1
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = pos y > 1
+value = 291
+
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = Time = 200
+trigger2 = movecontact = 1
+
+;-----------------------------------------------------------
+;-----------------------------------------------------------
+; Kabuto - Boshi - Normal Diagonal arriba
+[Statedef 295]
+movetype= A
+ctrl = 0
+anim = 7090
+sprpriority = 2
+Juggle = 0
+Velset = 8,-6
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 10
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7005) < 2
+trigger1 = Movehit = 1
+anim = 7005
+ID = 7005
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 291
+time = 1
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = Time = 200
+trigger2 = movecontact = 1
+
+
+;===============================================================================
+; Stand Special Attack - Kabuto Kayaku Boshi
+;===============================================================================
+;Kabuto - CARGA
+[Statedef 250]
+type    = S
+physics = S
+juggle  = 10
+poweradd = 35
+ctrl = 0
+velset = 0,0
+anim = 220
+sprpriority = 2
+
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1, 8
+volume = 10
+channel = 5
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 10
+volume = 10
+
+
+
+[State 230, 3]
+type = ChangeState
+triggerall = time > 10
+trigger1 = ifelse(var(9) = 1, time >= 10+(random%10), Command != "hold_c")
+value = 251
+ctrl = 1
+
+;--------------------------------------
+;Kabuto - Tiro - Kayaku Boshi 1
+[Statedef 251]
+type    = A
+physics = A
+juggle  = 10
+poweradd = 35
+ctrl = 0
+anim = 251
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time = 0
+x = 0
+y = -4
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 5
+value = 1, 9
+volume = 10
+channel = 5
+
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = Time = 5
+helpertype	= Normal
+name		= "Kayaku Boshi"
+id		= 296
+pos		= 10,-50
+postype		= p1
+facing		= 1
+stateno		= 296
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 210, End]
+type = ChangeState
+triggerall = time > 5
+trigger1 = Command = "c"
+value = 252
+ctrl = 1
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+;--------------------------------------
+;Kabuto - Tiro - Sanren Kayaku Boshi
+[Statedef 252]
+type    = A
+physics = A
+juggle  = 10
+poweradd = 35
+ctrl = 0
+anim = 252
+sprpriority = 2
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time = 0
+x = -2
+y = -3
+
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 6
+value = 1, 9
+volume = 10
+channel = 5
+
+
+[State 3250: Kayaku Boshi]
+type		= Helper
+trigger1 = Time = 6
+helpertype	= Normal
+name		= "Kayaku Boshi"
+id		= 296
+pos		= 10,-50
+postype		= p1
+facing		= 1
+stateno		= 296
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 3250: Kayaku Boshi]
+type		= Helper
+trigger1 = Time = 7
+helpertype	= Normal
+name		= "Kayaku Boshi - Diagonal Abajo"
+id		= 297
+pos		= 10,-50
+postype		= p1
+facing		= 1
+stateno		= 297
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 3250: Kayaku Boshi]
+type		= Helper
+trigger1 = Time = 8
+helpertype	= Normal
+name		= "Kayaku Boshi - Diagonal Arriba"
+id		= 298
+pos		= 10,-50
+postype		= p1
+facing		= 1
+stateno		= 298
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 210, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+
+;-----------------------------------------------------------
+;----------------------------------------------------------------------
+; Kabuto - Kayaku Boshi adelante
+[Statedef 296]
+movetype= A
+ctrl = 0
+anim = 7091
+sprpriority = 2
+Juggle = 0
+Velset = 10,0
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+Fall = 1
+Palfx.time       = 50
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(299) < 1
+trigger1 = Movehit = 1
+anim = 299
+ID = 299
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.4,0.4
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 299
+time = 1
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = movecontact = 1
+trigger2 = time = 10+(random%10)
+trigger3 = time = 20
+value = 299
+
+
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = time = 50
+trigger2 = movehit = 1
+
+
+
+;----------------------------------------------------------------------
+; Kabuto - Kayaku Boshi diagonal abajo
+[Statedef 297]
+movetype= A
+ctrl = 0
+anim = 7091
+sprpriority = 2
+Juggle = 0
+Velset = 8,2
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+Fall = 1
+Palfx.time       = 50
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(299) < 1
+trigger1 = Movehit = 1
+anim = 299
+ID = 299
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.4,0.4
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 299
+time = 1
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = movecontact = 1
+trigger2 = time = 10+(random%10)
+trigger3 = time = 20
+value = 299
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = time = 50
+trigger2 = movehit = 1
+
+;----------------------------------------------------------------------
+; Kabuto - Kayaku Boshi diagonal arrriba
+[Statedef 298]
+movetype= A
+ctrl = 0
+anim = 7091
+sprpriority = 2
+Juggle = 0
+Velset = 8,-2
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 20
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+Fall = 1
+Palfx.time       = 50
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(299) < 1
+trigger1 = Movehit = 1
+anim = 299
+ID = 299
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.4,0.4
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 299
+time = 1
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = movecontact = 1
+trigger2 = time = 10+(random%10)
+trigger3 = time = 20
+value = 299
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = time = 50
+trigger2 = movehit = 1
+
+
+
+;--------------------------------------------
+; Kabuto - Kayaku Boshi - Explosión
+[Statedef 299]
+movetype= A
+ctrl = 0
+anim = 291
+sprpriority = 2
+Juggle = 0
+Velset = 0,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,16
+
+[State 210, 1]
+type = HitDef
+trigger1 = animelem = 1
+attr = S, NA
+animtype  = Light
+damage    = 10
+guardflag = MA
+pausetime = 0,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S1,16
+guardsound = S1,16
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -2,0
+air.velocity = -2.5,-4
+Fall = 1
+Palfx.time       = 50
+Palfx.add       = 40,-70,-200
+Palfx.sinadd   = 40,30,0,10
+Palfx.color     = 0
+Palfx.invertall = 1
+
+[State 200, Spark CVS]
+type = Explod
+trigger1 = time = 0
+anim = 299
+ID = 299
+postype = P1
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.4,0.4
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, ChangeState]
+type = destroyself
+trigger1 = Time = 2
+
+
+
+;===============================================================================
+; Roll
+;===============================================================================
+[Statedef 300]
+type    = S
+movetype = A
+physics = S
+juggle  = 4
+ctrl = 0
+;velset = 0,0
+anim = 300
+sprpriority = -1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [0,15]
+x = 5
+y = 0
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 4
+trigger2 = animelem = 5
+attr = S, NA
+animtype  = Light
+damage    = 15
+guardflag = MA
+pausetime = 8,10
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -5,0
+air.velocity = -5,-2
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) = 0
+trigger1 = Movehit = 1
+anim = 7004
+ID = 7004
+postype = P1
+pos = 40,-38
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 8
+value = 0, 2
+volume = 10
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = Time = 8
+value = 4, 6
+volume = 10
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "a"
+value = 200
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "b"
+value = 210
+
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 10
+trigger1 = command = "c"
+value = 220
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+
+;===============================================================================
+; Run Pound
+;===============================================================================
+[Statedef 310]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = 30
+ctrl = 0
+anim = 211
+sprpriority = -1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 6
+x = 10
+y = 0
+
+
+[State 210, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = animelem = 3
+trigger2 = animelem = 4
+trigger3 = animelem = 5
+attr = S, NA
+animtype  = Medium
+damage    = 35
+guardflag = MA
+pausetime = 10,12
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -20,-25
+hitsound   = S0,11
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -1.5,-6
+air.velocity = -2.5,-5
+Fall = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) < 2
+trigger1 = Movehit = 1
+anim = 7001
+ID = 7001
+postype = P1
+pos = 20,-50
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 2
+volume = 10
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 5
+volume = 10
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 13
+trigger1 = command = "c"
+value = 220
+
+[State 210, End]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+
+;===============================================================================
+; Heavy Punch Run
+;===============================================================================
+[Statedef 320]
+type    = A
+movetype= A
+physics = A
+juggle  = 4
+poweradd = 30
+ctrl = 0
+anim = 320
+sprpriority = -1
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 4
+y = -5
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = time = [0,21]
+value = 0
+
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = Time = 3
+value = 0, 1
+volume = 10
+
+[State 210, 2]
+type = PlaySnd
+trigger1 = AnimElem = 7
+value = 4, 3
+volume = 10
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = animelem = 7
+helpertype	= Normal
+name		= "Boshi - atras"
+id		= 293
+pos		= -15,-15
+postype		= p1
+facing		= 1
+stateno		= 293
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+[State 210, End]
+type = ChangeState
+triggerall = time > 5
+trigger1 = pos y >= 0
+value = 0
+ctrl = 1
+
+;===============================================================================
+;Jump Light atack 1
+;===============================================================================
+[Statedef 600]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+poweradd = 25
+ctrl = 0
+anim = 600
+sprpriority = 2
+
+[State 600, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 4
+attr = A, NA
+damage = 10
+guardflag = HA
+priority = 3
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -15,-35
+hitsound   = S0,5
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 5
+ground.velocity = -3.5
+air.velocity = -1.3,-1.5
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7004) < 2
+trigger1 = Movehit = 1
+anim = 7004
+ID = 7004
+postype = P1
+pos = 20,-5
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 600, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 1
+volume = 10
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 0
+volume = 10
+
+[State 600, End]
+type = ChangeState
+triggerall = Time > 7
+trigger1 = command = "b"
+value = 610
+
+[State 600, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+;===============================================================================
+;Jump Mazazo
+;===============================================================================
+[Statedef 610]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+poweradd = 25
+ctrl = 0
+anim = 610
+sprpriority = 2
+
+[State 610, 1]
+type = HitDef
+triggerall = hitcount < 1
+trigger1 = AnimElem = 5
+trigger2 = AnimElem = 6
+attr = A, NA
+damage = 30
+guardflag = HA
+priority = 3
+pausetime = 6,8
+sparkno = -1;s6000
+guard.sparkno = s7000
+sparkxy = -15,-35
+hitsound   = S0,6
+guardsound = S0,8
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 5
+ground.velocity = -3.5
+air.velocity = -3.3,-3.5
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7002) < 2
+trigger1 = Movehit = 1
+anim = 7002
+ID = 7002
+postype = P1
+pos = 25,-3
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 2
+volume = 10
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 4, 1
+volume = 10
+
+
+[State 600, End]
+type = ChangeState
+triggerall = Time > 13
+trigger1 = command = "c" || command = "holddown"
+value = 630
+
+
+[State 600, End]
+type = ChangeState
+triggerall = Time > 13
+trigger1 = command = "c"
+value = 620
+
+[State 600, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+
+;===============================================================================
+;Jump Kabuto - Tiro adelante
+;===============================================================================
+[Statedef 620]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+poweradd = 25
+ctrl = 0
+anim = 620
+sprpriority = 2
+
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 1, 8
+volume = 10
+channel = 5
+
+[State 0, VelSet]
+type = VelSet
+trigger1 =animelem = 5
+x = -3
+y = -1
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = animelem = 5
+value = 1, 9
+volume = 10
+channel = 5
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = animelem = 5
+helpertype	= Normal
+name		= "Boshi - Normal"
+id		= 290
+pos		= 10,-35
+postype		= p1
+facing		= 1
+stateno		= 290
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+[State 600, End]
+type = ChangeState
+triggerall = Time > 16
+trigger1 = command = "c" || command = "holddown"
+value = 630
+
+
+
+[State 600, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+
+;===============================================================================
+;Jump Kabuto - Tiro diagonal
+;===============================================================================
+[Statedef 630]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+poweradd = 25
+ctrl = 0
+anim = 630
+sprpriority = 2
+
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 1
+volume = 10
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 =animelem = 5
+x = -1
+y = -3
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = animelem = 5
+value = 1, 9
+volume = 10
+
+[State 3250: Sello]
+type		= Helper
+trigger1 = animelem = 5
+helpertype	= Normal
+name		= "Boshi - Normal"
+id		= 294
+pos		= 20,-25
+postype		= p1
+facing		= 1
+stateno		= 294
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale     = 1
+size.yscale     = 1
+
+
+
+[State 600, End]
+type = ChangeState
+trigger1 = pos Y >= -1
+value = 0
+ctrl = 1
+
+

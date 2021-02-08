@@ -1,0 +1,159 @@
+[StateDef -3]
+
+[State 0]
+type = DefenceMulSet
+trigger1 = 1
+value = 1-(var(7)/10.0)-(var(5)/20.0)
+
+[state -3]
+type = playsnd
+triggerall = stateno = [5000,5035]
+trigger1 = time = 0
+trigger1 = (random%100 < 10)
+value = S0,14+random%2
+
+[state -3]
+type = stopsnd
+trigger1 = stateno != 6010
+channel = 2
+
+[state -3]
+type = stopsnd
+trigger1 = stateno != 6010
+channel = 3
+
+[state -3]
+type = removeexplod
+trigger1 = stateno != 6010
+id = 6010
+
+[State 0]
+type = Explod
+triggerall = life > 0
+triggerall = var(7) = 0
+triggerall = power = [1000,1999]
+trigger1 = timemod = 15,0
+anim = 6500
+pos = 0-random%20+random%20,0-random%20+random%20
+velocity = 0-random%2+random%2,-2
+postype = p1  ;p2,front,back,left,right
+removetime = -2
+ontop = 1
+scale = 0.25,0.25
+supermove = 1
+
+[State 0]
+type = Explod
+triggerall = life > 0
+triggerall = var(7) = 0
+triggerall = power = [2000,2999]
+trigger1 = timemod = 10,0
+anim = 6500
+pos = 0-random%20+random%20,0-random%20+random%20
+velocity = 0-random%2+random%2,-2
+postype = p1  ;p2,front,back,left,right
+removetime = -2
+ontop = 1
+scale = 0.25,0.25
+supermove = 1
+
+[State 0]
+type = Explod
+triggerall = life > 0
+triggerall = var(7) = 0
+triggerall = power >= 3000
+trigger1 = timemod = 5,0
+anim = 6500
+pos = 0-random%20+random%20,0-random%20+random%20
+velocity = 0-random%2+random%2,-2
+postype = p1  ;p2,front,back,left,right
+removetime = -2
+ontop = 1
+scale = 0.25,0.25
+supermove = 1
+
+[State 0]
+type = Explod
+triggerall = life > 0
+triggerall = var(7) >= 1
+triggerall = power = [1000,1999]
+trigger1 = timemod = 15,0
+anim = 6510
+pos = 0-random%20+random%20,0-random%20+random%20
+velocity = 0-random%2+random%2,-2
+postype = p1  ;p2,front,back,left,right
+removetime = -2
+ontop = 1
+scale = 0.25,0.25
+supermove = 1
+
+[State 0]
+type = Explod
+triggerall = life > 0
+triggerall = var(7) >= 1
+triggerall = power = [2000,2999]
+trigger1 = timemod = 10,0
+anim = 6510
+pos = 0-random%20+random%20,0-random%20+random%20
+velocity = 0-random%2+random%2,-2
+postype = p1  ;p2,front,back,left,right
+removetime = -2
+ontop = 1
+scale = 0.25,0.25
+supermove = 1
+
+[State 0]
+type = Explod
+triggerall = life > 0
+triggerall = var(7) >= 1
+triggerall = power >= 3000
+trigger1 = timemod = 5,0
+anim = 6510
+pos = 0-random%20+random%20,0-random%20+random%20
+velocity = 0-random%2+random%2,-2
+postype = p1  ;p2,front,back,left,right
+removetime = -2
+ontop = 1
+scale = 0.25,0.25
+supermove = 1
+
+[State 0]
+type = Helper
+triggerall = var(5) = 1
+triggerall = numhelper(6400) = 0
+triggerall = life > 0
+triggerall = stateno != [5000,5150]
+triggerall = stateno != [6007,6008]
+triggerall = stateno != 6050
+trigger1 = 1
+helpertype = normal
+name = "Effect"
+ID = 6400
+stateno = 6400
+pos = 0,0
+postype = p1
+ownpal = 1
+supermovetime = 99999
+
+[State 0]
+type = Helper
+triggerall = var(5) = 1
+triggerall = numhelper(6410) = 0
+triggerall = life > 0
+triggerall = stateno != 5110
+trigger1 = 1
+helpertype = normal
+name = "Effect"
+ID = 6410
+stateno = 6410
+pos = 0,0
+postype = p1
+ownpal = 1
+supermovetime = 99999
+
+[State 0]
+type = VarSet
+trigger1 = name = "Vegeta"
+trigger1 = authorname = "LegendTTA"
+v = 2
+value = 1

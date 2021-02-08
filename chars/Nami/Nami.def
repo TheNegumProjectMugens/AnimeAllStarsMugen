@@ -1,0 +1,42 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name="Nami"
+displayname="Nami"
+versiondate=04,14,2002
+mugenversion=04,14,2002
+author=""
+pal.defaults=1,2,3,4,5,6
+
+; Files for the player
+[Files]
+cmd=Nami.cmd
+sprite=Nami.sff
+anim=Nami.air
+sound=Nami.snd
+stcommon =common1.cns
+st=Nami.cns
+cns=Nami.cns
+pal1=Nami1.act
+pal2=Nami2.act
+pal3=Nami3.act
+pal4=Nami4.act
+pal5=Nami5.act
+pal6=Nami6.act
+st1=Nami_specials.cns
+st2=Nami_Supers.cns
+st3=Nami_IA.cns
+
+; Arcade mode
+;[Arcade]
+;intro.storyboard=intro.def
+;ending.storyboard=ending.def
+
+
+
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=

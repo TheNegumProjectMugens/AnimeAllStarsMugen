@@ -1,0 +1,33 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "MetalGreymon"
+displayname = "MetalGreymon"
+versiondate = 7/7/2013
+mugenversion = 1.0
+author = "UltimateMugenite5721"
+pal.defaults = 1,2,3,4,5,6,7,8
+
+[Files]
+sprite = mgrey.sff
+anim = mgrey.air
+sound = mgrey.snd
+cmd = mgrey.cmd
+cns = mgrey.cns
+stcommon = mgrey_common.cns
+st = mgrey.cns
+pal1 = 1.act
+pal2 = 2.act
+pal3 = 3.act
+pal4 = 4.act
+pal5 = 5.act
+pal6 = 6.act
+pal7 = 7.act
+pal8 = 8.act
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=..\data\final.def
