@@ -1,0 +1,123 @@
+[Info]
+name ="One Piece -Going Merry"
+autor = "xed"
+;web = http://ciberia.ya.com/xedarts/index.html
+;date release=06/11/07
+
+[BGdef]
+spr = OnePiece_GoingMerry.sff
+debugbg = 0
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -240
+boundright = 240
+boundhigh = -300
+boundlow = 0
+verticalfollow = 0.8
+tension = 100
+floortension = 100 
+
+
+[PlayerInfo]
+p1startx =-80
+p1starty =0
+p1startz =0
+p1facing =1
+
+p2startx =80
+p2starty =0
+p2startz =0
+p2facing =-1
+
+leftbound =-1000
+rightbound =1000
+topbound =0
+botbound =0
+
+
+[Scaling]
+topz =0
+botz =50
+topscale =1
+botscale =1.2
+
+
+[Bound]
+screenleft  =15
+screenright =15
+
+
+[StageInfo]
+zoffset  = 210
+autoturn = 1
+resetBG  = 1
+
+
+[Shadow]
+intensity = 75
+yscale =.15
+fade.range = -300,-50
+
+
+;[Reflection]
+intensity = 0
+
+
+[Music]
+bgmusic  = sound/Luffy_Fierce_Attack.mp3
+bgvolume = 400
+
+
+
+
+[BG 0,cielo]
+type =normal
+spriteno =0,0
+start = 0,0
+delta = 0,0 ;Å¶
+mask =0
+
+[BG 1,nubes]
+type =normal
+spriteno =0,1
+start = 0,0
+tile=1,0
+delta = 0,.33 ;Å¶
+velocity=.15
+mask =1
+
+[BG 2,agua]
+type =normal
+spriteno =0,2
+start = 0,0
+delta = 0,.3 ;Å¶
+mask =1
+
+[BG going merry animated]
+type = anim
+start = 0, 0
+layerno = 0
+delta = .2, .8
+mask = 1
+actionno = 1
+
+[BG 4,tierra]
+type =normal
+spriteno =0,7
+start = 0,0
+delta = 1,1 ;Å¶
+mask =1
+
+[Begin Action 1]
+0, 5, 0, 0, 90,,
+0, 5, 0, 1, 15,,
+0, 5, 0, 2, 15,,
+0, 5, 0, 3, 15,,
+0, 5, 0, 4, 15,,
+0, 5, 0, 5, 15,,
+0, 5, 0, 4, 15,,
+0, 5, 0, 3, 15,,
+0, 5, 0, 2, 15,,
+0, 5, 0, 1, 15,,

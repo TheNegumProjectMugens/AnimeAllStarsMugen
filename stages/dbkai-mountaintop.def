@@ -1,0 +1,278 @@
+; BackGround - Dragon Ball Kai - Mountain Top (based on DBKai Cloudy Sky Intro scene)
+
+; Creator: Chrono_Strife
+; E-Mail: chronostrifeff7h@hotmail.com
+; Updated: April 2010
+
+; Web: http://chronostrife.herobo.com
+; Ripped: - SB2, My Imagination
+
+;--------------------------------------------------------
+[Info]
+;Name of the stage.
+name = "CS_DBK_Mountain_Topv1"
+displayname = "Mountain Top"
+versiondate = 08.02.2010
+mugenversion = 1.1
+author = "Chrono_Strife"
+
+[Camera]
+startx = 0
+starty = 0
+
+boundleft =  -47
+boundright = 47
+boundhigh = -200
+boundlow = 0
+
+tension = 50
+tensionhigh = 40
+tensionlow = 40
+
+zoomout = 0.5
+zoomin = 1
+
+
+;--------------------------------------------------------
+[PlayerInfo]
+;--- Player 1 ---
+p1startx = -70
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+;--- Player 2 ---
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+;--- Common ---
+ ;Don't change these values.
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+;--------------------------------------------------------
+[Scaling]
+ ;No need to change these values
+topz     = 0
+botz     = 40
+topscale = 1
+botscale = 1.2
+
+;--------------------------------------------------------
+[Bound]
+screenleft = 15
+screenright = 15
+
+;--------------------------------------------------------
+[StageInfo]
+zoffset   = 215
+autoturn  = 1
+HIres = 1
+
+;--------------------------------------------------------
+[Shadow]
+color = 128,128,128
+yscale = 0.5
+
+;--------------------------------------------------------
+[Music]
+ bgmusic = sound/Katekyo Hitman Reborn Opening 4 Full.mp3
+ bgvolume = 255
+
+;========================================================
+
+; Main background definition
+[BGdef]
+spr = dbkai-mountaintop.sff
+
+[BG Sky01]
+type  = normal
+spriteno = 3, 0
+layerno = 0                
+start = 0, -350
+delta = 0.1, 0.1
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+zoomdelta = 0
+
+[BG Sun]
+type  = normal
+spriteno = 10,0
+layerno = 0
+start = -270, 180
+velocity = 0, 0
+delta = 0.1, 0.1
+trans = add
+alpha = 256,256
+zoomdelta = 0
+
+[BG SunRays]
+type  = anim
+actionno = 11
+layerno = 1
+start = -270, 180
+velocity = 0, 0
+delta = 0.1, 0.1
+zoomdelta = 0
+;--------------------------------------
+[BG Cloud4]
+type  = normal
+spriteno = 8,0
+layerno = 0
+start = 0, 190
+velocity = 0.2, 0
+delta = 0.5, 0.5
+tile  = 1, 0
+trans = add
+alpha = 128,256
+zoomdelta = 1
+
+[BG BG-Pillars]
+type  = normal
+spriteno = 2, 10
+layerno = 0                
+start = -100, 180
+delta = 0.5, 0.5
+trans = add
+mask  = 1
+zoomdelta = 1
+
+[BG Cloud3]
+type  = normal
+spriteno = 6,0
+layerno = 0
+start = 0, 180
+velocity = 0.4, 0
+delta = 0.8, 0.8
+tile  = 1, 0
+trans = add
+alpha = 64,256
+zoomdelta = 1
+
+[BG Pillar-Far]
+type  = normal
+spriteno = 2, 4
+layerno = 0                
+start = 200, 200
+delta = 1.0, 1.0
+trans = none
+mask  = 1
+zoomdelta = 1
+
+[BG Pillar-Mid]
+type  = normal
+spriteno = 2, 2
+layerno = 0                
+start = -170, 190
+delta = 1.2, 1.2
+trans = none
+mask = 1
+zoomdelta = 1
+
+[BG Pillar-Mid-Side]
+type  = normal
+spriteno = 2, 3
+layerno = 0                
+start = 492, 230
+delta = 1.3, 1.3
+trans = none
+mask = 1
+zoomdelta = 1
+
+[BG Cloud2]
+type  = normal
+spriteno = 7,0
+layerno = 0
+start = 0, 200
+velocity = 0.5, 0
+delta = 1.4, 1.4
+tile = 1, 0
+trans = add
+alpha = 64,256
+zoomdelta = 1
+
+[BG Pillar-Close]
+type  = normal
+spriteno = 2, 1
+layerno = 0                
+start = -500, 250
+delta = 1.6, 1.6
+trans = none
+mask = 1
+zoomdelta = 1
+
+[BG Cloud1]
+type  = normal
+spriteno = 5,0
+layerno = 0
+start = 0, 260
+velocity = 0.6, 0
+delta = 1.8, 1.8
+tile = 1, 0
+trans = add
+alpha = 64,256
+zoomdelta = 1
+
+[BG Arena]
+type  = normal
+spriteno = 1, 0
+layerno = 0                
+start = 0, 340
+delta = 2, 2
+trans = none
+mask  = 1
+zoomdelta = 1
+
+[BG FrontalFog]
+type  = normal
+spriteno = 0,0
+layerno = 1
+start = 0, 120
+velocity = 0.6, 0
+delta = 2.2, 2.2
+tile = 1, 0
+trans = add
+zoomdelta = 1
+;----------------------------------------------------------------------
+;-=Animations=-
+;Mist Large
+[Begin Action 1]
+0,0, 0,0, -1,,A
+ 
+;Mist Large
+[Begin Action 5]
+5,0, 0,0, -1,,AS64D256
+
+;Mist Medium
+[Begin Action 6]
+6,0, 0,0, -1,,AS64D256
+
+;Mist Large
+[Begin Action 7]
+7,0, 0,0, -1,,AS64D256
+
+;Mist Tiny
+[Begin Action 8]
+8,0, 0,0, -1,,AS128D256
+
+;Sun
+[Begin Action 10]
+10,0, 0,0, -1,,A
+
+;Sun Rays
+[Begin Action 11]
+11,0, 0,0, 70,,AS246D256
+11,0, 0,0, 10,,AS236D256
+11,0, 0,0, 10,,AS226D256
+11,0, 0,0, 10,,AS216D256
+11,0, 0,0, 60,,AS206D256
+11,0, 0,0, 10,,AS216D256
+11,0, 0,0, 10,,AS226D256
+11,0, 0,0, 10,,AS236D256
+11,0, 0,0, 20,,AS246D256

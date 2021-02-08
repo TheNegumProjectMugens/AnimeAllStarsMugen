@@ -1,0 +1,69 @@
+
+
+  DragonBall Z M.U.G.E.N Edition 2011 by RistaR87 & Xed
+	  - Configuration and Special Moves -
+
+
+=======================================
+ 1. KEY CONFIG ; Important! Must Read!
+=======================================
+
+	 PLAYER 1			PLAYER 2
+
+ Up	 Up			Up	Pad /
+ Down	 Down			Down	Pad 8
+ Left	 Left			Left	Pad 7
+ Right	 Right			Right	Pad 9
+
+ A	 A			A	Delete
+ B	 S			B	End
+ C	 D			C	PageDown
+
+ X	 Q			X	Insert
+ Y	 W			Y	Home
+ Z	 E			Z	PageUp
+
+ Start	 Enter			Start	Pad 0
+
+
+Note: If you don't like this Configuration go in OPTIONS and change it
+----
+
+
+=========================================
+ 2. SPECIAL MOVES ; Important! Must Read!
+=========================================
+
+Down     = D
+Forward  = F
+Backward = B
+
+
+Note: DON'T FORGET THAT IN THIS GAME A, B and C ARE A, S and D, AND ALSO X, Y and Z ARE Q, W and E !!!
+----
+
+
+-You can find the Special Moves for some chars in their folders in 'Readme.txt' or 'Movelist.txt'
+
+
+-If you don't. This could be helpful:
+
+Energy Charge is usually two buttons pressed together (A+Q, A+S or S+W). It's rarely a single button.
+ 
+Special Moves can be usually done when you have enough of energy and press 
+'Down, Forward + Some Button', 'Down, Backward + Some Button',
+'Down,Forward,Down,Forward + Some Button' or 'Down,Backward,Down,Backward + Some Button'
+and also 'Down,Backward,Forward + Some Button' or 'Down,Forward,Backward + Some Button'.
+
+The best way to learn Special Moves is to go to TRAINING mode and practice.
+
+
+********************************************************
+
+That's all you need to know. Enjoy and Happy playing! ;) 
+
+********************************************************
+
+
+
+

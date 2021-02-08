@@ -1,0 +1,327 @@
+;--------------------------------------------------------
+[Info]
+name =			"Tenkaichi Budokai"
+displayname =	"Tenkaichi Budokai"
+author =		"=Tapion="			;Modified by Beterhans
+mugenversion =	1.0
+versiondate =	03,09,2011
+
+[Camera];--------------------------------------------------------------
+startx 			= 0
+starty 			= 0
+boundleft 		= 130
+boundright 		= -130
+boundhigh 		= 130
+boundlow 		= -130
+tension 		= 50
+verticalfollow 	= .75
+floortension 	= 70
+overdrawhigh 	= 100
+overdrawlow 	= 100
+cuthigh 		= 0
+cutlow 			= 0
+zoomout = 0.5
+zoomin = 1
+
+[PlayerInfo];----------------------------------------------------------
+
+p1startx 	= -150
+p1starty 	= 0
+p1facing 	= 1
+p2startx 	= 150
+p2starty 	= 0
+p2facing 	= -1
+p3startx 	= -200
+p3starty 	= 0
+p3facing 	= 1
+p4startx 	= 200
+p4starty 	= 0
+p4facing 	= -1
+leftbound 	= -4000
+rightbound 	= 4000
+
+[Scaling];-------------------------------------------------------------
+
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1.2
+
+[Bound];---------------------------------------------------------------
+
+screenleft	= 20
+screenright = 20
+
+[StageInfo];-----------------------------------------------------------
+
+zoffset		= 440.0
+autoturn	= 1
+resetBG		= 0
+localcoord	= 640,480
+
+[Shadow];--------------------------------------------------------------
+
+intensity 	= 200
+color		= 0,0,0
+yscale		= 0.4
+fade.range	= -300,-150
+
+[Reflection];----------------------------------------------------------
+
+intensity = 0
+
+[Music];---------------------------------------------------------------
+bgmusic		= stages/Haran No Tenkaichi Budokai.mp3
+bgm.loop 	= 1
+bgmloopstart= 664368
+bgmloopend	= 9044149
+bgmvolume	= 100
+
+[BGdef];---------------------------------------------------------------
+
+spr			= stages/Tenkaichi_Budokai.sff
+debugbg		= 0
+
+;=====================================
+
+[BG Moving Sky]
+type = normal
+spriteno =0,0
+start = 0,320
+delta = 3.2,0.6
+mask =0
+tile = 1,0
+velocity = 0.050,0
+
+[BG Mountain]
+type =normal
+spriteno =0,3
+start = 0,220
+delta = 3.1, 0.65
+mask =1
+tile = 1,0
+
+[BG City]
+type =normal
+spriteno =0,2
+start = 0,234
+delta = 3.1, 0.68
+mask =1
+tile = 1,0
+
+[BG Tree]
+type =normal
+spriteno =0,8
+start = 0,240
+delta = 2.77,0.77
+mask =1
+tile = 1,0
+tilespacing= 280
+
+[BG Town]
+type =normal
+spriteno =0,5
+start = 220,280
+delta = 2.77,0.77
+mask =1
+tile = 1,0
+
+;[BG House]
+;type =normal
+;spriteno =0,10
+;start = -220,290
+;delta = 1.9,1.9
+;mask =1
+;tile= 1,0
+;tilespacing= 250
+
+
+;[BG House 2]
+;type =normal
+;spriteno =0,10
+;start = -550,290
+;delta = 1.9,1.9 ;Å¶
+;mask =1
+
+;[BG House 3]
+;type =normal
+;spriteno =0,10
+;start = 620,290
+;delta = 1.9,1.9 ;Å¶
+;mask =1
+
+[BG Low trees]
+type =normal
+spriteno =0,11
+start = -320,290
+delta = 2.77,0.78
+mask =1
+tile= 1,0
+tilespacing= 270
+
+[BG PalmTrees]
+type =normal
+spriteno =0,12
+start = 0,290
+delta = 2.7,0.8
+mask =1
+tilespacing= 270
+
+
+
+[BG FOG]
+type =normal
+spriteno =0,4
+start = 0,300
+delta = 2.7,0.8
+mask =1
+tile = 1,0
+trans = add
+velocity = 1.3,0
+
+[BG Glass Back]
+type =normal
+spriteno =0,1
+start = 0,300
+delta= 2.7,0.8
+mask =0
+tile = 1,0
+
+[BG Glass Road]
+type= parallax
+spriteno	= 0,1
+start		= 0,300
+mask		= 1
+trans		= none
+layerno		= 0
+delta		= 2.7,0.8
+xscale		=   1.7,1
+
+[BG Wall]
+type =normal
+spriteno =0,9
+start = 0,304
+delta = 2.7,0.8
+mask =0
+tile = 1,0
+
+[BG Building]
+type =normal
+spriteno =0,7
+start = 0,304
+delta = 2.7,0.8
+mask =1
+
+[BG Wall Paint]
+type =normal
+spriteno =0,13
+start = 116,305
+delta = 2.7,0.8
+mask =1
+tile = 1,0
+tilespacing= 77
+
+[BG SUN]
+type=Anim
+actionno=5
+delta = 3.2,0.6
+start = 200,90
+ID = 1
+
+
+[BG Plataform A]
+type= parallax
+spriteno = 0,6
+start = 0,480
+mask = 1
+trans = none
+layerno = 0
+tile = 0, 0
+delta = 1.7, 1
+xscale =   1, -1
+
+
+[BGctrldef 1]
+CtrlID=1
+
+[BGctrl 2,vel]
+type=velset
+time= 20
+x= 0.01
+Y= -0.01
+
+[BGctrl 2,vel]
+type=veladd
+time= 300
+x= 0.01
+Y= -0.01
+
+[BGctrl 2,vel]
+type=velset
+time= 3000
+x = 0
+Y= 0
+
+
+[Begin action 5]
+5,0, 0,0, 4,, A
+5,2, 0,0, 4,, A
+5,3, 0,0, 4,, A
+5,4, 0,0, 4,, A
+5,5, 0,0, 4,, A
+5,6, 0,0, 4,, A
+5,7, 0,0, 4,, A
+5,8, 0,0, 4,, A
+5,9, 0,0, 4,, A
+5,10, 0,0, 4,, A
+5,11, 0,0, 4,, A
+5,12, 0,0, 4,, A
+5,13, 0,0, 4,, A
+5,14, 0,0, 4,, A
+5,15, 0,0, 4,, A
+5,16, 0,0, 4,, A
+5,17, 0,0, 4,, A
+5,18, 0,0, 4,, A
+5,19, 0,0, 4,, A
+5,20, 0,0, 4,, A
+5,21, 0,0, 4,, A
+5,22, 0,0, 4,, A
+5,23, 0,0, 4,, A
+5,24, 0,0, 4,, A
+5,25, 0,0, 4,, A
+5,26, 0,0, 4,, A
+5,27, 0,0, 4,, A
+5,28, 0,0, 4,, A
+5,29, 0,0, 4,, A
+5,30, 0,0, 4,, A
+5,31, 0,0, 4,, A
+5,32, 0,0, 4,, A
+5,33, 0,0, 4,, A
+5,34, 0,0, 4,, A
+5,35, 0,0, 4,, A
+5,36, 0,0, 4,, A
+5,37, 0,0, 4,, A
+5,38, 0,0, 4,, A
+5,39, 0,0, 4,, A
+5,40, 0,0, 4,, A
+5,41, 0,0, 4,, A
+5,42, 0,0, 4,, A
+5,43, 0,0, 4,, A
+5,44, 0,0, 4,, A
+5,45, 0,0, 4,, A
+5,46, 0,0, 4,, A
+5,47, 0,0, 4,, A
+5,48, 0,0, 4,, A
+5,49, 0,0, 4,, A
+5,50, 0,0, 4,, A
+5,51, 0,0, 4,, A
+5,52, 0,0, 4,, A
+5,53, 0,0, 4,, A
+5,54, 0,0, 4,, A
+5,55, 0,0, 4,, A
+5,56, 0,0, 4,, A
+5,57, 0,0, 4,, A
+5,58, 0,0, 4,, A
+Loopstart
+5,59, 0,0, 4,, A
+5,60, 0,0, 4,, A

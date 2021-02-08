@@ -1,0 +1,147 @@
+;---------------------------------------------------------------------
+[Characters]
+Goku, stages/Snakeway.def
+Goku SSJ, stages/Snakeway.def
+Vegeta, stages/Rocks vegeta.def
+Majin Vegeta, stages/Rocks vegeta.def
+Gohan SSJ2, stages/CELL_GAMES.def
+Gohan_Ultimate, stages/Rocks vegeta.def
+Trunks, stages/CELL_GAMES.def
+Piccolo, stages/Namekusein.def
+Krilin, stages/Tenkaichi_Budokai.def
+Freezer_4_Form, stages/Namekusein.def
+Cell_Perfect_Form, stages/CELL_GAMES.def
+Kid_Buu, stages/Island.def
+Goku SSJG, stages/Rocks vegeta.def
+Goku SSJ Blue, stages/Planeta_de_Bills_HR.def
+Vegeta SSJ Blue, stages/Planeta_de_Bills_HR.def
+Naruto, stages/Sannin_Battle.def
+Sasuke, stages/The_Valley_Of_The_End_Nightfall.def
+Sakura, stages/Preliminar.def
+Rock Lee, stages/Preliminar.def
+Shikamaru_Kid, stages/ForestOfDeath.def
+Naruto Teen, stages/Rocks_Day.def
+Naruto_Ashura, stages/Rocks_Day.def
+Sasuke Teen, stages/The_Valley_Of_The_End_Nightfall.def
+Sakura Teen, stages/Konoha.def
+Kakashi, stages/TrainingField.def
+Itachi, stages/ForestOfDeath.def
+Tobi Rinnegan, stages/ForestOfDeath.def
+Luffy, stages/OnePiece_GoingMerry.def
+Roronoa Zoro, stages/Golem_Head.def
+Sanji, stages/Dressrosa.def
+Nami, stages/OnePiece_GoingMerry.def
+Nico Robin, stages/OnePiece_GoingMerry.def
+Usopp, stages/OnePiece_GoingMerry.def
+Franky, stages/Golem_Head.def
+Chopper, stages/Dressrosa.def
+Brook, stages/Dressrosa.def
+Boa Hancock, stages/Golem_Head.def
+Natsu, stages/Fairy_Tail_Guild.def
+Natsu_DragonForce, stages/Train_Railway.def
+Erza_Start, stages/Fairy_Tail_Inside.def
+Gray_Start, stages/Fairy_Tail_Guild.def
+Lucy_Start, stages/Fairy_Tail_Guild.def
+Wendy, stages/Fairy_Tail_Inside.def
+Gajeel_Start, stages/Fusha_Village.def
+Jellal, stages/Road_To_Nirvana.def
+Ichigo_Shikai, stages/bankai_ichigo_stage.def
+Hitsugaya, stages/bankai_ichigo_stage.def
+Renji, stages/Crumbing_wall.def
+KuchikiRukia, stages/Crumbing_wall.def
+yusuke, stages/Volcano-GelboPlanetHR.def
+Hiei, stages/Volcano-GelboPlanetHR.def
+Gon, stages/Island.def
+Killua, stages/Island.def
+Seiya, stages/GS_Leo_Temple.def
+Kira, stages/Cyber_Nature.def
+Tsuna, stages/dbkai-mountaintop.def
+Yugi, stages/yugioh.def
+Zatch, stages/Cyber_Nature.def
+Yato, stages/dbkai-mountaintop.def
+Ash Ketchum, stages/Pkmn_Clash.def
+Pikachu, stages/PokemonStadium.def
+Bulbasaur, stages/Champions room.def
+Charmander, stages/Champions room.def
+Squirtle, stages/203.def
+Chikorita, stages/Legendary_Pokemon.def
+Cyndaquil, stages/203.def
+Totodile, stages/203.def
+Agumon, stages/Digimon_Forest.def
+MetalGreymon, stages/Digimon_Arena.def
+WarGreymon, stages/Digimon_Forest.def
+MetalGarurumon, stages/Digimon_Forest.def
+Veemon, stages/Dark_Tower.def
+Flamedramon, stages/Dark_Tower.def
+Guilmon, stages/Cyber_Nature.def
+Dukemon, stages/Cyber_Nature.def
+Belzebumon, stages/Cyber_Nature.def
+Renamon, stages/Cyber_Nature.def
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;-----------------------
+[ExtraStages]
+stages/Island.def
+stages/Legendary_Pokemon.def
+stages/Cyber_Nature.def
+stages/Dark_Tower.def
+stages/Digimon_Arena.def
+stages/Pkmn_Clash.def
+stages/GS_Leo_Temple.def
+stages/Planeta_de_Bills_HR.def
+stages/Champions room.def
+stages/PokemonStadium.def
+stages/Namekusein.def
+stages/CELL_GAMES.def
+stages/Rocks vegeta.def
+stages/Snakeway.def
+stages/203.def
+stages/Dressrosa.def
+stages/Golem_Head.def
+stages/Thousand_Sunny.def
+stages/OnePiece_GoingMerry.def
+stages/Fairy_Tail_Guild.def
+stages/Fairy_Tail_Inside.def
+stages/Fusha_Village.def
+stages/Train_Railway.def
+stages/Road_To_Nirvana.def
+stages/Sannin_Battle.def
+stages/The_Valley_Of_The_End_Nightfall.def
+stages/Preliminar.def
+stages/ForestOfDeath.def
+stages/Konoha.def
+stages/Rocks_Day.def
+stages/TrainingField.def
+stages/bankai_ichigo_stage.def
+stages/Crumbing_wall.def
+stages/yugioh.def
+stages/Tenkaichi_Budokai.def
+stages/dbkai-mountaintop.def
+stages/Volcano-GelboPlanetHR.def
+stages/Digimon_Forest.def
+;---------------------------------------------------------------------
+[Options]
+ ;Here you set the maximum number of matches to fight before game ends
+ ;in Arcade Mode. The first number is the number of matches against
+ ;characters with order=1, followed by order=2 and order=3 respectively.
+ ;For example, for 4,3,1 you will fight up to 4 randomly-picked
+ ;characters who have order=1, followed by 3 with order=2 and 1 with
+ ;order=3.
+arcade.maxmatches = 8,0,0,0,0,0,0,0,0,0
+
+ ;Maximum number of matches to fight before game ends in Team Mode.
+ ;Like arcade.maxmatches, but applies to Team Battle.
+team.maxmatches = 4,1,1,0,0,0,0,0,0,0

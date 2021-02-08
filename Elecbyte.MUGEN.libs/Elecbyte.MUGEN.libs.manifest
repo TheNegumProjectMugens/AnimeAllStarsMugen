@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+<assemblyIdentity name="Elecbyte.MUGEN.libs" processorArchitecture="x86" type="win32" version="1.0.0.0">
+</assemblyIdentity>
+<dependency>
+  <dependentAssembly>
+    <assemblyIdentity name="Microsoft.VC90.CRT" processorArchitecture="x86" publicKeyToken="1fc8b3b9a1e18e3b" type="win32" version="9.0.21022.8"></assemblyIdentity>
+  </dependentAssembly>
+</dependency>
+<file hash="85a20f51c116d3bec7a2e2fc463c236a1f7df84b" hashalg="SHA1" name="glew32.dll" />
+<file hash="36c5b21a3ac0b60fd6d451255771d11929be37fc" hashalg="SHA1" name="libfreetype-6.dll" />
+<file hash="b445bf3f1e11edaabef4ed6778aa2443190c26fb" hashalg="SHA1" name="libmpg123-0.dll" />
+<file hash="91b5c40cd081966a483dfd0c0762e13ecbec2040" hashalg="SHA1" name="libogg-0.dll" />
+<file hash="d7ed97ae6634c38ba47fe17722bd308e068475a0" hashalg="SHA1" name="libpng12-0.dll" />
+<file hash="bfc306869cc5aa610e362fa76c917cf7f0e55b2f" hashalg="SHA1" name="libvorbis-0.dll" />
+<file hash="f53cfbc75db905148e86fc964a5d6adecaa25039" hashalg="SHA1" name="mikmod.dll" />
+<file hash="db5f1fe2e0babecd647b10f18bc971de7132dc1a" hashalg="SHA1" name="libvorbisfile-3.dll" />
+<file hash="064c049390dd43c8a8e3d5a1593106ccf78cde01" hashalg="SHA1" name="pthreadVC2.dll" />
+<file hash="43c491ea658b9e357431821457aa45a91060260b" hashalg="SHA1" name="SDL.dll" />
+<file hash="e9f4aeacba4e1cc4d34808ef5fc4468c9eef5097" hashalg="SHA1" name="SDL_gfx.dll" />
+<file hash="99b4a7b5610580a7b9337ee7dc28a3e99ece398d" hashalg="SHA1" name="SDL_image.dll" />
+<file hash="6427494b0eef512bde68d023b5f7d8d1fbdd9246" hashalg="SHA1" name="SDL_mixer.dll" />
+<file hash="1ac1133920acc1338dbdb1bf2cc951086cd4c2bd" hashalg="SHA1" name="SDL_ttf.dll" />
+<file hash="564f352c70e9944a7a1deda931db3164a803dac7" hashalg="SHA1" name="smpeg.dll" />
+<file hash="887b97b064424b30b59fa49deda0db1a03881799" hashalg="SHA1" name="zlib1.dll" />
+</assembly>

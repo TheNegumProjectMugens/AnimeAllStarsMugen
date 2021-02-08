@@ -1,0 +1,174 @@
+------------------------------------------
+M.U.G.E.N ver 1.00 (2010.03.20) status log
+------------------------------------------
+Parsing command line...
+Command line: C:\Users\Brito\Desktop\Mugen Base\DBZ Supreme Battle.exe
+Parse command line OK
+Initializing...
+Allocating game variables
+Reading configuration file...OK
+Initializing timer...performance timer enabled...frequency 1753437...OK
+Initializing keyboard...configuring...OK
+Initializing input engine...OK
+Initializing sound...OK
+Initializing graphics...gameCoord 640x480...render mode 0_5...trying 640x480x16 mode 0x0...success...OK
+Setting callbacks...OK
+Initializing font...OK
+Initializing game variables...OK
+Loading system fonts...OK
+Loading options...
+Initializing pads...failed
+Reinitializing input engine...OK
+Remapping keys...OK
+Reinitializing input engine...OK
+Options loaded OK
+Loading system...
+  Load system file system.def...OK
+  Load system spr...OK
+  Load system snd...OK
+  Load system fonts...OK
+  Load system anim...OK
+  Load [Title Info]...OK
+  Load [Option Info]...OK
+  Load [Select Info]...OK
+  Load [VS Screen]...OK
+  Load [Victory Screen]...Couldn't load
+  Load [Demo Mode]...OK
+  Load [Continue Screen]...OK
+  Load [Game Over Screen]...OK
+  Load [Win Screen]...OK
+  Load [Survival Results Screen]...OK
+  Load [Default Ending]...OK
+  Load [End Credits]...OK
+  Load TitleBG...VersusBG...VictoryBG...Error loading VictoryBG
+SelectBG...OptionBG...OK
+  Loading fight data
+    Opening fight data file data/fight.def...OK
+    Reading [Files]...OK
+    Loading fonts...OK
+    Load fight anim...OK
+    Reading [Lifebar]...[Turns Lifebar]...[Simul Lifebar]...[Powerbar]...
+    [Face]...[Simul Face]...[Turns Face]...
+    [Name]...[Simul Name]...[Turns Name]...
+    [Time]...[Combo]...[Round]...[WinIcon]...OK
+    Allocating explods...OK
+  Fight data loaded OK
+System loaded OK
+Initialize OK
+Set up graphics...timer...OK
+Initializing character info...OK
+Initializing select screen...finding characters...OK
+
+Entering main loop
+Entering character select.
+Loading character chars/Natsu/Natsu.def...
+  Loading info...OK
+  Loading cmd command set Natsu.cmd...OK
+  Loading cns Natsu.cns...OK
+  Loading cns IA.cns...OK
+  Loading cns Especiales.cns...OK
+  Loading cns Supers.cns...OK
+  Loading cns Dragonforce.cns...OK
+  Loading cns Rayenryu.cns...OK
+  Loading cmd state entry Natsu.cmd...OK
+  Loading common states common1.cns...OK
+  Unloading command names...OK
+  Loading sff Natsu.sff...OK
+  Loading anim Natsu.air...OK
+  Loading snd Natsu.snd...OK
+  Loading pals...(1,1)(1,2)(1,3)(1,4)(1,5)(1,6)OK
+  SFF v1.01 palette hack engaged.
+  11742 expressions (2646 on trigger lines)
+Character Natsu.def loaded OK
+Loading character chars/Seiya/Seiya.def...
+  Loading info...OK
+  Loading cmd command set Seiya.cmd...OK
+  Loading cns Seiya.cns...OK
+  Loading cns Seiya Specials.cns...OK
+  Loading cns Seiya Supers.cns...OK
+  Loading cns Sag. Specials.cns...OK
+  Loading cns Sag. Supers.cns...OK
+  Loading cns Strikers.cns...OK
+  Loading cmd state entry Seiya.cmd...OK
+  Loading common states common1.cns...OK
+  Unloading command names...OK
+  Loading sff Seiya.sff...OK
+  Loading anim Seiya.air...OK
+  Loading snd Seiya.snd...OK
+  Loading pals...OK
+  6654 expressions (2048 on trigger lines)
+Character Seiya.def loaded OK
+Initializing stage...
+  Loading BG...OK
+  Allocating helpers...OK
+Stage initialized OK
+Start of game loop
+End of game loop
+Total time: 5.29s
+Total frames: 318 	Skipped frames: 3
+Avg game rate: 60.11
+Avg frame rate: 59.55
+
+Loading character chars/Luffy/Luffy.def...
+  Loading info...OK
+  Loading cmd command set Luffy_v2.cmd...OK
+  Loading cns Luffy_v2.cns...OK
+  Loading cns Luffy_v2_GearSecond.cns...OK
+  Loading cns Luffy_v2_Specials.cns...OK
+  Loading cns Luffy_v2_Supers.cns...OK
+  Loading cns Luffy_v2_IA.cns...OK
+  Loading cmd state entry Luffy_v2.cmd...OK
+  Loading common states common1.cns...OK
+  Unloading command names...OK
+  Loading sff Luffy_v2.sff...OK
+  Loading anim Luffy_v2.air...OK
+  Loading snd Luffy_v2.snd...OK
+  Loading pals...(1,1)(1,2)(1,3)(1,4)(1,5)(1,6)(1,7)(1,8)(1,9)(1,10)(1,11)(1,12)OK
+  SFF v1.01 palette hack engaged.
+  12322 expressions (3150 on trigger lines)
+Character Luffy.def loaded OK
+Loading character chars/Goku SSJ Blue/Goku SSJ Blue.def...
+  Loading info...OK
+  Loading cmd command set Goku_SSGSS_Jus.cmd...OK
+  Loading cns Goku_SSGSS_Jus.cns...OK
+  Loading cmd state entry Goku_SSGSS_Jus.cmd...OK
+  Loading common states common1.cns...OK
+  Unloading command names...OK
+  Loading sff Goku_SSGSS_Jus.sff...OK
+  Loading anim Goku_SSGSS_Jus.air...OK
+  Loading snd Goku_SSGSS_Jus.snd...OK
+  Loading pals...OK
+  2956 expressions (822 on trigger lines)
+Character Goku SSJ Blue.def loaded OK
+Initializing stage...
+  Loading BG...OK
+  Allocating helpers...OK
+Stage initialized OK
+Start of game loop
+End of game loop
+Total time: 8.06s
+Total frames: 435 	Skipped frames: 16
+Avg game rate: 53.97
+Avg frame rate: 51.99
+
+Entering character select.
+Returned from main loop
+Deinitializing...
+Frames      : 753
+Time elapsed: 75.180 sec
+ticks: 7518, tps: 100, start 80, end 7598
+
+Clearing player cache...OK
+Freeing character info...OK
+Freeing select screen...OK
+Freeing fight data...OK
+Freeing system data...OK
+Freeing game variables...OK
+Deinitializing input...pad...keyboard...OK
+Removing callbacks...OK
+Deintializing timer...OK
+Deinitializing graphics...OK
+Deinitializing CDA...MP3...sound...OK
+Successful program termination.
+
+Log file successfully closed.

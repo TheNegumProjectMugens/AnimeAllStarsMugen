@@ -1,0 +1,136 @@
+;--------------------------------------------------------
+;PROVIENE DE MORTAL KOMBAT PROJECT 4.1
+;--------------------------------------------------------
+
+[Info]
+name     = "Pokemon Stadium"
+
+;--------------------------------------------------------
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = 0
+boundright = 0
+boundhigh = 0
+boundlow =  1500
+verticalfollow = 1
+;floortension = 50
+tension = 80
+
+;--------------------------------------------------------
+
+[PlayerInfo]
+p1startx = -80
+p1starty = 0
+p1startz = -2
+p1facing = 1
+
+p2startx = 80
+p2starty = 0
+p2startz = -2
+p2facing = -1
+
+leftbound  = -1000 
+rightbound =  1000 
+topbound  =  0
+botbound  =  1600
+
+;--------------------------------------------------------
+
+[Scaling]
+topz     = 0       
+botz     = 1     
+topscale = 1       
+botscale = 1  
+
+;--------------------------------------------------------
+
+[Bound]
+screenleft = 20
+screenright = 20
+
+;--------------------------------------------------------
+
+[StageInfo]
+zoffset        = 0
+zoffsetlink    = 1
+autoturn       = 1
+resetBG        = 1
+
+;--------------------------------------------------------
+
+[Shadow]
+color = 0,0,0
+yscale = .2
+reflect = 0
+fade.range = -30,0
+
+;--------------------------------------------------------
+
+[Music]
+bgmusic = sound/Pokemon Main Theme   Super Smash Bros Brawl.mp3
+bgvolume = 255
+
+;--------------------------------------------------------
+
+[BGdef]
+spr = PokemonStadium.sff
+debugbg = 0
+
+;--------------------------------------------------------
+
+[BG up]
+type  = dummy
+start = 0,0
+id    = 1
+
+[BGCtrl stageID 2]
+type   = PosSet
+time   = 0
+y      = 5010
+ctrlID = 1
+
+[BGCtrl stageID 2]
+type   = PosSet
+time   = 5
+y      = 206
+ctrlID = 1
+
+;-----------------------
+
+[BG Cielo azul]
+type  = normal
+spriteno = 5,1
+delta = .1,.1
+mask  = 0
+tile = 1,1
+
+[BG Cielo]
+type  = normal
+spriteno = 4,0
+delta = 1,1
+mask  = 0
+
+
+[BG stars]
+type  = normal
+spriteno = 2, 2
+start = 0, 0
+delta = 1,1
+mask = 0
+tile = 1, 0
+trans = add
+
+;--------------------------------------------------------
+[BG PUNTOS]
+type  = anim
+actionno = 1
+start = 0, 0
+delta = 1, 1
+mask = 0
+trans = add
+;--------------------------------------------------------
+[Begin Action 1]
+0,0, 0,0, 4000
+5,0, 0,0, 1000

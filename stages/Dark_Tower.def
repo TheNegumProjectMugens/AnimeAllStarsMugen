@@ -1,0 +1,122 @@
+;--------------------------------------------------------
+[Info]
+
+name = "Dark Tower"
+displayname = "Dark Tower"  
+versiondate = 09,30,2009    
+mugenversion = 1.0          
+author = "Love Renamon and Ziko"
+
+;--------------------------------------------------------
+[Camera]
+
+startx = 0
+starty = 0
+boundleft = -450
+boundright = 450
+boundhigh = -1000
+boundlow = 0
+verticalfollow = .85
+floortension = 200
+tension = 200
+
+overdrawhigh = 120
+overdrawlow = 120
+cuthigh = 0
+cutlow = 0
+
+;--------------------------------------------------------
+[PlayerInfo]
+;--- Player 1 ---
+ ;Player 1 starting coordinates.
+p1startx = -280         ;Starting x coordinates
+p1starty = 0            ;Starting y coordinates
+p1facing = 1            ;Direction player faces: 1=right, -1=left
+
+;--- Player 2 ---
+p2startx = 280
+p2starty = 0
+p2facing = -1
+
+;--- Player 3 ---
+p3startx = -300
+p3starty = 0
+p3facing = 1
+
+;--- Player 4 ---
+p4startx = 300
+p4starty = 0
+p4facing = -1
+
+;--- Common ---
+leftbound  = -3500 ;Left bound (x-movement)
+rightbound =  3500 ;Right bound
+
+;--------------------------------------------------------
+[Bound]
+
+screenleft = 60    ;Dist from left of screen that player can move to
+screenright = 60   ;Right edge
+
+;--------------------------------------------------------
+[StageInfo]
+
+zoffset = 560
+autoturn = 1
+resetBG = 1
+
+localcoord = 900, 700
+
+ ;Horizontal and vertical scaling factor for drawing.
+xscale = 1
+yscale = 1
+hires  = 1
+
+;--------------------------------------------------------
+[Shadow]
+
+intensity = 128
+color = 0,0,0
+yscale = .3
+fade.range = 0,0
+
+;--------------------------------------------------------
+[Reflection]
+
+intensity = 0
+
+;--------------------------------------------------------
+[Music]
+
+bgmusic = sound/Digimon_Instrumental_2.mp3
+bgvolume = 255
+
+;-------------------------------------
+[BGdef]
+
+spr = Dark_Tower.sff
+debugbg = 0
+
+;----------
+[BG Sky]
+type  = normal
+spriteno = 0, 0
+start = -683,0
+tile = 1,1
+mask = 0
+
+[BG Dirt]
+type  = normal
+spriteno = 0, 2
+start = -683,0
+mask = 1
+
+[BG Dark Sphere]
+type= anim
+actionno= 0
+
+[Begin Action 0]
+0,3, -683,0, 8,
+0,4, -683,0, 8,
+0,5, -683,0, 8,
+0,4, -683,0, 8,

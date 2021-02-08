@@ -1,0 +1,334 @@
+;STAGE:
+;--------------------------------------------------------
+[Info]
+ ;Nombre del escenario:
+name = "Golem_Head"
+;--------------------------------------------------------
+[Camera]
+; Cámara posición inicial: Por lo general 0 para ambos
+startx = 0
+starty = 0
+; Izquierda y derecha obligado de cámara
+  ; Es posible que desee tocar el violín un poco con estos valores para asegurarse de que el
+  ; fondo no se mueve demasiado o muy poco
+ ;***
+boundleft = -360;-722
+boundright = 370
+;De alta y baja obligada de cámara
+  ; Alto es un número negativo. Hacer es más negativo si desea
+  ; cámara sea capaz de moverse más alto.
+  ; Baja por lo general debe ser 0.
+ ; Si se omite, por defecto es -25 y 0 respectivamente
+ ;***
+boundhigh = -300
+boundlow = 0
+ ; Esto es lo que la cámara se mueve verticalmente hacia el
+  ; el más alto jugador. Los valores válidos son de 0 a 1. Un valor de 0 significa
+  ; la cámara no se mueve en absoluto. Un valor de 1 hace que la cámara
+  ; siga el jugador mejor.
+  ; Típicamente 0.2 para entornos de tamaño normal. Puede que tenga que tirar de este
+  ; valor más alto para los fondos.
+verticalfollow = .8
+; La distancia mínima vertical, el jugador mejor tiene que ser desde el suelo,
+  ; antes de que la cámara comienza a moverse hasta que lo siguiera. Por muy
+  ; estadios de altura, una tensión piso de unos 20-30 junto con una
+  ; vertical seguimiento de 0,8 permite a la cámara para seguir la acción.
+floortension = 0
+;Reproductor de distancia horizontal desde el borde es antes cámara comienza a moverse
+  ; izquierda o derecha. Por lo general 50 o 60.
+tension = 50
+;--------------------------------------------------------
+[PlayerInfo]
+;--- Player 1 ---
+ ;Player 1 starting coordinates.
+ ;p1startx is typically -70 and p2startx is 70.
+ ;p1starty and p1startz should be 0.
+p1startx = -70          ;Starting x coordinates
+p1starty = 0            ;Starting y coordinates
+p1startz = 0            ;Starting z coordinates
+p1facing = 1            ;Direction player faces: 1=right, -1=left
+;--- Player 2 ---
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+;--- Common ---
+;DEJAR ASI
+leftbound  = -1000 ;Left bound (x-movement)
+rightbound =  1000 ;Right bound
+topbound  =  0     ;Top bound (z-movement)
+botbound  =  0     ;Bottom bound
+;--------------------------------------------------------
+[Scaling]
+;DEJAR ASI CASI SIEMPRE
+topz     = 0       ;Top z-coordinate for scaling
+botz     = 50      ;Bottom z-coordinate for scaling
+topscale = 1       ;Scale to use at top
+botscale = 1.2     ;Scale to use at bottom
+;--------------------------------------------------------
+[Bound]
+;DEJAR ASI
+screenleft = 15
+screenright = 15
+;--------------------------------------------------------
+[StageInfo]
+;NIVEL DEL SUELO
+zoffset = 200
+;PARA QUE GIRE SOLO
+autoturn = 1
+;DEJAR ASI
+resetBG = 0
+hires = 1
+;--------------------------------------------------------
+[Shadow]
+intensity = 96
+color = 0,0,0
+yscale = .3
+fade.range = 0,0
+;--------------------------------------------------------
+[Reflection]
+;DEL 0 AL 256
+intensity = 0
+;--------------------------------------------------------
+[Music]
+bgmusic = sound/Golem_Head.mp3
+bgvolume = 255
+;========================================================
+; EJEMPLOS
+; [BG x]
+; type = ?       Normal = Imagenes/Parallax = suelo
+; spriteno = ?, ? Sprite y grupo: groupno, imgno  (req'd)
+; start = ?, ?   Posicion (integer)  (def: 0, 0)
+; delta = ?, ?   Change in location per camera unit moved (float)  (def: 1,1)
+; trans = ?      Opciones de transparencia: "none"/"add"/"add1"/"sub"" (def: "none")
+; mask = ?       1 para quitar fondo de las imagenes
+; velocity = ?, ? Velocity: x, y (float): speed background moves (def: 0, 0)
+; tile = ?, ?    Tiling: xtile, ytile (int): 0 - off, 1 - infinite,
+;layerno =        1 = encima del Jugador/0 = Detras
+;                        >1 - tile that number of times  (def: 0, 0) - only for Normal BG
+; tilespacing = ?, ? Tiling: x, y (int) : space between tiles (def: 0, 0)
+;  SOLO EN PARALLAX
+; xscale = ?, ?    Top xscale, bottom xscale (float)
+; width = ?, ?     Top width, bottom width (int)  (use either this or above, but not both)
+; yscalestart = ?  Starting y-scale (float, in percent)  (def: 100)
+; yscaledelta = ?  Change in y-scale per unit (float, in percent)  (def: 0)
+
+;EJEMPLO VACIO:
+
+;[BG x]
+;type =
+;spriteno =
+;start =
+;delta =
+;trans =
+;mask =
+;velocity =
+;tile =
+;Layerno =
+;-------------------------------------
+; Main background definition
+[BGdef]
+ ;Sprites:
+spr = Golem_Head.sff
+debugbg = 0
+
+;================================================================================
+;              COMPONENTES DEL STAGE:
+;================================================================================
+[BG Cielo]
+type = normal
+spriteno = 1,1
+start = -500,0
+delta = 1,1
+Layerno = 0
+tile = 1,1
+
+[bg nuvem 1]
+type=normal
+spriteno = 3,0
+start = 200, -40
+delta = 1,1
+scale = .8,.8
+velocity = 0.3
+mask = 1
+layerno = 0
+tilespacing = 200
+tile = 1, 0
+trans = add
+
+[bg nuvem 2]
+type=normal
+spriteno = 3,1
+start = 180, 140
+delta = 1,1
+scale = .8,.8
+velocity = 0.3
+mask = 1
+layerno = 0
+tilespacing = 320
+tile = 1, 0
+trans = add
+
+[bg nuvem 2]
+type=normal
+spriteno = 3,2
+start = 0, 60
+delta = 1,1
+scale = .8,.8
+velocity = 0.3
+mask = 1
+layerno = 0
+tilespacing = 320
+tile = 1, 0
+trans = add
+
+
+[bg nuvem 3]
+type=normal
+spriteno = 3,2
+start = -80, 200
+delta = 1,1
+scale = .8,.8
+velocity = 0.3
+mask = 0
+layerno = 0
+tilespacing = 320
+tile = 1, 0
+trans = add
+
+[BG Base]
+type = normal
+spriteno = 2,0
+start = 0,100
+delta = 2,1
+Layerno = 0
+mask = 1
+
+[BG Base Tapado]
+type = normal
+spriteno = 2,111
+start = 0,100
+delta = 2,1
+Layerno = 0
+mask = 1
+
+[BG FONDO]; Niebla
+type = normal
+spriteno = 6,0
+start = 0,480
+delta = 1,1
+Layerno = 1
+delta = 1.7,1.7
+mask = 1
+tile = 1,0
+velocity = 3, 0
+trans = add
+
+[BG Chapa]
+type = normal
+spriteno = 9,0
+start = 580,420
+delta = 2,1
+Layerno = 0
+mask = 1
+
+[BG Piedras 1]
+type = normal
+spriteno = 4,2
+start = 0,450
+delta = 2,1
+Layerno = 1
+mask = 1
+
+[BG Piedras 2]
+type = normal
+spriteno = 4,0
+start = 450,450
+delta = 2,1
+Layerno = 1
+mask = 1
+
+[BG Piedras 4]
+type = normal
+spriteno = 4,3
+start = 870,500
+delta = 2,1
+Layerno = 1
+mask = 1
+
+[BG Piedras 5 Bajando]
+type = anim
+actionno = 6
+start = 300,-8000
+delta = 2,1
+Layerno = 0
+mask = 1
+velocity = 0,8
+
+[BG Piedras 5]
+type = anim
+actionno = 5
+start = 300,300
+delta = 2,1
+Layerno = 0
+mask = 1
+
+[BG Makinas]
+type = normal
+spriteno = 5,0
+start = 760,130
+delta = 2,1
+Layerno = 0
+mask = 1
+
+[BG Bombillas]
+type = anim
+actionno = 7
+start = 760,130
+delta = 2,1
+Layerno = 0
+mask = 1
+
+[BG FONDO]; SOL
+type = normal
+spriteno = 7,0
+start = -1200,350
+delta = 3,1
+Layerno = 1
+delta = 0,0
+mask = 1
+trans = add
+
+[BG Tapado]
+type = normal
+spriteno = 2,1
+start = -739,475
+delta = 2,1
+Layerno = 1
+mask = 1
+
+;-------------------------------------------------------------------------------
+; Acciones:
+;-------------------------------------------------------------------------------
+;Piedras 5
+[Begin Action 5]
+-1,1, 0,0, 1040
+Loopstart
+4,1, 0,0, 4
+
+;Piedras 5 Callendo
+[Begin Action 6]
+4,1, 0,0, 1040
+Loopstart
+-1,1, 0,0, -1
+
+; Bombillas
+[Begin Action 7]
+5,1, 0,0, 6,, AS256D256
+5,1, 0,0, 6,, AS200D256
+5,1, 0,0, 6,, AS150D256
+5,1, 0,0, 6,, AS100D256
+5,1, 0,0, 6,, AS50D256
+5,1, 0,0, 6,, AS100D256
+5,1, 0,0, 6,, AS150D256
+5,1, 0,0, 6,, AS200D256
