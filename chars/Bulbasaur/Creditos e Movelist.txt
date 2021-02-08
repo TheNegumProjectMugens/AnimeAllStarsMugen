@@ -1,0 +1,15 @@
+Nome do Criador do Char: Bruno_SS 
+Versão do MUGEN: 1.0
+-------------------------------------------Creditos----------------------------------
+Personagem e golpes: Anime e Jogos Pokemon.
+Codigos: Bruno_SS
+Sprites: Joshr691
+-------------------------------------------Golpes-------------------------------------
+Stand
+a - Combo 1
+b - Combo 2
+c - Combo 3
+x - Vine Whip
+y - Razor Leaf 
+z - Solar Beam
+s(enter) - Charge

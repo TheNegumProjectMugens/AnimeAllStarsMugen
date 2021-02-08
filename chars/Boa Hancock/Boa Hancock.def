@@ -1,0 +1,31 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name ="Boa_Hancock"
+displayname ="Hancock"
+versiondate =12,27,2007
+mugenversion =04,14,2002
+author ="muko"
+pal.defaults =6,3,4,2
+
+; Files for the player
+[Files]
+cmd     =Boa_Hancock.cmd
+cns     =Boa_Hancock.cns
+st      =Boa_Hancock.cns
+stcommon =common1.cns
+sprite  =Boa_Hancock.sff
+anim    =Boa_Hancock.air
+sound   =Boa_Hancock.snd
+pal1=Boa_Hancock.act
+;pal2    = ONE_PIECE_ACE2.act
+;pal3    = ONE_PIECE_ACE3.act
+;pal4    = ONE_PIECE_ACE4.act
+;pal5    = ONE_PIECE_ACE5.act
+;pal6    = ONE_PIECE_ACE6.act
+; Arcade mode
+[Arcade]
+intro.storyboard =intro.def
+ending.storyboard =ending.def

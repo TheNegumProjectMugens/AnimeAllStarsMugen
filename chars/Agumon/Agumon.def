@@ -1,0 +1,33 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name ="Agumon"
+displayname ="Agumon"
+versiondate =26/03/2014
+mugenversion = 
+author ="Mikel8888"
+pal.defaults =1,2,3,4,5,6
+
+[Files]
+sprite =Agumon.sff
+anim =Agumon.air
+sound =Agumon.snd
+cmd =Agumon.cmd
+cns =Agumon.cns
+stcommon =common1.cns
+st =Agumon.cns
+pal1=1.act
+pal2=2.act
+pal3=3.act
+pal4=4.act
+pal5=5.act
+pal6=6.act
+st1=IA.cns
+st2=Especiales.cns
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

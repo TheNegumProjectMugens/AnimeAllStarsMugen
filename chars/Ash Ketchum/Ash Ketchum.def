@@ -1,0 +1,20 @@
+[Info]
+name="Ash Ketchum"
+displayname="Ash"
+versiondate=22/09/2009
+mugenversion=04,14,2001
+author="MGSSJ2"
+pal.defaults=1,2
+[Files]
+sprite=pt.sff
+sound=pt.snd
+anim=pt.air
+cmd=pt.cmd
+cns=pt.cns
+st=pt.cns
+stcommon=pt.cns
+pal1=pt.act
+pal2=pt.act
+[Arcade]
+intro.storyboard=
+ending.storyboard=

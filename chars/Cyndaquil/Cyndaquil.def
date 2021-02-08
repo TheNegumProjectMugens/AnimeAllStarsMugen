@@ -1,0 +1,27 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Cyndaquil by Bruno_SS - Pokemon MUGEN EDITION"
+displayname = "Cyndaquil"
+versiondate = 18/06/11
+mugenversion = 1.0
+author = "Bruno_SS"
+pal.defaults = 1,2
+
+[Files]
+sprite = BCyndaquilSS.sff
+anim = BCyndaquilSS.air
+sound = BCyndaquilSS.snd
+cmd = BCyndaquilSS.cmd
+cns = BCyndaquilSS.cns
+stcommon = common1.cns
+st = BCyndaquilSS.cns
+pal1 = 1.act
+pal2 = 2.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

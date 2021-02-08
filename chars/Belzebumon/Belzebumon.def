@@ -1,0 +1,20 @@
+[Info]
+name = "Belzeebumon"
+displayname = "Beelzemon"
+versiondate = 20/12/09
+mugenversion = 14,11,2001
+author = "Love Renamon"
+pal.defaults = 1,
+
+[Files]
+sprite = Belzebumon.sff
+anim = Belzebumon.air
+sound = Belzebumon.snd
+cmd = Belzebumon.cmd
+cns = Belzebumon.cns
+stcommon = common1.cns
+st = Belzebumon.cns
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=..\data\final.def

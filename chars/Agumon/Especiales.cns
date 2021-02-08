@@ -1,0 +1,2242 @@
+;===============================================================================
+;----------------------EPECIALES-----------------------------------------------
+;===============================================================================
+;===============================================================================
+; Giga Llama Bebe:
+;-------------------------------------------------------------------------------
+; Giga Llama Bebe - Start
+[Statedef 1000]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1000
+poweradd = -1500
+sprpriority = 2
+
+[State 3000,Portrait Giga Llama Bebe]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Portrait Giga Llama Bebe"
+id		= 1070
+pos             = 145,-100
+postype         = back
+facing		= 1
+stateno		= 1070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 40
+movetime = 40
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -150
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 40 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [0,40]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= Animelem = 1
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -3,-18
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S950,2
+volume = 50
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 10
+value = S0,1
+volume = 999
+channel = -1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 56
+value = S5,15
+volume = 50
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 56
+helpertype = normal
+name = "Giga Llama Bebe"
+ID = 1050
+stateno = 1050
+pos = 10,-10
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Giga Llama Bebe - Projectil
+[Statedef 1050]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1050
+sprpriority = 2
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = 250
+ID = 250
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = .6,.6
+sprpriority = 3
+ontop = 1
+ownpal = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 3
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Heavy
+damage    = 300,100
+guardflag = MA
+pausetime = 6,10
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = S1,5
+guardsound = S1,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2,-8
+air.velocity = -2,-8
+Fall = 1
+Palfx.time = 80
+Palfx.add = 40,-70,-200
+Palfx.sinadd = 40,30,0,10
+Palfx.color = 0
+Palfx.invertall = 1
+envshake.time = 10
+Fall.Recover = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(251) = 0
+trigger1 = Movecontact
+anim = 251
+ID = 251
+postype = P1
+pos = 30,-10
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.6,0.6
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+trigger2 = time%10 = 0
+value = S5,14
+volume = 999
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = time = 120
+trigger2 = movecontact
+id = 250
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 120
+trigger2 = movecontact
+;-------------------------------------------------------------------------
+;Portrait Giga Llama Bebe
+[Statedef 1070]
+type    = A
+physics = N
+velset = 0,0
+anim = 1070
+ctrl = 0
+sprpriority = 3
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 0
+x = 1
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 7110]
+type = Trans
+trigger1 = 1
+trans = addalpha
+alpha = 256-(time*9),256
+
+[State 3290, DestroySelf]
+type = DestroySelf
+trigger1 = time = 70
+;===============================================================================
+; Llama Bebe Multiple:
+;-------------------------------------------------------------------------------
+; Llama Bebe Multiple - Start
+[Statedef 1100]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1100
+poweradd = -1000
+sprpriority = 2
+
+[State 3000,Portrait Giga Llama Bebe]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Portrait Giga Llama Bebe"
+id		= 1070
+pos             = 145,-100
+postype         = back
+facing		= 1
+stateno		= 1070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 40
+movetime = 40
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -150
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 40 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [0,40]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= Animelem = 1
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-12
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S950,1
+volume = 50
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 41
+value = S40,1
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 7||animelem = 10||animelem = 13
+value = S5,15
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 7||animelem = 10||animelem = 13
+value = S0,5
+volume = 999
+
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = time >= 41
+statetype = A
+movetype = A
+physics = A
+ignorehitpause = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 41
+x = -1
+y = -8
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 55
+x = -.1
+y = .1
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time = 0
+value = 0
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time = [54,72]
+value = -30
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time = [89,104]
+value = 30
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time = 105
+value = 0
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 63
+helpertype = normal
+name = "Llama Bebe 1"
+ID = 1150
+stateno = 1150
+pos = 10,-6
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 79
+helpertype = normal
+name = "Llama Bebe 2"
+ID = 1160
+stateno = 1160
+pos = 10,-10
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 95
+helpertype = normal
+name = "Llama Bebe 3"
+ID = 1170
+stateno = 1170
+pos = 10,-14
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Llama Bebe Multiple - Projectil 1
+[Statedef 1150]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 225
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 6
+y = 3
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+trigger2 = pos y >= -5
+attr = S, NA
+animtype  = Medium
+damage    = 80,20
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = S1,5
+guardsound = S1,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1,-9
+air.velocity = -1,-9
+Fall = 1
+Palfx.time = 90
+Palfx.add = 40,-70,-200
+Palfx.sinadd = 40,30,0,10
+Palfx.color = 0
+Palfx.invertall = 1
+Fall.Recover = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(251) = 0
+trigger1 = Movecontact
+trigger2 = pos y >= -5
+anim = 251
+ID = 251
+postype = P1
+pos = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+trigger2 = time%10 = 0
+value = S5,14
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = pos y >= -5
+value = S1,5
+volume = 50
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+name = "Llama Bebe 1 FX"
+ID = 1151
+stateno = 1151
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 60
+trigger2 = movecontact
+trigger3 = pos y >= -5
+;-------------------------------------------------------------------------------
+; Llama Bebe Multiple - Projectil 1 FX
+[Statedef 1151]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 250
+sprpriority = 3
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 0,0
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = -30
+scale = .2,.2
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, End]
+type = Destroyself
+trigger1 = parent,time = 60
+trigger2 = parent,movecontact
+trigger3 = parent,pos y >= -5
+;-------------------------------------------------------------------------------
+; Llama Bebe Multiple - Projectil 2
+[Statedef 1160]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 225
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 6
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Medium
+damage    = 80,20
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = S1,5
+guardsound = S1,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1,-9
+air.velocity = -1,-9
+Fall = 1
+Palfx.time = 90
+Palfx.add = 40,-70,-200
+Palfx.sinadd = 40,30,0,10
+Palfx.color = 0
+Palfx.invertall = 1
+Fall.Recover = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(251) = 0
+trigger1 = Movecontact
+anim = 251
+ID = 251
+postype = P1
+pos = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+trigger2 = time%10 = 0
+value = S5,14
+volume = 999
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+name = "Llama Bebe 2 FX"
+ID = 1161
+stateno = 1161
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 60
+trigger2 = movecontact
+;-------------------------------------------------------------------------------
+; Llama Bebe Multiple - Projectil 2 FX
+[Statedef 1161]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 250
+sprpriority = 3
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 0,0
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+scale = .2,.2
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, End]
+type = Destroyself
+trigger1 = parent,time = 60
+trigger2 = parent,movecontact
+;-------------------------------------------------------------------------------
+; Llama Bebe Multiple - Projectil 3
+[Statedef 1170]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 225
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 6
+y = -3
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Medium
+damage    = 80,20
+guardflag = MA
+pausetime = 6,8
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = S1,5
+guardsound = S1,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -3,-4
+air.velocity = -3,-4
+Fall = 1
+Palfx.time = 90
+Palfx.add = 40,-70,-200
+Palfx.sinadd = 40,30,0,10
+Palfx.color = 0
+Palfx.invertall = 1
+Fall.Recover = 0
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(251) = 0
+trigger1 = Movecontact
+anim = 251
+ID = 251
+postype = P1
+pos = 0,0
+facing = 1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.2,0.2
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+trigger2 = time%10 = 0
+value = S5,14
+volume = 999
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+name = "Llama Bebe 3 FX"
+ID = 1171
+stateno = 1171
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 60
+trigger2 = movecontact
+;-------------------------------------------------------------------------------
+; Llama Bebe Multiple - Projectil 3 FX
+[Statedef 1171]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 250
+sprpriority = 3
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 0,0
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = 30
+scale = .2,.2
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, End]
+type = Destroyself
+trigger1 = parent,time = 60
+trigger2 = parent,movecontact
+;===============================================================================
+; Agumon Throw:
+;-------------------------------------------------------------------------------
+; Agumon Throw - Start
+[Statedef 1200]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1200
+poweradd = -500
+sprpriority = 2
+
+[State 3000,Portrait Giga Llama Bebe]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Portrait Giga Llama Bebe"
+id		= 1070
+pos             = 145,-100
+postype         = back
+facing		= 1
+stateno		= 1070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 40
+movetime = 40
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -150
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 40 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [0,40]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= Animelem = 1
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-15
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S950,1
+volume = 50
+channel = 1
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = unguardable
+
+[State 200, Catch Hit]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 0
+guardflag = MA
+pausetime = 5,5
+sparkno = s7030
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = -1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0
+air.velocity = 0
+Fall = 0
+p1stateno = 1201
+p2stateno = 1205
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Agumon Throw - Fin
+[Statedef 1201]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1201
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = S0,5
+volume = 999
+
+[State 0, Run FWD]
+type = Explod
+trigger1 = time = 17
+anim = 7015
+ID = 7015
+pos = -2,15
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .15,.5
+sprpriority = 1
+ontop = 0
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 17
+value = S60,1
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,7
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 27
+value = S5,8
+volume = 50
+
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = time >= 16
+statetype = A
+movetype = A
+physics = A
+ignorehitpause = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = [16,26]
+x = 3
+y = -5
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 27
+x = -1
+y = -4
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = animelem = 1
+pos = 4,-6
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = animelem = 2
+pos = 1,-9
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = animelem = 3
+pos = -2,-9
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = animelem = 4
+pos = 3,-19
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = time = [16,27]
+pos = 2,-9
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Agumon Throw - P2
+[Statedef 1205]
+type    = S
+movetype= H
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+facep2 = 1
+
+[State 0, SprPriority]
+type = SprPriority
+trigger1 = animelem = 3
+value = 3
+
+[State 0, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = time = 0
+value = 1205
+
+[State 0, Gravity]
+type = Gravity
+trigger1 = time >= 31
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time >= 31
+x = -8
+y = 10
+
+[State 200, End]
+type = changestate
+triggerall = time >= 30
+trigger1 = backedgebodydist < 5
+value = 1207
+
+[State 200, End]
+type = ChangeState
+triggerall = time >= 30
+trigger1 = pos y >= -2
+value = 1206
+;-------------------------------------------------------------------------------
+; Agumon Throw - P2
+[Statedef 1206]
+type    = A
+movetype= H
+physics = A
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = time = 0
+time = 20
+freq = 30
+ampl = -4
+phase = 90
+
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = time = 0
+value = -90
+kill = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -2
+y = -7
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = 1+(time*40)
+
+[State 200, End]
+type = changestate
+trigger1 = backedgebodydist <= 2
+value = 1207
+
+[State 200, End]
+type = Selfstate
+trigger1 = time = 20
+value = 5050
+;-------------------------------------------------------------------------------
+; Agumon Throw - P2
+[Statedef 1207]
+type    = A
+movetype= H
+physics = A
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 0, LifeAdd]
+type = LifeAdd
+triggerall = prevstateno = 1206
+trigger1 = time = 0
+value = -30
+kill = 1
+
+[State 0, LifeAdd]
+type = LifeAdd
+triggerall = prevstateno != 1206
+trigger1 = time = 0
+value = -90
+kill = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 3
+y = -6
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = -1-(time*40)
+
+[State 200, End]
+type = Selfstate
+trigger1 = time = 20
+value = 5050
+;-------------------------------------------------------------------------------
+; Helper de Sonido
+[Statedef 1210]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S3,1
+volume = 50
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) < 2
+trigger1 = time = 0
+anim = 7013
+ID = 7001
+postype = P2
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 100
+;-------------------------------------------------------------------------------
+; Helper de Sonido 2
+[Statedef 1211]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S3,1
+volume = 50
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7002) < 2
+trigger1 = time = 0
+anim = 7013
+ID = 7002
+postype = P2
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 100
+;===============================================================================
+; Agumon Suplex:
+;-------------------------------------------------------------------------------
+; Agumon Suplex - Start
+[Statedef 1300]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1200
+poweradd = -500
+sprpriority = 2
+
+[State 3000,Portrait Giga Llama Bebe]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Portrait Giga Llama Bebe"
+id		= 1070
+pos             = 145,-100
+postype         = back
+facing		= 1
+stateno		= 1070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 40
+movetime = 40
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -150
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 40 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [0,40]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= Animelem = 1
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = 0,-15
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S950,1
+volume = 50
+channel = 1
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = unguardable
+
+[State 200, Catch Hit]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 0
+guardflag = MA
+pausetime = 5,5
+sparkno = s7030
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = -1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0
+air.velocity = 0
+Fall = 0
+p1stateno = 1301
+p2stateno = 1305
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Agumon Suplex - Continuacion
+[Statedef 1301]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1301
+sprpriority = 2
+
+[State 0, Run FWD]
+type = Explod
+trigger1 = time = 5
+anim = 7015
+ID = 7015
+pos = 0,10
+postype = p1
+facing = -1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .15,.5
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 6
+value = S60,1
+volume = 50
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,7
+volume = 50
+
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = time >= 6
+statetype = A
+movetype = A
+physics = A
+ignorehitpause = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 6
+x = -4
+y = -8
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = time = [0,10]
+pos = -4,-4
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = time = [11,20]
+pos = -4,2
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = time >= 20
+pos = -1,4
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 20
+trigger1 = pos y >= -10
+value = 1302
+;-------------------------------------------------------------------------------
+; Agumon Suplex - Fin
+[Statedef 1302]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1302
+sprpriority = 2
+
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = time >= 10
+statetype = A
+movetype = A
+physics = A
+ignorehitpause = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 10
+x = -3
+y = -5
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S3,1
+volume = 50
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,5
+volume = 999
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 0
+anim = 8200
+ID = 8200
+pos = 2,10
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .3,.3
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+
+[State 200, Spark CVS]
+type = Explod
+triggerall = Numexplod(7001) < 2
+trigger1 = time = 0
+anim = 7013
+ID = 7001
+postype = P2
+pos = 0,0
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = 0.3,0.3
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Agumon Suplex - P2
+[Statedef 1305]
+type    = S
+movetype= H
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+facep2 = 1
+
+[State 0, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = time = 0
+value = 1305
+
+[State 200, End]
+type = ChangeState
+trigger1 = p2stateno = 1302
+value = 1306
+;-------------------------------------------------------------------------------
+; Agumon Throw - P2
+[Statedef 1306]
+type    = S
+movetype= H
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = time = 0
+time = 20
+freq = 30
+ampl = -4
+phase = 90
+
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = time = 0
+value = -120
+kill = 1
+
+[State 200, End]
+type = Selfstate
+trigger1 = time = 1
+value = 5110
+;===============================================================================
+; Agumon Rage:
+;-------------------------------------------------------------------------------
+; Agumon Rage - Start
+[Statedef 1400]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1400
+poweradd = -2000
+sprpriority = 2
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 60||time = 70||time = 80
+anim = 8401
+ID = 8200
+pos = -10,-15
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .6,.6
+sprpriority = 3
+ontop = 1
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,2
+volume = 999
+
+[State 3000,Portrait Giga Llama Bebe]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Portrait Giga Llama Bebe"
+id		= 1070
+pos             = 145,-100
+postype         = back
+facing		= 1
+stateno		= 1070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 40
+movetime = 40
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -150
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 40 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [0,40]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= Animelem = 1
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -1,-15
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S950,2
+volume = 50
+channel = 1
+
+[State 3000, PlaySnd - Llamarada]
+type = PlaySnd
+trigger1 = Time = 82
+value = S5,17
+volume = 50
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 82
+helpertype = normal
+name = "Llamarada"
+ID = 1450
+stateno = 1450
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 82
+helpertype = normal
+name = "Hits"
+ID = 1451
+stateno = 1451
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 81
+value = S0,5
+volume = 999
+channel = -1
+
+[State 200, CAGADA]
+type = ChangeState
+triggerall = random < 100
+trigger1 = time = 80
+value = 1401
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 5120
+;-------------------------------------------------------------------------------
+; Agumon Rage - Cagada
+[Statedef 1401]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1401
+poweradd = 1500
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,3
+volume = 999
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;-------------------------------------------------------------------------------
+; Agumon Rage - FX
+[Statedef 1450]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1450
+sprpriority = 4
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 80
+scale = 1,5-(time/20.000)
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 14,-7
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[state 0]
+type = envshake
+trigger1 = timemod = 5,0
+ampl = 5
+time = 5
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 100
+trigger2 = parent,stateno != 1400
+;-------------------------------------------------------------------------------
+; Agumon Rage - Hits
+[Statedef 1451]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+sprpriority = 4
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+value2 = S,NA
+time = 100
+ignorehitpause = 1
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = 1
+value = 1400
+elem = 15
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 0,0
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+[State 200, 1]
+type = HitDef
+triggerall = time < 60
+trigger1 = timemod = 5,0
+attr = S, NA
+animtype  = Light
+damage    = 35+(random%3),10
+guardflag = MA
+pausetime = 0,0
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -6
+air.velocity = -6,-2
+Fall = 0
+Palfx.time = 40
+Palfx.add = 40,-70,-200
+Palfx.sinadd = 40,30,0,10
+Palfx.color = 0
+Palfx.invertall = 1
+
+[State 200, 1]
+type = HitDef
+trigger1 = time = 60
+attr = S, NA
+animtype  = Light
+damage    = 35+(random%3),10
+guardflag = MA
+pausetime = 0,0
+sparkno = -1
+guard.sparkno = s7000
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-6
+air.velocity = -4,-6
+Fall = 1
+Palfx.time = 40
+Palfx.add = 40,-70,-200
+Palfx.sinadd = 40,30,0,10
+Palfx.color = 0
+Palfx.invertall = 1
+Fall.Recover = 0
+
+[State 200, End]
+type = Destroyself
+trigger1 = time = 81
+trigger2 = parent,stateno != 1400
+;===============================================================================
+; Rage Explosion:
+;-------------------------------------------------------------------------------
+; Rage Explosion - Start
+[Statedef 1500]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1500
+poweradd = -1000
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 50
+value = S0,5
+volume = 999
+
+[State 0, Explod]
+type = Explod
+trigger1 = time = 40||time = 50
+anim = 8401
+ID = 8200
+pos = -10,-15
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .6,.6
+sprpriority = 3
+ontop = 1
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 1
+
+[State 3000,Portrait Giga Llama Bebe]
+type		= Helper
+trigger1	= time = 0
+helpertype	= Normal
+name		= "Portrait Giga Llama Bebe"
+id		= 1070
+pos             = 145,-100
+postype         = back
+facing		= 1
+stateno		= 1070
+keyctrl		= 0
+ownpal		= 1
+supermovetime 	= 999
+ignorehitpause  = 1
+size.xscale     = 0.5
+size.yscale     = 0.5
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 40
+movetime = 40
+anim = -1
+sound = -1
+pos = 32,-80
+darken = 0
+unhittable = 1
+
+[State 3000, VarSet]
+type = Varset
+trigger1 = time = 0
+v = 12
+value = -150
+
+[State 3000, VarAdd]
+type = VarAdd
+trigger1 = time >= 40 && Var(12) < 0
+v = 12
+value = 6
+
+[State 3000, BGColorFX]
+type = BGPalFX
+trigger1 = Time > 0
+time = 1
+add = Var(12),Var(12),Var(12)
+
+[State 3000, Cámara lenta]
+type = Pause
+trigger1 = time = [0,40]
+time = 1
+movetime = 0
+
+[State 3000:	EnvShake]
+type			= EnvShake
+trigger1 		= Animelem = 1
+time			= 20
+freq			= 120
+ampl			= -2
+phase			= 50
+
+
+[State 3000, Super Charge]
+type = Explod
+trigger1 = Time = 0
+anim = 7400
+ID = 7400
+pos = -1,-15
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = -1
+ownpal = 1
+scale = .5,.5
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+
+[State 3000, PlaySnd - Super Charge]
+type = PlaySnd
+trigger1 = Time = 0
+value = S950,1
+volume = 50
+channel = 1
+
+[State 3000, PlaySnd - Explosion]
+type = PlaySnd
+trigger1 = TIME = 59
+value = S5,18
+volume = 50
+
+[State 0, Explosion]
+type = Explod
+trigger1 = TIME = 59
+anim = 1550
+ID = 1550
+pos = 2,-13
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .7,.7
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 1
+
+[State 200, 1]
+type = HitDef
+trigger1 = TIME = 59
+attr = S, NA
+animtype  = Heavy
+damage    = 200,55
+guardflag = MA
+pausetime = 6,10
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = -1
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2,-8
+air.velocity = -2,-8
+Fall = 1
+Palfx.time = 80
+Palfx.add = 40,-70,-200
+Palfx.sinadd = 40,30,0,10
+Palfx.color = 0
+Palfx.invertall = 1
+envshake.time = 10
+Fall.Recover = 0
+
+[state 0]
+type = envshake
+triggerall = time >= 60
+trigger1 = timemod = 5,0
+ampl = 5
+time = 5
+
+[State 200, End]
+type = ChangeState
+trigger1 = TIME = 80
+value = 1501
+;-------------------------------------------------------------------------------
+; Rage Explosion - Quemado
+[Statedef 1501]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1501
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,6
+volume = 50
+channel = -1
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = time = 65
+channel = -1
+
+[State 0, Llamas]
+type = Explod
+trigger1 = TIME = 0
+anim = 1560
+ID = 1560
+pos = 0,-20
+postype = p1
+facing = facing
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = .2,.5
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 1
+
+[State 0, Llamas]
+type = Explod
+trigger1 = TIME = 0
+anim = 1560
+ID = 1560
+pos = 1,-19
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = .2,.5
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 1
+
+[State 0, Llamas]
+type = Explod
+trigger1 = TIME = 0
+anim = 1560
+ID = 1560
+pos = 1,-19
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -1
+scale = .2,.5
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 1
+
+[State 0, Turn]
+type = Turn
+TRIGGERALL = RANDOM < 100
+trigger1 = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+x = 4
+
+[State 200, End]
+type = ChangeState
+trigger1 = time = 65
+value = 211
